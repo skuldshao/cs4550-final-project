@@ -8,9 +8,9 @@ import {Search} from "./search";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App wd-bg-gold">
       <BrowserRouter>
-        <div className="container">
+        <div className="container pb-2">
           <Routes>
             <Route path="/home"
                    element={<Home/>}/>
