@@ -1,0 +1,16 @@
+.bright-red {
+    color: #c8102e
+}
+.white {
+    color: #F5F5F5
+}
+.gold {
+    color: #A4804A
+}
+.grey {
+    color: #2F3137
+}
+.bg-danger {
+    background-color: #c8102e;
+    color: #F5F5F5;
+}
