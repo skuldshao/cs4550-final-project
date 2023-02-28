@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 
 function NavTab(
-    {tabs = { "active": "overview" } }
+    {tabs}
 ) {
     return (
         <ul className="nav nav-tabs p-0 pt-2 border-none border-0">

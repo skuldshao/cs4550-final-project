@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
-import Overview from "./overview";
+import Overview from "./overview/overview";
 import Reviews from "./reviews";
 import Following from "./following";
 import Followers from "./followers";
@@ -21,13 +21,13 @@ function ProfileTabs(
             <div className="p-5 pt-0">
                 <Routes>
                     <Route index
-                           element={<Overview/>}/>
+                           element={<Overview tabs={{ active: "overview" }}/>}/>
                     <Route path="/reviews"
-                           element={<Reviews/>}/>
+                           element={<Reviews tabs={{ active: "reviews" }}/>}/>
                     <Route path="/following"
-                           element={<Following/>}/>
+                           element={<Following tabs={{ active: "following" }}/>}/>
                     <Route path="/followers"
-                           element={<Followers/>}/>
+                           element={<Followers tabs={{ active: "followers" }}/>}/>
                 </Routes>
             </div>
         </BrowserRouter>
