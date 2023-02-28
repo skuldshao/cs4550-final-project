@@ -1,0 +1,62 @@
+[
+  {
+    "img": "micky.jpeg",
+    "action": "just joined",
+    "time": "4 seconds",
+    "loggedIn": false
+  },
+  {
+    "img": "minnie.jpeg",
+    "action": "just ranked",
+    "item": "Twinkle Twinkle Little Star",
+    "time": "2 hours",
+    "ratings": 4,
+    "loggedIn": false
+  },
+  {
+    "img": "donald.webp",
+    "action": "just ranked",
+    "item": "The Wiggles",
+    "time": "10 hours",
+    "ratings": 2.5,
+    "loggedIn": false
+  },
+  {
+    "img": "donald.webp",
+    "action": "just added a comment to a review",
+    "time": "10 hours",
+    "loggedIn": false
+  },
+  {
+    "img": "donald.webp",
+    "action": "just added",
+    "item": "The Wiggles",
+    "location": "artists to listen to more",
+    "time": "11 hours",
+    "loggedIn": true
+  },
+  {
+    "img": "minnie.jpeg",
+    "action": "just added",
+    "item": "The ABC's",
+    "location": "songs to listen to more",
+    "time": "10 hours",
+    "loggedIn": true
+  },
+  {
+    "img": "micky.jpeg",
+    "action": "just added",
+    "item": "The Wiggles",
+    "location": "favorite artists",
+    "time": "12 hours",
+    "loggedIn": true
+  },
+  {
+    "img": "minnie.jpeg",
+    "action": "just added",
+    "item": "The ABC's",
+    "location": "favorite songs",
+    "time": "23 hours",
+    "loggedIn": true
+  }
+]
