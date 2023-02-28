@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import styles from "../styles.css"
+import "../styles.css"
 
 const AdminNav = (active) => {
     return (
