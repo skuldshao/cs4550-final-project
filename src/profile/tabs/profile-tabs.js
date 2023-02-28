@@ -3,8 +3,8 @@ import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import Overview from "./overview/overview";
 import Reviews from "./reviews/reviews";
-import Following from "./following/following";
-import Followers from "./followers/followers";
+import Following from "./follow/following";
+import Followers from "./follow/followers";
 
 function ProfileTabs( { isEditing = false } ) {
     return (
