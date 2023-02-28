@@ -9,7 +9,7 @@ function ProfileHeader( {who = {
     "email": "rowlet@pokemon.com"
 }}) {
     return (
-        <div className="row wd-black-bg p-5 pb-2 align-items-center">
+        <div className="row wd-black-bg p-5 m-0 pb-2 align-items-center">
             <div className="col-1">
                 <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
             </div>

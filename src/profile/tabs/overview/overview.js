@@ -2,16 +2,10 @@ import React from "react";
 import {Link} from "react-router-dom";
 import NavTab from "../tab-nav";
 import RecentActivityList from "./recentActivityList";
+import About from "./about";
 
 
-function OverView( {
-    about = {
-        yearJoined: 2023,
-        bio: "Biography biography biography biography biography biography biography biography biography biography biography biography biography biography biography biography biography",
-        location: "Boston",
-        publicLocation: true
-    },
-    tabs}
+function OverView( {tabs, isEditing}
 ) {
     return (
         <div className="row wd-black-bg">
@@ -23,6 +17,7 @@ function OverView( {
                 </div>
                 <div className="col-3 text-white">
                     <p className="fw-bold fs-5">ABOUT</p>
+                    <About isEditing={isEditing}/>
                 </div>
             </div>
         </div>

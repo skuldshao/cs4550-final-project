@@ -2,26 +2,17 @@ import React from "react";
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import Overview from "./overview/overview";
-import Reviews from "./reviews";
-import Following from "./following";
-import Followers from "./followers";
+import Reviews from "./reviews/reviews";
+import Following from "./following/following";
+import Followers from "./followers/followers";
 
-function ProfileTabs(
-    who = {
-        "isSelf": true,
-        "userName": "SpaceX",
-        "handle": "2h",
-        "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-        "phoneNumber": "tesla.png",
-        "email": "blah"
-    }
-) {
+function ProfileTabs( { isEditing = false } ) {
     return (
         <BrowserRouter>
             <div className="p-5 pt-0">
                 <Routes>
                     <Route index
-                           element={<Overview tabs={{ active: "overview" }}/>}/>
+                           element={<Overview tabs={{ active: "overview" }} isEditing={isEditing}/>}/>
                     <Route path="/reviews"
                            element={<Reviews tabs={{ active: "reviews" }}/>}/>
                     <Route path="/following"

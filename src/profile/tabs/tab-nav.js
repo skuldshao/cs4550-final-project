@@ -10,26 +10,26 @@ function NavTab(
             <li className="nav-item ps-2 pe-2">
                 <div className="nav-link">
                     <Link to="/"
-                          className={`text-white fw-bold text-decoration-none pb-2 ${
-                              tabs.active == "overview"? `border-bottom border-danger border-2` : ``}`}>OVERVIEW</Link>
+                          className={`text-white fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                              tabs.active == "overview"? `border-danger` : `border-secondary`}`}>OVERVIEW</Link>
                 </div>
             </li>
             <li className="nav-item ps-2 pe-2">
                 <div className="nav-link">
-                    <Link to="/reviews" className={`text-white fw-bold text-decoration-none pb-2 ${
-                        tabs.active == "reviews"? `border-bottom border-danger` : ``}`}>REVIEWS</Link>
+                    <Link to="/reviews" className={`text-white fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                        tabs.active == "reviews"? `border-danger` : `border-secondary`}`}>REVIEWS</Link>
                 </div>
             </li>
             <li className="nav-item ps-2 pe-2">
                 <div className="nav-link">
-                    <Link to="/following" className={`text-white fw-bold text-decoration-none pb-2 ${
-                        tabs.active == "following"? `border-bottom border-danger` : ``}`}>FOLLOWING</Link>
+                    <Link to="/following" className={`text-white fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                        tabs.active == "following"? `border-danger` : `border-secondary`}`}>FOLLOWING</Link>
                 </div>
             </li>
             <li className="nav-item ps-2 pe-2">
                 <div className="nav-link">
-                    <Link to="/followers" className={`text-white fw-bold text-decoration-none pb-2 ${
-                        tabs.active == "followers"? `border-bottom border-danger` : ``}`}>FOLLOWERS</Link>
+                    <Link to="/followers" className={`text-white fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                        tabs.active == "followers"? `border-danger` : `border-secondary`}`}>FOLLOWERS</Link>
                 </div>
             </li>
         </ul>

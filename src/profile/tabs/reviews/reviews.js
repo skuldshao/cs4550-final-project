@@ -1,5 +1,7 @@
 import React from "react";
-import NavTab from "./tab-nav";
+import NavTab from "../tab-nav";
+import ReviewItem from "./reviewItem";
+import reviewArray from "./reviews.json"
 
 function Reviews( {
       who = {
@@ -13,6 +15,7 @@ function Reviews( {
     return (
         <div className="row wd-black-bg">
             <NavTab tabs={tabs}></NavTab>
+            {reviewArray.map(reviewItem => <ReviewItem reviewItem={reviewItem}/>)}
         </div>
     );
 }

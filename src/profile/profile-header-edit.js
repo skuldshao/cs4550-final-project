@@ -9,7 +9,7 @@ function ProfileHeaderEdit( {who = {
     "email": "rowlet@pokemon.com"
 }}) {
     return (
-        <div className="row wd-black-bg p-5 pb-2 align-items-center">
+        <div className="row wd-black-bg p-5 pb-2 m-0 align-items-center">
             <div className="col-1">
                 <button className="btn rounded-circle position-relative">
                     <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
@@ -21,19 +21,19 @@ function ProfileHeaderEdit( {who = {
             <div className="col-9 ps-5 wd-off-white-fg">
                 <input type="text"
                        className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary"
-                       id="searchinput"
+                       id="userInput"
                        placeholder="Search Tuiter" value={who.userName}></input>
                 <input type="text"
                        className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
-                       id="searchinput"
+                       id="handleInput"
                        placeholder="@handle" value={`@${who.handle}`}></input>
                 <input type="text"
                        className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
-                       id="searchinput"
+                       id="phoneNumberInput"
                        placeholder="@handle" value={who.phoneNumber}></input>
                 <input type="email"
                        className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
-                       id="searchinput"
+                       id="emailInput"
                        placeholder="@handle" value={who.email}></input>
             </div>
             <div className="col-2">
