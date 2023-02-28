@@ -12,8 +12,8 @@ export const HomeList = ({review, loggedIn}) => {
     }
     if (loggedIn) {
         return (
-            <li className="list-group-item">
-                <div className="d-flex justify-content-between">
+            <li className="list-group-item border-0 bg-black">
+                <div className="d-flex justify-content-between wd-bg-grey p-2 rounded-2">
                     <img src={`/images/${review.img}`} height={50} width={50} className="rounded-circle align-self-center"
                          alt="profile icon"/>
                     <div className="ps-2 align-self-center">
@@ -40,7 +40,7 @@ export const HomeList = ({review, loggedIn}) => {
         if (!review.loggedIn) {
             return (
                 <li className="list-group-item">
-                    <div className="d-flex justify-content-between">
+                    <div className="d-flex justify-content-between wd-bg-grey p-2 rounded-2">
                         <img src={`/images/${review.img}`} height={50} width={50} className="rounded-circle align-self-center"
                              alt="profile icon"/>
                         <div className="ps-2 align-self-center">

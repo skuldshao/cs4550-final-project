@@ -1,9 +1,9 @@
 import {Link} from "react-router-dom";
-import styles from "../styles.css"
+import "../styles.css"
 
 const AdminNav = (active) => {
     return (
-        <ul className="nav nav-pills justify-content-between bright-red">
+        <ul className="nav nav-pills justify-content-between">
             <div className="nav-item">
                 <Link to="/users" className={`nav-link ${active === 'people' ? 'active' : ''}`}>
                     <i className="bi bi-people"/>
