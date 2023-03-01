@@ -1,7 +1,7 @@
 import React from "react";
 import NavTab from "../tab-nav";
-import followItem from "./followItem";
 import FollowItem from "./followItem";
+import followingArray from "./following.json";
 
 function Following(
     { who = {
@@ -16,7 +16,9 @@ function Following(
     return (
         <div className="row wd-black-bg">
             <NavTab tabs={tabs}></NavTab>
-            <FollowItem></FollowItem>
+            <div className="row wd-black-bg p-3 pt-4 align-items-center">
+                { followingArray.map(followingItem => <FollowItem followItem={followingItem}></FollowItem>)}
+            </div>
         </div>
     );
 }
