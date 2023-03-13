@@ -1,0 +1,32 @@
+[
+  {
+  "type": "Song",
+  "name": "Snow on the Beach",
+  "icon": "https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png",
+  "album": "Midnights",
+  "artist": "Taylor Swift",
+  "genre": "XXXX, XXXX",
+  "description": "XXXX",
+  "length": "4:16"
+  },
+  {
+    "type": "Song",
+    "name": "Maroon",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png",
+    "album": "Midnights",
+    "artist": "Taylor Swift",
+    "genre": "XXXX, XXXX",
+    "description": "XXXX",
+    "length": "3:56"
+  },
+  {
+    "type": "Song",
+    "name": "Test",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png",
+    "album": "Test",
+    "artist": "Post Malone",
+    "genre": "XXXX, XXXX",
+    "description": "XXXX",
+    "length": "3:47"
+  }
+]

@@ -1,9 +1,9 @@
-import Nav from "../nav";
-export const Search = () => {
+import React from "react";
+import SearchBar from "./search-bar";
+function Search() {
     return (
-        <div>
-            <Nav active="search" user="user"/>
-            Search
-        </div>
-    )
+        <SearchBar/>
+    );
 }
+
+export default Search
