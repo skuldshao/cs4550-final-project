@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import NavTab from "../tab-nav";
 import RecentActivityList from "./recentActivityList";
 import About from "./about";
@@ -9,7 +8,7 @@ function OverView( {tabs, isEditing}
 ) {
     return (
         <div className="row wd-black-bg">
-            <NavTab tabs={tabs}></NavTab>
+            <NavTab tabs={tabs}/>
             <div className="row ps-3 pt-4">
                 <div className="col-9 text-white">
                     <p className="fw-bold fs-5">RECENT ACTIVITY</p>

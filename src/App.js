@@ -3,8 +3,8 @@ import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import {Home} from "./home";
 import {Login} from "./login";
-import {Profile} from "./profile";
 import {Search} from "./search";
+import Profile from "./profile";
 
 function App() {
   return (
