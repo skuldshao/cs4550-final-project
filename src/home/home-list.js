@@ -1,4 +1,5 @@
-import "../../../../../Downloads/cs4550-final-project-main/src/styles.css"
+
+import "../styles.css"
 
 export const HomeList = ({review, loggedIn}) => {
     const rating = review.ratings;

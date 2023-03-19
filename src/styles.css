@@ -1,17 +1,18 @@
-.bright-red {
+
+.wd-bright-red {
     color: #c8102e
 }
-.white {
+.wd-white {
     color: #F5F5F5
 }
-.gold {
+.wd-gold {
     color: #A4804A
 }
-.grey {
+.wd-grey {
     color: #2F3137
 }
-.bg-danger {
-    background-color: #c8102e;
+.wd-bg-grey {
+    background-color: #2F3137;
     color: #F5F5F5;
 }
 .wd-bg-gold {
