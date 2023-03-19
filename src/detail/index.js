@@ -1,8 +1,10 @@
 import React from "react";
+import Detail from "./detail";
 
-const SongDetail = () => {
+function SongDetail() {
     return(
-        <h1>Song Detail</h1>
+        <Detail/>
     );
 };
+
 export default SongDetail;

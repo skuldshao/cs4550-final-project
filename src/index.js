@@ -9,11 +9,13 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import DetailRouter from "./detail/detail-router";
 
 import Search from "./search";
+import SongDetail from "./detail";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Search />
+
+      <SongDetail/>
   </React.StrictMode>
 );
 

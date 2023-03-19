@@ -11,7 +11,7 @@ const SearchResultItem = (
     }
 ) => {
     return(
-        <Link to={{pathname: `/details/${result.id}`}}>
+        
             <li className="list-group-item">
                 <div className="d-flex align-items-center">
                     <div className="">
@@ -26,7 +26,7 @@ const SearchResultItem = (
                     </div>
                 </div>
             </li>
-        </Link>
+
     );
 };
 
