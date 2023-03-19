@@ -24,9 +24,10 @@ const SearchResultList = () => {
                     const songName = song.name.toLowerCase();
                     return songName.includes(query);
                 }).map(result =>
-                    <SearchResultItem key={result.name} result={result}/>)
+                    <SearchResultItem key={result.id} result={result}/>)
             }
         </ul>
     )
 }
+
 export default SearchResultList;
