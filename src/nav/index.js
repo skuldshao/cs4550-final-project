@@ -3,7 +3,7 @@ import UserNav from "./user-nav";
 const Nav = ({user, active}) => {
     if (user === "user") {
         return (
-            <div>
+            <div className="mb-3">
                 <img src='/images/smallLogo.png' height="40px" className="float-start"/>
                 <div>
                     <UserNav active={active}/>
@@ -12,7 +12,7 @@ const Nav = ({user, active}) => {
         )
     } else if (user === "admin") {
         return (
-            <div>
+            <div className="mb-2">
                 <div>
                     <img src='/images/smallLogo.png'/>
                 </div>
