@@ -24,7 +24,7 @@ function ProfileHeader( {who = {
                 }
             </div>
             {who.isSelf? <div className="col-2">
-                <a href="#">
+                <a href="src/profile/profile-header#">
                     <button className="btn btn-outline-secondary rounded-pill float-end">
                         Edit
                         <i className="bi bi-pencil ps-2"></i>

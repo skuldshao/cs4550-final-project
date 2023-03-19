@@ -8,9 +8,9 @@ import Nav from "../nav";
 function Profile() {
     var isEditing = false;
     return (
-        <div className="wd-black-bg">
+        <div>
          <Nav active="profile" user="user"/>
-            {isEditing?
+            {isEditing ?
                 <>
                     <ProfileHeaderEdit/>
                     <ProfileTabs isEditing={isEditing}/>

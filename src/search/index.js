@@ -1,9 +1,13 @@
+import React from "react";
+import SearchBar from "./search-bar";
 import Nav from "../nav";
-export const Search = () => {
+function Search() {
     return (
         <div>
-            <Nav active="search" user="user"/>
-            Search
+            <Nav user="user" active="search"/>
+            <SearchBar/>
         </div>
-    )
+    );
 }
+
+export default Search

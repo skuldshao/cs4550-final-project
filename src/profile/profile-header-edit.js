@@ -9,7 +9,7 @@ function ProfileHeaderEdit( {who = {
     "email": "rowlet@pokemon.com"
 }}) {
     return (
-        <div className="row wd-black-bg p-5 pb-2 m-0 align-items-center">
+        <div className="row p-5 pb-2 m-0 align-items-center">
             <div className="col-1">
                 <button className="btn rounded-circle position-relative">
                     <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
@@ -37,7 +37,7 @@ function ProfileHeaderEdit( {who = {
                        placeholder="@handle" value={who.email}></input>
             </div>
             <div className="col-2">
-                <a href="#">
+                <a href="src/profile/profile-header-edit#">
                     <button className="btn btn-outline-secondary rounded-pill float-end">
                         Save
                         <i className="bi bi-check-lg ps-1"></i>
