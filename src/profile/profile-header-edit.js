@@ -37,7 +37,7 @@ function ProfileHeaderEdit( {who = {
                        placeholder="@handle" value={who.email}></input>
             </div>
             <div className="col-2">
-                <a href="#">
+                <a href="src/profile/profile-header-edit#">
                     <button className="btn btn-outline-secondary rounded-pill float-end">
                         Save
                         <i className="bi bi-check-lg ps-1"></i>

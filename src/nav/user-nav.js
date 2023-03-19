@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import "../styles.css"
+import "../../../../../Downloads/cs4550-final-project-main/src/styles.css"
 
 const UserNav = ({active}) => {
     return (
