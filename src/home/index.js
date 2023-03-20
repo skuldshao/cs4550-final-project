@@ -10,7 +10,7 @@ export const Home = () => {
             <ul className="list-group">
             {
                 reviews.map(review => {
-                    return(<HomeList review={review} loggedIn={true}/>);
+                    return(<HomeList review={review} loggedIn={false}/>);
                 })
             }
             </ul>

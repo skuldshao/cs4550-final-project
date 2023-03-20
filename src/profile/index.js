@@ -6,9 +6,9 @@ import ProfileHeaderEdit from "./profile-header-edit";
 import Nav from "../nav";
 
 function Profile() {
-    var isEditing = false;
+    const isEditing = false;
     return (
-        <div className="wd-black-bg">
+        <div>
          <Nav active="profile" user="user"/>
             {isEditing?
                 <div className="text-start">
