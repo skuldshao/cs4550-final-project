@@ -4,7 +4,7 @@ import followerArray from "./follow/followers.json";
 import followingArray from "./follow/following.json"
 
 function NavTab(
-    {tabs}
+    {tabs, isEditing}
 ) {
     return (
         <ul className="nav nav-tabs p-0 pt-2 border-none border-0">

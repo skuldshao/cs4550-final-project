@@ -11,11 +11,11 @@ function Profile() {
         <div className="wd-black-bg">
          <Nav active="profile" user="user"/>
             {isEditing?
-                <div className="">
+                <div className="text-start">
                     <ProfileHeaderEdit/>
                     <ProfileTabs isEditing={isEditing}/>
                 </div> :
-                <div className="">
+                <div className="text-start">
                     <ProfileHeader/>
                     <ProfileTabs/>
                 </div>
