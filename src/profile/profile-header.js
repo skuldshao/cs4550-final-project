@@ -1,7 +1,7 @@
 import React from "react";
 
 function ProfileHeader( {who = {
-    "isSelf": false,
+    "isSelf": true,
     "userName": "Rowlet",
     "handle": "rowlie",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
@@ -14,14 +14,16 @@ function ProfileHeader( {who = {
                 <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
             </div>
             <div className="col-9 ps-5 wd-off-white-fg">
-                <div className="lh-1 fw-bold fs-1 wd-off-white-fg">{who.userName}</div>
-                <div className="lh-1 text-secondary">@{who.handle}</div>
-                {who.isSelf?
-                    <>
-                        <div className="lh-1 text-secondary">{who.phoneNumber}</div>
-                        <div className="lh-1 text-secondary">{who.email}</div>
-                    </> : <></>
-                }
+                <div className="float-start align-items-start position-relative">
+                    <div className="lh-1 fw-bold fs-1 wd-off-white-fg">{who.userName}</div>
+                    <div className="lh-1 text-secondary">@{who.handle}</div>
+                    {who.isSelf?
+                        <>
+                            <div className="lh-1 text-secondary">{who.phoneNumber}</div>
+                            <div className="lh-1 text-secondary">{who.email}</div>
+                        </> : <></>
+                    }
+                </div>
             </div>
             {who.isSelf? <div className="col-2">
                 <a href="#">

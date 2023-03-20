@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 function RecentActivityItem( {activityItem}
 ) {
-    if (activityItem.type == "review") {
+    if (activityItem.type === "review") {
         return (
             <div>
                 <Link to={`profile/${activityItem.handle}`} className="text-white text-decoration-none">
@@ -19,7 +19,7 @@ function RecentActivityItem( {activityItem}
             </div>
         )
 
-    } else if (activityItem.type == "follow") {
+    } else if (activityItem.type === "follow") {
         return (
             <div className="row wd-black-bg">
                 <div>

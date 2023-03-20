@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import NavTab from "../tab-nav";
 import RecentActivityList from "./recentActivityList";
 import About from "./about";
