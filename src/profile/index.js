@@ -6,7 +6,7 @@ import ProfileHeaderEdit from "./profile-header-edit";
 import Nav from "../nav";
 
 function Profile() {
-    var isEditing = false;
+    const isEditing = false;
     return (
         <div>
          <Nav active="profile" user="user"/>
@@ -17,9 +17,9 @@ function Profile() {
                 </> :
                 <>
                     <ProfileHeader/>
-                    <ProfileTabs/>
+                    <ProfileTabs isEditing={isEditing}/>
                 </>
-
+                //TODO: it seems that profiletabs is currently causing profile to not render, not exactly sure why
             }
         </div>
     );

@@ -15,9 +15,9 @@ function Followers(
 ) {
     return (
         <div className="row wd-black-bg">
-            <NavTab tabs={tabs}></NavTab>
+            <NavTab tabs={tabs}/>
             <div className="row wd-black-bg p-3 pt-4 align-items-center">
-                { followerArray.map(followerItem => <FollowItem followItem={followerItem}></FollowItem>)}
+                { followerArray.map(followerItem => <FollowItem followItem={followerItem}/>)}
             </div>
         </div>
     );
