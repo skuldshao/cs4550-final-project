@@ -15,7 +15,7 @@ function ProfileHeader( {who = {
             </div>
             <div className="col-9 ps-5 wd-off-white-fg">
                 <div className="float-start align-items-start position-relative">
-                    <div className="lh-1 fw-bold fs-1 wd-off-white-fg">{who.userName}</div>
+                    <div className="lh-1 text-white fw-bold fs-1 wd-off-white-fg">{who.userName}</div>
                     <div className="lh-1 text-secondary">@{who.handle}</div>
                     {who.isSelf?
                         <>
