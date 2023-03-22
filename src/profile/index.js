@@ -6,7 +6,7 @@ import Profile from "./profile";
 
 function ProfileRoute() {
     return (
-        <Routes className="wd-bg-grey">
+        <Routes>
             <Route index element={<Profile isEditing={false}/>}/>
             <Route path="edit" element={<Profile isEditing={true}/>}/>
         </Routes>
