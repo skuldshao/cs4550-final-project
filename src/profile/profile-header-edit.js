@@ -38,7 +38,7 @@ function ProfileHeaderEdit( {who = {
     placeholder="@handle" value={who.email}/>
             </div>
             <div className="col-2">
-                <Link to="#">
+                <Link to="/profile">
                     <button className="btn btn-outline-secondary rounded-pill float-end">
                         Save
                         <i className="bi bi-check-lg ps-1"/>

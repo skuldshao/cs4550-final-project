@@ -12,6 +12,8 @@ function App() {
             <BrowserRouter>
                 <div className="container pb-2 bg-black">
                     <Routes>
+                        <Route index
+                               element={<Home/>}/>
                         <Route path="/home"
                                element={<Home/>}/>
                         <Route path="/login"

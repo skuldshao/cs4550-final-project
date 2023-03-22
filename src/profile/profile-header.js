@@ -1,7 +1,8 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function ProfileHeader( {who = {
-    "isSelf": false,
+    "isSelf": true,
     "userName": "Rowlet",
     "handle": "rowlie",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
@@ -26,12 +27,12 @@ function ProfileHeader( {who = {
                 </div>
             </div>
             {who.isSelf? <div className="col-2">
-                <a href="src/profile/profile-header#">
+                <Link to="edit">
                     <button className="btn btn-outline-secondary rounded-pill float-end">
                         Edit
                         <i className="bi bi-pencil ps-2"></i>
                     </button>
-                </a>
+                </Link>
             </div> : <></>}
         </div>
     );
