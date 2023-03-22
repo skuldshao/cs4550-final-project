@@ -10,16 +10,15 @@ function Profile() {
     return (
         <div>
          <Nav active="profile" user="user"/>
-            {isEditing ?
-                <>
+            {isEditing?
+                <div className="text-start">
                     <ProfileHeaderEdit/>
                     <ProfileTabs isEditing={isEditing}/>
-                </> :
-                <>
+                </div> :
+                <div className="text-start">
                     <ProfileHeader/>
-                    <ProfileTabs isEditing={isEditing}/>
-                </>
-                //TODO: it seems that profiletabs is currently causing profile to not render, not exactly sure why
+                    <ProfileTabs/>
+                </div>
             }
         </div>
     );
