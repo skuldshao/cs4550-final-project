@@ -10,7 +10,7 @@ function ProfileHeader( {who = {
     "follow": false
 }}) {
     return (
-        <div className="row wd-black-bg p-5 m-0 pb-2 align-items-center">
+        <div className="row p-5 m-0 pb-2 align-items-center">
             <div className="col-1">
                 <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
             </div>
@@ -28,15 +28,15 @@ function ProfileHeader( {who = {
             </div>
             {who.isSelf? <div className="col-2">
                 <a href="src/profile/profile-header#">
-                    <button className="btn btn-outline-secondary rounded-pill float-end">
-                        Edit
+                    <button className="btn btn-outline-secondary rounded-3 fw-bold float-end">
+                        EDIT
                         <i className="bi bi-pencil ps-2"></i>
                     </button>
                 </a>
             </div> : <></>}
             {!who.isSelf ? <div className="col-2">
-                    <button className="btn border border-danger rounded-pill float-end">
-                        <span className="wd-bright-red">{who.follow ? `Unfollow` : 'Follow'}</span>
+                    <button className="btn btn-outline-danger rounded-3 fw-bold float-end">
+                        <span className="wd-bright-red">{who.follow ? `UNFOLLOW` : 'FOLLOW'}</span>
                     </button>
             </div> : <></>}
         </div>
