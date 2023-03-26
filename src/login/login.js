@@ -1,7 +1,6 @@
 import logoIcon from '../images/logo.png'
 import music from '../images/music.png'
-import style from '../login/index.css'
-import Signup from "./signup";
+import css from "../login/index.css";
 function Login() {
     return (
     <div className='bg-black'>
@@ -30,7 +29,7 @@ function Login() {
 
             <hr/>
             <div className='loginHits text-center fw-bold mb-3'>Don't have a account for GoodSounds?</div>
-            <button className='signupButton' onClick={Signup}>Sign Up for Account</button>
+            <button className='signupButton'>Sign Up for Account</button>
         </div>
 
         <div className='d-flex flex-column align-content-center align-items-center'>

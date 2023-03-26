@@ -1,5 +1,6 @@
 import logoIcon from "../images/logo.png";
 import music from "../images/music.png";
+import css from "../login/index.css";
 
 function Signup() {
     const accountInfo = {email:null,password:null,username:null,
@@ -11,7 +12,7 @@ function Signup() {
                 <img src={logoIcon} className="logo"/>
             </div>
 
-            <div className='mx-auto'>
+            <div className='mx-auto'style={{maxWidth:650}}>
 
                 <div className='loginHits text-center mb-4'>Sign up with your email address</div>
                 <div className='loginInputLayout'>
