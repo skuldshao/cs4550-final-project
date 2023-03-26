@@ -10,7 +10,7 @@ function App() {
     return (
         <div className="App wd-bg-gold">
             <BrowserRouter>
-                <div className="container pb-2 bg-black">
+                <div className="container pb-2 bg-black ">
                     <Routes>
                         <Route index
                                element={<Home/>}/>
