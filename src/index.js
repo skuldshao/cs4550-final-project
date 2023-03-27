@@ -10,12 +10,18 @@ import DetailRouter from "./detail/detail-router";
 
 import Search from "./search";
 import SongDetail from "./detail";
+import Nav from "./nav";
+import UserNav from "./nav/user-nav";
+import Profile from "./profile";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+      <App/>
 
-      <SongDetail/>
+
+
+
   </React.StrictMode>
 );
 

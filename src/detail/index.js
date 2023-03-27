@@ -1,10 +1,10 @@
 import React from "react";
-import Detail from "./detail";
+import SongDetail from "./detail";
 
-function SongDetail() {
+function Detail() {
     return(
-        <Detail/>
+        <SongDetail/>
     );
 };
 
-export default SongDetail;
+export default Detail;

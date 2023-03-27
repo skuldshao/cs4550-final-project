@@ -4,7 +4,7 @@ import SearchResultList from "./search-result-item/search-result-list";
 
 const SearchBar = () => (
     <>
-        <form action="/" method="get">
+        <form action="/search" method="get">
             <label htmlFor="search-bar">
                 <span className="visually-hidden">Search</span>
             </label>

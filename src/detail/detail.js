@@ -1,6 +1,6 @@
 import React from "react";
 
-const Detail = (
+const SongDetail = (
     {
         result = {
             "name": "Song Name",
@@ -92,4 +92,4 @@ const Detail = (
       </>
     );
 }
-export default Detail;
+export default SongDetail;
