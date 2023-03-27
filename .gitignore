@@ -13,6 +13,8 @@
 # production
 /build
 
+public/vendors
+
 # misc
 .DS_Store
 .env.local

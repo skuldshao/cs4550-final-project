@@ -3,6 +3,9 @@ import songArray from '../song.json';
 import SearchResultItem from "./search-result-item";
 import { useLocation, useHistory } from "react-router-dom";
 
+import "../../styles.css"
+
+
 const { search } = window.location;
 const {test} = "/search"
 const query = new URLSearchParams(search).get("search");
@@ -17,7 +20,7 @@ const SearchResultList = () => {
     })
     if (filteredSongs.length === 0 || !query) {
         return(
-            <div>No Results</div>
+            <div className="wd-white">No Results</div>
         )
     }
     else {

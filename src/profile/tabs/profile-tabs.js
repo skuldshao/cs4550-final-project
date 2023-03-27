@@ -8,20 +8,20 @@ import Followers from "./follow/followers";
 
 function ProfileTabs( { isEditing = false } ) {
     return (
-        <BrowserRouter>
+        // <BrowserRouter>
             <div className="p-5 pt-0">
                 <Routes>
                     <Route index
                            element={<Overview tabs={{ active: "overview" }} isEditing={isEditing}/>}/>
-                    <Route path="/reviews"
+                    <Route path="reviews"
                            element={<Reviews tabs={{ active: "reviews" }}/>}/>
-                    <Route path="/following"
+                    <Route path="following"
                            element={<Following tabs={{ active: "following" }}/>}/>
-                    <Route path="/followers"
+                    <Route path="followers"
                            element={<Followers tabs={{ active: "followers" }}/>}/>
                 </Routes>
             </div>
-        </BrowserRouter>
+        // </BrowserRouter>
     );
 }
 
