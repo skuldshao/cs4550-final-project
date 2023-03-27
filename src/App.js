@@ -5,6 +5,7 @@ import {Home} from "./home";
 import {Login} from "./login";
 import Search from "./search";
 import Profile from "./profile";
+import Detail from "./detail";
 
 function App() {
     return (
@@ -18,8 +19,10 @@ function App() {
                                element={<Login/>}/>
                         <Route path="/profile/*"
                                element={<Profile/>}/>
-                        <Route path="/search"
+                        <Route path="/search/*"
                                element={<Search/>}/>
+                        <Route path="/detail/:id"
+                               element={<Detail/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
