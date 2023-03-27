@@ -21,15 +21,15 @@ function ProfileHeaderEdit( {who = {
             </div>
             <div className="col-9 ps-5 wd-off-white-fg">
                 <input type="text"
-    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary"
+    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary mb-2"
     id="userInput"
     placeholder="Search Tuiter" value={who.userName}/>
                 <input type="text"
-    className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+    className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
     id="handleInput"
     placeholder="@handle" value={`@${who.handle}`}/>
                 <input type="text"
-    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
     id="phoneNumberInput"
     placeholder="@handle" value={who.phoneNumber}/>
                 <input type="email"

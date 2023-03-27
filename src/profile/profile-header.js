@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 function ProfileHeader( {who = {
-    "isSelf": false,
+    "isSelf": true,
     "userName": "Rowlet",
     "handle": "rowlie",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
@@ -16,11 +16,11 @@ function ProfileHeader( {who = {
             </div>
             <div className="col-9 ps-5 wd-off-white-fg">
                 <div className="float-start align-items-start position-relative">
-                    <div className="lh-1 text-white fw-bold fs-1 wd-off-white-fg">{who.userName}</div>
-                    <div className="lh-1 text-secondary">@{who.handle}</div>
+                    <div className="lh-1 text-white fw-bold fs-1 wd-off-white-fg pb-2">{who.userName}</div>
+                    <div className="lh-1 text-secondary pb-1">@{who.handle}</div>
                     {who.isSelf?
                         <>
-                            <div className="lh-1 text-secondary">{who.phoneNumber}</div>
+                            <div className="lh-1 text-secondary pb-1">{who.phoneNumber}</div>
                             <div className="lh-1 text-secondary">{who.email}</div>
                         </> : <></>
                     }

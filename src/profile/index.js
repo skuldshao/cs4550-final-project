@@ -7,7 +7,7 @@ import Profile from "./profile";
 function ProfileRoute() {
     return (
         <Routes>
-            <Route index element={<Profile isEditing={false}/>}/>
+            <Route path="/*" element={<Profile isEditing={false}/>}/>
             <Route path="edit" element={<Profile isEditing={true}/>}/>
         </Routes>
     );
