@@ -10,11 +10,11 @@ function Profile({isEditing = false}) {
         <div>
             <Nav active="profile" user="user"/>
             {isEditing?
-                <div className="text-start wd-bg-grey rounded-2">
+                <div className="text-start">
                     <ProfileHeaderEdit/>
                     <ProfileTabs isEditing={isEditing}/>
                 </div> :
-                <div className="text-start wd-bg-grey rounded-2">
+                <div className="text-start">
                     <ProfileHeader/>
                     <ProfileTabs/>
                 </div>
