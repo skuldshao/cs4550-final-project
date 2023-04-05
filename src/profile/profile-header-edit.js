@@ -8,7 +8,7 @@ function ProfileHeaderEdit( {who = {
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
     "phoneNumber": "123-456-7890",
     "email": "rowlet@pokemon.com"
-}}) {
+}, active}) {
     return (
         <div className="row p-5 pb-2 m-0 align-items-center">
             <div className="col-1">
@@ -38,7 +38,8 @@ function ProfileHeaderEdit( {who = {
     placeholder="@handle" value={who.email}/>
             </div>
             <div className="col-2">
-                <Link to="/profile">
+                {console.log(active)}
+                <Link to={active === "overview" ? `/profile` : `/profile/${active}`}>
                     <button className="btn btn-outline-secondary rounded-pill float-end">
                         Save
                         <i className="bi bi-check-lg ps-1"/>

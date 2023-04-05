@@ -2,6 +2,8 @@ import React from "react";
 import NavTab from "../tab-nav";
 import ReviewItem from "./reviewItem";
 import reviewArray from "./reviews.json"
+import ProfileHeaderEdit from "../../profile-header-edit";
+import ProfileHeader from "../../profile-header";
 
 function Reviews( {
       who = {
@@ -14,6 +16,7 @@ function Reviews( {
       }, tabs, isEditing } ) {
     return (
         <div className="row wd-black-bg">
+            {isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>}
             <NavTab tabs={tabs} isEditing={isEditing}/>
             {reviewArray.map(reviewItem => <ReviewItem reviewItem={reviewItem}/>)}
         </div>

@@ -8,7 +8,7 @@ function ProfileRoute() {
     return (
         <Routes>
             <Route path="/*" element={<Profile isEditing={false}/>}/>
-            <Route path="edit" element={<Profile isEditing={true}/>}/>
+            <Route path="edit/*" element={<Profile isEditing={true}/>}/>
         </Routes>
     );
 }
