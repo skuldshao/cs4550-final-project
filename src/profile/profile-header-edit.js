@@ -38,10 +38,9 @@ function ProfileHeaderEdit( {who = {
     placeholder="@handle" value={who.email}/>
             </div>
             <div className="col-2">
-                {console.log(active)}
                 <Link to={active === "overview" ? `/profile` : `/profile/${active}`}>
-                    <button className="btn btn-outline-secondary rounded-pill float-end">
-                        Save
+                    <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end">
+                        SAVE
                         <i className="bi bi-check-lg ps-1"/>
                     </button>
                 </Link>
