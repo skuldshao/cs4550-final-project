@@ -10,8 +10,10 @@ const SearchResultItem = (
         }
     }
 ) => {
+
+    const detailLink = "/detail/" + result.id.toString();
     return(
-        
+        <Link to={detailLink}>
             <li className="list-group-item">
                 <div className="d-flex align-items-center">
                     <div className="">
@@ -26,7 +28,7 @@ const SearchResultItem = (
                     </div>
                 </div>
             </li>
-
+        </Link>
     );
 };
 

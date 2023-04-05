@@ -7,10 +7,11 @@ function ProfileHeader( {who = {
     "handle": "rowlie",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
     "phoneNumber": "123-456-7890",
-    "email": "rowlet@pokemon.com"
+    "email": "rowlet@pokemon.com",
+    "follow": false
 }}) {
     return (
-        <div className="row wd-black-bg p-5 m-0 pb-2 align-items-center">
+        <div className="row p-5 m-0 pb-2 align-items-center">
             <div className="col-1">
                 <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
             </div>
@@ -28,11 +29,15 @@ function ProfileHeader( {who = {
             </div>
             {who.isSelf? <div className="col-2">
                 <Link to="edit">
-                    <button className="btn btn-outline-secondary rounded-pill float-end">
-                        Edit
-                        <i className="bi bi-pencil ps-2"></i>
+                    <button className="btn btn-outline-secondary rounded-3 fw-bold float-end">
+                        EDIT       <i className="bi bi-pencil ps-2"></i>
                     </button>
                 </Link>
+            </div> : <></>}
+            {!who.isSelf ? <div className="col-2">
+                    <button className="btn btn-outline-danger rounded-3 fw-bold float-end">
+                        <span className="wd-bright-red">{who.follow ? `UNFOLLOW` : 'FOLLOW'}</span>
+                    </button>
             </div> : <></>}
         </div>
     );

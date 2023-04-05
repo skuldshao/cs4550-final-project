@@ -9,16 +9,11 @@ import SongDetail from "./index";
 class DetailRouter extends Component {
     render() {
         return(
-            <BrowserRouter>
+
                 <div>
-                    <Route exact path="/" component={Search}/>
-                    <Route
-                        exact
-                        path="/details/:id"
-                        component={SongDetail}
-                    />
+
                 </div>
-            </BrowserRouter>
+
         )
     }
 }
