@@ -8,7 +8,7 @@ function ProfileHeaderEdit( {who = {
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
     "phoneNumber": "123-456-7890",
     "email": "rowlet@pokemon.com"
-}}) {
+}, active}) {
     return (
         <div className="row p-5 pb-2 m-0 align-items-center">
             <div className="col-1">
@@ -21,15 +21,15 @@ function ProfileHeaderEdit( {who = {
             </div>
             <div className="col-9 ps-5 wd-off-white-fg">
                 <input type="text"
-    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary"
+    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary mb-2"
     id="userInput"
     placeholder="Search Tuiter" value={who.userName}/>
                 <input type="text"
-    className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+    className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
     id="handleInput"
     placeholder="@handle" value={`@${who.handle}`}/>
                 <input type="text"
-    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
     id="phoneNumberInput"
     placeholder="@handle" value={who.phoneNumber}/>
                 <input type="email"
@@ -38,9 +38,9 @@ function ProfileHeaderEdit( {who = {
     placeholder="@handle" value={who.email}/>
             </div>
             <div className="col-2">
-                <Link to="/profile">
-                    <button className="btn btn-outline-secondary rounded-pill float-end">
-                        Save
+                <Link to={active === "overview" ? `/profile` : `/profile/${active}`}>
+                    <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end">
+                        SAVE
                         <i className="bi bi-check-lg ps-1"/>
                     </button>
                 </Link>
