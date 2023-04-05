@@ -1,27 +1,15 @@
 
 import React from "react";
-import ProfileHeader from "./profile-header";
-import ProfileTabs from "./tabs/profile-tabs";
-import ProfileHeaderEdit from "./profile-header-edit";
-import Nav from "../nav";
+import {Routes} from "react-router";
+import {Route} from "react-router-dom";
+import Profile from "./profile";
 
-function Profile() {
-    const isEditing = false;
+function ProfileRoute() {
     return (
-        <div>
-         <Nav active="profile" user="user"/>
-            {isEditing?
-                <div className="text-start">
-                    <ProfileHeaderEdit/>
-                    <ProfileTabs isEditing={isEditing}/>
-                </div> :
-                <div className="text-start">
-                    <ProfileHeader/>
-                    <ProfileTabs/>
-                </div>
-            }
-        </div>
+        <Routes>
+            <Route index element={<Profile isEditing={false}/>}/>
+            <Route path="edit" element={<Profile isEditing={true}/>}/>
+        </Routes>
     );
 }
-
-export default Profile
+export default ProfileRoute;

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function ProfileHeader( {who = {
     "isSelf": false,
@@ -27,12 +28,11 @@ function ProfileHeader( {who = {
                 </div>
             </div>
             {who.isSelf? <div className="col-2">
-                <a href="src/profile/profile-header#">
+                <Link to="edit">
                     <button className="btn btn-outline-secondary rounded-3 fw-bold float-end">
-                        EDIT
-                        <i className="bi bi-pencil ps-2"></i>
+                        EDIT       <i className="bi bi-pencil ps-2"></i>
                     </button>
-                </a>
+                </Link>
             </div> : <></>}
             {!who.isSelf ? <div className="col-2">
                     <button className="btn btn-outline-danger rounded-3 fw-bold float-end">

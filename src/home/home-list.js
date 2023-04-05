@@ -11,6 +11,11 @@ export const HomeList = ({review, loggedIn}) => {
     if ((rating - stars.length) > 0) {
         half = true;
     }
+    const mt = 5 - (Math.ceil(rating))
+    const mtStars = [];
+    for (let i = 0; i < mt; i++) {
+        mtStars.push(<i className="bi bi-star wd-gold"/>);
+    }
     if (loggedIn) {
         return (
             <li className="list-group-item border-0 bg-black">
@@ -23,12 +28,17 @@ export const HomeList = ({review, loggedIn}) => {
                     ${review.location ? review.location : ''}
                     `}
                         {
-                            stars.map(() => {
-                                return(<i className="bi bi-star-fill wd-gold"/>)
+                            stars.map(value => {
+                                return(value)
                             })
                         }
                         {
                             half && <i className="bi bi-star-half wd-gold"/>
+                        }
+                        {
+                            mtStars.map(value => {
+                                return value
+                            })
                         }
                     </div>
                     <div className="align-self-center ms-auto p-2">
@@ -49,12 +59,17 @@ export const HomeList = ({review, loggedIn}) => {
                     ${review.item ? review.item : ''}
                     `}
                             {
-                                stars.map(() => {
-                                    return(<i className="bi bi-star-fill wd-gold"/>)
+                                stars.map(value => {
+                                    return(value)
                                 })
                             }
                             {
                                 half && <i className="bi bi-star-half wd-gold"/>
+                            }
+                            {
+                                mtStars.map(value => {
+                                   return value
+                                })
                             }
                         </div>
                         <div className="align-self-center ms-auto p-2">
