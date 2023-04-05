@@ -20,7 +20,7 @@ function Following(
             {isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>}
             <NavTab tabs={tabs}/>
             <div className="row wd-black-bg p-3 pt-4 align-items-center">
-                { followingArray.map(followingItem => <FollowItem followItem={followingItem}></FollowItem>)}
+                { followingArray.map(followingItem => <FollowItem followItem={followingItem}/>)}
             </div>
         </div>
     );
