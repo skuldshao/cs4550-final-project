@@ -1,34 +1,38 @@
-import React from "react";
-import songs from '../song.json';
+import React, {useState} from "react";
+import songArray from '../song.json';
 import SearchResultItem from "./search-result-item";
+import { useLocation, useHistory } from "react-router-dom";
+
 import "../../styles.css"
 
+
 const { search } = window.location;
+const {test} = "/search"
 const query = new URLSearchParams(search).get("search");
 
-//TODO: filter songs to only those that match the search input
-// - initial: empty
-// - after search press
-//      - found result: - display all
-//      - not found: - display "found none"
+
+
 
 const SearchResultList = () => {
-    if (!query) {
+    const filteredSongs = songArray.filter((song) => {
+        const songName = song.name.toLowerCase();
+        return songName.includes(query);
+    })
+    if (filteredSongs.length === 0 || !query) {
         return(
             <div className="wd-white">No Results</div>
         )
     }
-    return(
-        <ul className="list-group">
-            {
-                songs.filter((song) => {
-                    const songName = song.name.toLowerCase();
-                    return songName.includes(query);
-                }).map(result =>
-                    <SearchResultItem key={result.id} result={result}/>)
-            }
-        </ul>
-    )
+    else {
+        return(
+            <ul className="list-group">
+                {
+                    filteredSongs.map(result =>
+                        <SearchResultItem key={result.id} result={result}/>)
+                }
+            </ul>
+        )
+    }
 }
 
 export default SearchResultList;

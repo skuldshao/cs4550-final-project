@@ -7,7 +7,6 @@ import Followers from "./follow/followers";
 
 function ProfileTabs( { isEditing = false } ) {
     return (
-            <div className="p-5 pt-0">
                 <Routes>
                     <Route index
                            element={<Overview tabs={{ active: "overview" }} isEditing={isEditing}/>}/>
@@ -18,7 +17,6 @@ function ProfileTabs( { isEditing = false } ) {
                     <Route path="followers"
                            element={<Followers tabs={{ active: "followers" }} isEditing={isEditing}/>}/>
                 </Routes>
-            </div>
     );
 }
 
