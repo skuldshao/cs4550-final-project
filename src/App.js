@@ -2,7 +2,8 @@ import './App.css';
 import {BrowserRouter} from "react-router-dom";
 import {Routes, Route} from "react-router";
 import {Home} from "./home";
-import {Login} from "./login";
+import Login from "./login/login";
+import Signup from "./login/signup";
 import Search from "./search";
 import Profile from "./profile";
 import Detail from "./detail";
@@ -19,6 +20,8 @@ function App() {
                                element={<Home/>}/>
                         <Route path="/login"
                                element={<Login/>}/>
+                        <Route path="/signup"
+                               element={<Signup/>}/>
                         <Route path="/profile/*"
                                element={<Profile/>}/>
                         <Route path="/search/*"
