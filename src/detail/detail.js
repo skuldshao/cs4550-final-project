@@ -14,21 +14,22 @@ const SongDetail = (
     }
 ) => {
     return (
-      <>
-          <div className="d-flex flex-row">
-              <div className="col-6 align-items-center">
-                  <div><h1>{result.name}</h1></div>
-                  <div><span className="fw-bold">Artist:</span> {result.name}</div>
-                  <div><span className="fw-bold">Album:</span> {result.album}</div>
-                  <div><span className="fw-bold">Genre:</span> {result.genre}</div>
-                  <div><span className="fw-bold">Length:</span> {result.length}</div>
-                  <div className="">
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                      <i className="bi bi-star-fill"></i>
-                  </div>
+        <>
+            <div className="d-flex flex-row">
+                <div className="col-6 align-items-center">
+                    <div><h1>{result.name}</h1></div>
+                    <div><span className="fw-bold">Artist:</span> {result.name}</div>
+                    <div><span className="fw-bold">Album:</span> {result.album}</div>
+                    <div><span className="fw-bold">Genre:</span> {result.genre}</div>
+                    <div><span className="fw-bold">Length:</span> {result.length}</div>
+                    <div className="">
+                        <i className="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
+                    </div>
+
 
               </div>
               <div className="col-6">
@@ -40,9 +41,7 @@ const SongDetail = (
           </div>
           <br/>
 
-
-
-      </>
+        </>
     );
 }
 export default SongDetail;

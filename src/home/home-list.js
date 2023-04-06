@@ -40,7 +40,7 @@ export const HomeList = ({review, loggedIn}) => {
     } else {
         if (!review.loggedIn) {
             return (
-                <li className="list-group-item">
+                <li className="list-group-item border-0 bg-black">
                     <div className="d-flex justify-content-between wd-bg-grey p-2 rounded-2">
                         <img src={`/images/${review.img}`} height={50} width={50} className="rounded-circle align-self-center"
                              alt="profile icon"/>

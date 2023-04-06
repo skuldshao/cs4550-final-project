@@ -12,7 +12,7 @@ const SearchBar = () => (
                 <div className="position-absolute">
                     <button type="submit"
                             className="btn color-red rounded-circle">
-                        <i className="bi bi-search "></i>
+                        <i className="bi bi-search "/>
                     </button>
                 </div>
                 <div className="flex-fill">

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function ProfileHeaderEdit( {who = {
     "isSelf": true,
@@ -9,7 +10,7 @@ function ProfileHeaderEdit( {who = {
     "email": "rowlet@pokemon.com"
 }}) {
     return (
-        <div className="row wd-black-bg p-5 pb-2 m-0 align-items-center">
+        <div className="row p-5 pb-2 m-0 align-items-center">
             <div className="col-1">
                 <button className="btn rounded-circle position-relative">
                     <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
@@ -20,29 +21,29 @@ function ProfileHeaderEdit( {who = {
             </div>
             <div className="col-9 ps-5 wd-off-white-fg">
                 <input type="text"
-                       className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary"
-                       id="userInput"
-                       placeholder="Search Tuiter" value={who.userName}></input>
+    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary"
+    id="userInput"
+    placeholder="Search Tuiter" value={who.userName}/>
                 <input type="text"
-                       className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
-                       id="handleInput"
-                       placeholder="@handle" value={`@${who.handle}`}></input>
+    className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+    id="handleInput"
+    placeholder="@handle" value={`@${who.handle}`}/>
                 <input type="text"
-                       className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
-                       id="phoneNumberInput"
-                       placeholder="@handle" value={who.phoneNumber}></input>
+    className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+    id="phoneNumberInput"
+    placeholder="@handle" value={who.phoneNumber}/>
                 <input type="email"
-                       className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
-                       id="emailInput"
-                       placeholder="@handle" value={who.email}></input>
+    className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+    id="emailInput"
+    placeholder="@handle" value={who.email}/>
             </div>
             <div className="col-2">
-                <a href="src/profile/profile-header-edit#">
+                <Link to="#">
                     <button className="btn btn-outline-secondary rounded-pill float-end">
                         Save
-                        <i className="bi bi-check-lg ps-1"></i>
+                        <i className="bi bi-check-lg ps-1"/>
                     </button>
-                </a>
+                </Link>
             </div>
         </div>
     );
