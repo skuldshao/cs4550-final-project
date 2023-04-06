@@ -19,7 +19,6 @@ function Profile() {
                     <ProfileHeader/>
                     <ProfileTabs/>
                 </>
-
             }
         </div>
     );
