@@ -10,16 +10,17 @@ function ProfileHeaderEdit( {who = {
     "email": "rowlet@pokemon.com"
 }, active}) {
     return (
-        <div className="row p-5 pb-2 m-0 align-items-center">
-            <div className="col-1">
-                <button className="btn rounded-circle position-relative">
-                    <img className="rounded-circle" width={100} height={100} src={who.avatarIcon}/>
-                    <div className="position-absolute text-white bg-opacity-50 bg-black start-0 bottom-0 m-0 mb-0 p-5 pt-1 pb-3 fs-6 fw-bold">
+        <div className="d-flex justify-content-between">
+            <div className="d-flex">
+            <div>
+                <button className="btn position-relative">
+                    <img className="pt-0 ms-5 align-self-center rounded-circle" width={100} height={100} src={who.avatarIcon}/>
+                    <div className="text-white bg-opacity-50 bg-black fs-6 fw-bold position-absolute start-50 wd-bottom-25">
                         Edit
                     </div>
                 </button>
             </div>
-            <div className="col-9 ps-5 wd-off-white-fg">
+            <div className="ps-5 wd-off-white-fg">
                 <input type="text"
     className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary mb-2"
     id="userInput"
@@ -37,7 +38,8 @@ function ProfileHeaderEdit( {who = {
     id="emailInput"
     placeholder="@handle" value={who.email}/>
             </div>
-            <div className="col-2">
+            </div>
+            <div className="align-self-center me-5">
                 <Link to={active === "overview" ? `/profile` : `/profile/${active}`}>
                     <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end">
                         SAVE

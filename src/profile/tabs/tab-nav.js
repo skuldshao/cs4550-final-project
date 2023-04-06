@@ -7,18 +7,30 @@ function NavTab(
     {tabs, isEditing}
 ) {
     return (
-        <ul className="nav nav-tabs p-0 pt-2 border-none border-0 ps-5">
+        <ul className="nav nav-tabs p-0 pt-2 mt-3 border-none border-0 ps-5">
             <li className="nav-item pe-2">
                 <div className={`nav-link ${ isEditing? `disabled` : ``}`}>
                     <Link to="/profile"
-                          className={`text-white fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                          className={`${ isEditing ? `text-secondary` : `text-white`} fw-bold text-decoration-none pb-2 border-bottom border-2 ${
                               tabs.active === "overview"? `border-danger` : `border-secondary`}`}>OVERVIEW</Link>
                 </div>
             </li>
             <li className="nav-item ps-2 pe-2">
                 <div className={`nav-link ${ isEditing? `disabled` : ``}`}>
-                    <Link to="/profile/reviews" className={`${ isEditing? `text-secondary` : `text-white`} fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                    <Link to="/profile/reviews" className={`${ isEditing ? `text-secondary` : `text-white`} fw-bold text-decoration-none pb-2 border-bottom border-2 ${
                         tabs.active === "reviews"? `border-danger` : `border-secondary`}`} >REVIEWS</Link>
+                </div>
+            </li>
+            <li className="nav-item ps-2 pe-2">
+                <div className={`nav-link ${ isEditing? `disabled` : ``}`}>
+                    <Link to="/profile/favoriteSongs" className={`${ isEditing? `text-secondary` : `text-white`} fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                        tabs.active === "favoriteSongs"? `border-danger` : `border-secondary`}`}>FAVORITES</Link>
+                </div>
+            </li>
+            <li className="nav-item ps-2 pe-2">
+                <div className={`nav-link ${ isEditing? `disabled` : ``}`}>
+                    <Link to="/profile/newSongs" className={`${ isEditing? `text-secondary` : `text-white`} fw-bold text-decoration-none pb-2 border-bottom border-2 ${
+                        tabs.active === "newSongs"? `border-danger` : `border-secondary`}`}>NEW SONGS</Link>
                 </div>
             </li>
             <li className="nav-item ps-2 pe-2">
