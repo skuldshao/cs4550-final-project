@@ -4,6 +4,7 @@ import ReviewItem from "./reviewItem";
 import reviewArray from "./reviews.json"
 import ProfileHeaderEdit from "../../profile-header-edit";
 import ProfileHeader from "../../profile-header";
+import Nav from "../../../nav";
 
 function Reviews( {
       who = {
@@ -15,10 +16,13 @@ function Reviews( {
           "email": "blah"
       }, tabs, isEditing } ) {
     return (
-        <div className="row wd-black-bg">
-            {isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>}
-            <NavTab tabs={tabs} isEditing={isEditing}/>
-            {reviewArray.map(reviewItem => <ReviewItem reviewItem={reviewItem}/>)}
+        <div>
+            <Nav active="profile" user="user"/>
+            <div className="row wd-black-bg text-start">
+                {isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>}
+                <NavTab tabs={tabs} isEditing={isEditing}/>
+                {reviewArray.map(reviewItem => <ReviewItem reviewItem={reviewItem}/>)}
+            </div>
         </div>
     );
 }

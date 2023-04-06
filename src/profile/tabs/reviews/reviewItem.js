@@ -23,7 +23,7 @@ function ReviewItem( {reviewItem = {
     }
     return (
         <div>
-            <div className="row wd-black-bg p-3 pt-4 align-items-center">
+            <div className="row wd-black-bg p-3 pt-4 align-items-center ps-5">
                 <div className="col-8 position-relative">
                     <img className="" width={45} height={45} src={reviewItem.songCover}/>
                     <div className="position-absolute start-0 top-0 ms-4 ps-5">
@@ -48,7 +48,7 @@ function ReviewItem( {reviewItem = {
                         {
                             half && <i className="bi bi-star-half wd-gold"/>
                         }
-                        {[...Array(5 - Math.ceil(reviewItem.stars)).keys()].map(() => <i className="bi bi-star wd-gold"> </i>)}
+                        {[...Array(5 - Math.ceil(reviewItem.stars)).keys()].map(() => <i className="bi bi-star wd-gold"/>)}
                     </div>
 
                 </div>
