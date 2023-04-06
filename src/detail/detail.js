@@ -30,64 +30,16 @@ const SongDetail = (
                         <i className="bi bi-star-fill"></i>
                     </div>
 
-                </div>
-                <div className="col-6">
-                    <img
-                        className="img-fluid"
-                        alt=""
-                        src={result.icon}/>
-                </div>
-            </div>
-            <br/>
-            <div className="border">
-                <div className="flex-row">
-                    <div className="">
-                        <img width={50}
-                             height={50}
-                             className="float-start rounded-circle"
-                             alt=""
-                             src={result.icon}/>
-                    </div>
-                    <div className="">
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <p>@handle</p>
-                    </div>
-                </div>
-                <div className="flex-row">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras enim sapien, dignissim nec tellus egestas, feugiat dignissim quam. Etiam non ex ac mi auctor sollicitudin. Vivamus ut maximus mauris. Nulla tincidunt porta purus, et interdum ante ullamcorper in. Donec non est tincidunt, sodales ex vitae, euismod turpis.
-                    </p>
-                </div>
 
-            </div>
-
-            <div className="border">
-                <div className="flex-row">
-                    <div className="">
-                        <img width={50}
-                             height={50}
-                             className="float-start rounded-circle"
-                             alt=""
-                             src={result.icon}/>
-                    </div>
-                    <div className="">
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star"></i>
-                        <p>@handle</p>
-                    </div>
-                </div>
-                <div className="flex-row">
-                    <p className="border">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras enim sapien, dignissim nec tellus egestas, feugiat dignissim quam. Etiam non ex ac mi auctor sollicitudin. Vivamus ut maximus mauris. Nulla tincidunt porta purus, et interdum ante ullamcorper in. Donec non est tincidunt, sodales ex vitae, euismod turpis.</p>
-                </div>
-
-            </div>
+              </div>
+              <div className="col-6">
+                  <img
+                       className="img-fluid"
+                       alt=""
+                       src={result.icon}/>
+              </div>
+          </div>
+          <br/>
 
         </>
     );
