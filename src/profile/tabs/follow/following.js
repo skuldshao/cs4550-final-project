@@ -4,6 +4,7 @@ import FollowItem from "./followItem";
 import followingArray from "./following.json";
 import ProfileHeaderEdit from "../../profile-header-edit";
 import ProfileHeader from "../../profile-header";
+import Nav from "../../../nav";
 
 function Following(
     { who = {
@@ -16,12 +17,15 @@ function Following(
     }, tabs, isEditing }
 ) {
     return (
-        <div className="row wd-black-bg">
+        <div>
+            <Nav active="profile" user="user"/>
+        <div className="row wd-black-bg text-start">
             {isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>}
             <NavTab tabs={tabs}/>
-            <div className="row wd-black-bg p-3 pt-4 align-items-center">
+            <div className="row wd-black-bg p-3 pt-4 ps-5 align-items-center">
                 { followingArray.map(followingItem => <FollowItem followItem={followingItem}/>)}
             </div>
+        </div>
         </div>
     );
 }

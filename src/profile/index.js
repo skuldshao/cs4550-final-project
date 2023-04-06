@@ -2,13 +2,13 @@
 import React from "react";
 import {Routes} from "react-router";
 import {Route} from "react-router-dom";
-import Profile from "./profile";
+import ProfileTabs from "./tabs/profile-tabs";
 
 function ProfileRoute() {
     return (
         <Routes>
-            <Route path="/*" element={<Profile isEditing={false}/>}/>
-            <Route path="edit/*" element={<Profile isEditing={true}/>}/>
+            <Route path="/*" element={<ProfileTabs isEditing={false}/>}/>
+            <Route path="edit/*" element={<ProfileTabs isEditing={true}/>}/>
         </Routes>
     );
 }
