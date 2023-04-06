@@ -4,6 +4,8 @@ import Overview from "./overview/overview";
 import Reviews from "./reviews/reviews";
 import Following from "./follow/following";
 import Followers from "./follow/followers";
+import ListenToMore from "./playlists/listenToMore";
+import Favorites from "./playlists/favorites";
 
 function ProfileTabs( { isEditing = false } ) {
     return (
@@ -16,6 +18,10 @@ function ProfileTabs( { isEditing = false } ) {
                            element={<Following tabs={{ active: "following" }} isEditing={isEditing}/>}/>
                     <Route path="followers"
                            element={<Followers tabs={{ active: "followers" }} isEditing={isEditing}/>}/>
+                    <Route path="favoriteSongs"
+                           element={<Favorites tabs={{ active: "favoriteSongs" }} isEditing={isEditing}/>}/>
+                    <Route path="newSongs"
+                           element={<ListenToMore tabs={{ active: "newSongs" }} isEditing={isEditing}/>}/>
                 </Routes>
     );
 }
