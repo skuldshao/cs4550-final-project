@@ -1,15 +1,15 @@
 
 import React from "react";
-import {Routes} from "react-router";
-import {Route} from "react-router-dom";
-import ProfileTabs from "./tabs/profile-tabs";
+import ProfileRoute from "./profile";
+import NotLoggedInProfile from "./notLoggedInProfile";
+import Nav from "../nav";
 
-function ProfileRoute() {
+function Profile({loggedIn}) {
     return (
-        <Routes>
-            <Route path="/*" element={<ProfileTabs isEditing={false}/>}/>
-            <Route path="edit/*" element={<ProfileTabs isEditing={true}/>}/>
-        </Routes>
+       <div>
+           <Nav active="profile" user="user"/>
+           {loggedIn ? <ProfileRoute/> : <NotLoggedInProfile/>}
+       </div>
     );
 }
-export default ProfileRoute;
+export default Profile;

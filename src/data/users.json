@@ -1,0 +1,28 @@
+[
+  {
+    "_id": 1,
+    "handle": "donaldDuck",
+    "avatarIcon": "donald.webp",
+    "userName": "Donald Duck",
+    "email": "donaldd@gmail.com",
+    "number": "999-999-9999",
+    "follow": true
+  },
+  {
+    "_id": 2,
+    "handle": "minnieMouse",
+    "avatarIcon": "minnie.jpeg",
+    "userName": "Minnie Mouse",
+    "email": "minnieMouse@gmail.com",
+    "number": "999-999-9999"
+  },
+  {
+    "_id": 3,
+    "handle": "mickyMouse",
+    "avatarIcon": "micky.jpeg",
+    "userName": "Micky Mouse",
+    "email": "mickyMouse@gmail.com",
+    "number": "999-999-9999",
+    "follow": false
+  }
+]
