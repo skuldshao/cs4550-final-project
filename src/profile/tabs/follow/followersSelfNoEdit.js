@@ -8,12 +8,15 @@ function FollowerSelfNoEdit(
         "handle": "2h",
         "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
         "phoneNumber": "tesla.png",
-        "email": "blah"
+        "email": "blah",
+        "following": [],
+        "followers": []
     }, tabs }
 ) {
     return (
         <div>
-            <Followers tabs={tabs} isEditing={false} isSelf={true}/>
+            {console.log("followers")}
+            <Followers tabs={tabs} isEditing={false} isSelf={true} user={user}/>
         </div>
     );
 }

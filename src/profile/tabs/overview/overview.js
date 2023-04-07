@@ -13,14 +13,24 @@ function OverView( {tabs, isEditing, isSelf, user = {
     "handle": "2h",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
     "phoneNumber": "tesla.png",
-    "email": "blah" }}
+    "email": "blah",
+    "following": [],
+    "followers": []}, currentUser = {
+    "userName": "SpaceX",
+    "_id": 5,
+    "handle": "2h",
+    "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
+    "phoneNumber": "tesla.png",
+    "email": "blah",
+    "following": [],
+    "followers": []}}
 ) {
     return (
         <div>
             <div className="row wd-black-bg text-start">
-                {!isSelf ?  <WhoseProfile user={user}/> :
+                {!isSelf ?  <WhoseProfile user={user} currentUser={currentUser}/> :
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
-                <NavTab tabs={tabs} isEditing={isEditing} userID={user._id} isSelf={isSelf}/>
+                <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
                 <div className="row ps-5 pt-4">
                     <div className="col-9 text-white">
                         <p className="fw-bold fs-5">RECENT ACTIVITY</p>
