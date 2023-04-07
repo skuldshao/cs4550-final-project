@@ -7,6 +7,8 @@ import Signup from "./login/signup";
 import Search from "./search";
 import Profile from "./profile";
 import Detail from "./detail";
+import ProfileTabs from "./profile/tabs/profile-tabs";
+import React from "react";
 
 function App() {
     return (
@@ -23,7 +25,7 @@ function App() {
                         <Route path="/signup"
                                element={<Signup/>}/>
                         <Route path="/profile/*"
-                               element={<Profile/>}/>
+                               element={<Profile loggedIn={true}/>}/>
                         <Route path="/search/*"
                                element={<Search/>}/>
                         <Route path="/detail/:id"

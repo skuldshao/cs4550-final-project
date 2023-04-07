@@ -7,21 +7,21 @@ import Followers from "./follow/followers";
 import ListenToMore from "./playlists/listenToMore";
 import Favorites from "./playlists/favorites";
 
-function ProfileTabs( { isEditing = false } ) {
+function ProfileTabs( { isEditing = false, isSelf = false } ) {
     return (
                 <Routes>
-                    <Route index
-                           element={<Overview tabs={{ active: "overview" }} isEditing={isEditing}/>}/>
-                    <Route path="reviews"
-                           element={<Reviews tabs={{ active: "reviews" }} isEditing={isEditing}/>}/>
-                    <Route path="following"
-                           element={<Following tabs={{ active: "following" }} isEditing={isEditing}/>}/>
-                    <Route path="followers"
-                           element={<Followers tabs={{ active: "followers" }} isEditing={isEditing}/>}/>
-                    <Route path="favoriteSongs"
-                           element={<Favorites tabs={{ active: "favoriteSongs" }} isEditing={isEditing}/>}/>
-                    <Route path="newSongs"
-                           element={<ListenToMore tabs={{ active: "newSongs" }} isEditing={isEditing}/>}/>
+                    <Route path="/*"
+                           element={<Overview tabs={{ active: "overview" }} isEditing={isEditing} isSelf={isSelf}/>}/>
+                    <Route path="reviews/*"
+                           element={<Reviews tabs={{ active: "reviews" }} isEditing={isEditing} isSelf={isSelf}/>}/>
+                    <Route path="following/*"
+                           element={<Following tabs={{ active: "following" }} isEditing={isEditing} isSelf={isSelf}/>}/>
+                    <Route path="followers/*"
+                           element={<Followers tabs={{ active: "followers" }} isEditing={isEditing} isSelf={isSelf}/>}/>
+                    <Route path="favoriteSongs/*"
+                           element={<Favorites tabs={{ active: "favoriteSongs" }} isEditing={isEditing} isSelf={isSelf}/>}/>
+                    <Route path="newSongs/*"
+                           element={<ListenToMore tabs={{ active: "newSongs" }} isEditing={isEditing} isSelf={isSelf}/>}/>
                 </Routes>
     );
 }
