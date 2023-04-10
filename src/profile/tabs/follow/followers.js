@@ -26,6 +26,7 @@ function Followers(
         "following": []}}
 ) {
     const followers = user.followers;
+    console.log(followers)
     return (
         <div className="row wd-black-bg text-start" >
             {!isSelf ?  <WhoseProfile user={user} currentUser={currentUser}/> :

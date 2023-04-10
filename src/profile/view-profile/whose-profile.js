@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 
 const WhoseProfile = ({user, currentUser}) => {
-    const isFollowing = currentUser.following.includes(user._id)
+    const [isFollowing, setIsFollowing] = useState(currentUser.following.includes(user._id))
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
-                <img className="rounded-circle pt-0 ms-5 align-self-center" width={100} height={100} src={`../images/${user.avatarIcon}`}/>
+                <img className="rounded-circle pt-0 ms-5 align-self-center" width={100} height={100} src={`/images/${user.avatarIcon}`}/>
                 <div className="ps-5 wd-off-white-fg">
                     <div className="lh-1 text-white fw-bold fs-1 wd-off-white-fg pb-2">{user.userName}</div>
                     <div className="lh-1 text-secondary pb-1">@{user.handle}</div>
@@ -27,6 +27,7 @@ const WhoseProfile = ({user, currentUser}) => {
                     onClick={() => {
                         user.followers.push(currentUser._id)
                         currentUser.following.push(user._id);
+                        setIsFollowing(!isFollowing)
                         console.log(currentUser.following)
                         console.log(user.followers)
                     }
