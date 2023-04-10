@@ -7,9 +7,11 @@ function Detail() {
     return(
         <>
             <SongDetail/>
+            <WriteReview/>
             <ReviewList/>
+
         </>
     );
-};
+}
 
 export default Detail;

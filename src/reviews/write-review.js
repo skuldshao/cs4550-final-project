@@ -1,30 +1,35 @@
 import React, {useState} from "react";
 import {createReview} from "../reducers/review-reducer";
 import {useDispatch} from "react-redux";
+import Rating from "./rating";
+import "./write-review.css"
 
 const WriteReview = () => {
     let[writeReview, setWriteReview] = useState('');
-    const dispatch = useDispatch();
-    const reviewClickHandler = () => {
-        const newReview = {
-            review: writeReview
-        }
-        dispatch(createReview(newReview));
-        setWriteReview('');
-    }
-    return (
-        <div className="row">
-            <div className="col-10">
-                <textarea value={writeReview} placeholder="What's happening?"
-                          className="form-control border-0"
-                          onChange={(event) => setWriteReview(event.target.value)}>
-                </textarea>
+
+        return (
+        <div className="align-content-center border p-3">
+            <div className="row">
+                Write a review:
             </div>
-            <div>
-                <button className="rounded-pill btn btn-primary float-end mt-2 ps-3 pe-3 fw-bold"
-                        onClick={reviewClickHandler}>
-                    Add
-                </button>
+            <div className="row">
+                <div className="w-100">
+                    <textarea id="new-review" name="new-review"
+                              placeholder="Share your thoughts here."
+                              rows={4}
+                              className="form-control border-0 wd-review-textarea"
+                              onChange={(event) => setWriteReview(event.target.value)}>
+
+                    </textarea>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <Rating/>
+                    </div>
+                    <div className="col d-flex justify-content-center">
+                        <button className="rounded-pill wd-add-review btn">Add</button>
+                    </div>
+                </div>
             </div>
         </div>
     )
