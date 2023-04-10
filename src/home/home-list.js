@@ -1,5 +1,6 @@
 
 import "../styles.css"
+import {Link} from "react-router-dom";
 
 export const HomeList = ({review, loggedIn}) => {
     const rating = review.ratings;
@@ -20,8 +21,10 @@ export const HomeList = ({review, loggedIn}) => {
         return (
             <li className="list-group-item border-0 bg-black">
                 <div className="d-flex justify-content-between wd-bg-grey p-2 rounded-2">
-                    <img src={`/images/${review.img}`} height={50} width={50} className="rounded-circle align-self-center"
-                         alt="profile icon"/>
+                    <Link to={`/profile/${review.uid}`}>
+                        <img src={`/images/${review.img}`} height={50} width={50} className="rounded-circle align-self-center"
+                             alt="profile icon"/>
+                    </Link>
                     <div className="ps-2 align-self-center">
                         {`${review.action}
                     ${review.item ? review.item : ''}
@@ -52,8 +55,10 @@ export const HomeList = ({review, loggedIn}) => {
             return (
                 <li className="list-group-item border-0 bg-black">
                     <div className="d-flex justify-content-between wd-bg-grey p-2 rounded-2">
-                        <img src={`/images/${review.img}`} height={50} width={50} className="rounded-circle align-self-center"
-                             alt="profile icon"/>
+                        <Link to={`/profile/${review.uid}`}>
+                            <img src={`/images/${review.img}`} height={50} width={50} className="rounded-circle align-self-center"
+                                 alt="profile icon"/>
+                        </Link>
                         <div className="ps-2 align-self-center">
                             {`${review.action}
                     ${review.item ? review.item : ''}
