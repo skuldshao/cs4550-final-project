@@ -9,18 +9,7 @@ import FollowingSelfNoEdit from "./tabs/follow/followingSelfNoEdit";
 import FavoritesSelfNoEdit from "./tabs/playlists/favoritesSelfNoEdit";
 import ListenToMoreSelfNoEdit from "./tabs/playlists/listenToMoreSelfNoEdit";
 import FollowerSelfNoEdit from "./tabs/follow/followersSelfNoEdit";
-import Reviews from "./tabs/reviews/reviews";
-import Following from "./tabs/follow/following";
-import Followers from "./tabs/follow/followers";
-import Favorites from "./tabs/playlists/favorites";
-import ListenToMore from "./tabs/playlists/listenToMore";
-import OverViewNotSelf from "./tabs/overview/overviewNotSelf";
 import ViewProfile from "./view-profile";
-import ReviewsNotSelf from "./tabs/reviews/reviewsNotSelf";
-import FollowingNotSelf from "./tabs/follow/followingNotSelf";
-import FollowersNotSelf from "./tabs/follow/followersNotSelf";
-import FavoritesNotSelf from "./tabs/playlists/favoritesNotSelf";
-import ListenToMoreNotSelf from "./tabs/playlists/listenToMoreNotSelf";
 
 function ProfileRoute() {
     return (

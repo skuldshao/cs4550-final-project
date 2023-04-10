@@ -1,7 +1,6 @@
 import React from "react";
 import NavTab from "../tab-nav";
 import FollowItem from "./followItem";
-import followingArray from "./following.json";
 import ProfileHeaderEdit from "../../profile-header-edit";
 import ProfileHeader from "../../profile-header";
 import WhoseProfile from "../../view-profile/whose-profile";
@@ -13,17 +12,29 @@ function Following(
         "handle": "2h",
         "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
         "phoneNumber": "tesla.png",
-        "email": "blah"
-    }, tabs, isEditing, isSelf }
+        "email": "blah",
+        "following": [],
+    }, tabs, isEditing, isSelf, currentUser= {
+        "userName": "SpaceX",
+        "_id": 5,
+        "handle": "2h",
+        "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
+        "phoneNumber": "tesla.png",
+        "email": "blah",
+        "followers": [],
+        "following": [] } }
 ) {
+    const following = user.following;
     return (
         <div>
         <div className="row wd-black-bg text-start">
-            {!isSelf ?  <WhoseProfile user={user}/> :
+            {!isSelf ?  <WhoseProfile user={user} currentUser={currentUser}/> :
                 (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
-            <NavTab tabs={tabs} isEditing={isEditing} userID={user._id} isSelf={isSelf}/>
+            <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
             <div className="row wd-black-bg p-3 pt-4 ps-5 align-items-center">
-                { followingArray.map(followingItem => <FollowItem followItem={followingItem}/>)}
+                {following.length === 0 ? (isSelf ? <span className=" d-flex justify-content-center text-white ms-5 fw-normal">You are not following anyone</span> : <span className=" d-flex justify-content-center text-white ms-5 fw-normal">{user.userName} is not following anyone</span>) :
+                     following.map(followingItem => <FollowItem fid={followingItem} currentUser={currentUser}/>)}
+                }
             </div>
         </div>
         </div>

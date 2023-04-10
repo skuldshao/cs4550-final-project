@@ -11,13 +11,21 @@ const ListenToMore = ( { user = {
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
     "phoneNumber": "tesla.png",
     "email": "blah"
-}, tabs, isEditing, isSelf}) => {
+}, tabs, isEditing, isSelf, currentUser = {
+    "userName": "SpaceX",
+    "_id": 5,
+    "handle": "2h",
+    "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
+    "phoneNumber": "tesla.png",
+    "email": "blah",
+    "following": [],
+    "followers": []}}) => {
     return (
         <div>
             <div className="row wd-black-bg text-start">
-                {!isSelf ?  <WhoseProfile user={user}/> :
+                {!isSelf ?  <WhoseProfile user={user} currentUser={currentUser}/> :
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
-                <NavTab tabs={tabs} isEditing={isEditing} userID={user._id} isSelf={isSelf}/>
+                <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
             </div>
         </div>
     )
