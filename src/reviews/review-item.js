@@ -1,6 +1,6 @@
 import React from "react";
+import Rating from "./rating/index.js"
 import {useDispatch} from "react-redux";
-import "../search/index.css"
 
 const ReviewItem = (
     {
@@ -17,7 +17,9 @@ const ReviewItem = (
     }) => {
 
     return(
+
         <div className="border">
+            <Rating/>
             <div className="flex-row">
                 <div className="">
                     <img width={50}
@@ -26,7 +28,7 @@ const ReviewItem = (
                          alt=""
                          src={""}/>
                 </div>
-                <div className="">
+                <div className="wd-color-white">
                     <p>{review.rating}</p>
                     <i className="bi bi-star-fill"></i>
                     <i className="bi bi-star-fill"></i>

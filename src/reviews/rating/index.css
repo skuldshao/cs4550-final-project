@@ -1,0 +1,38 @@
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.wd-star{
+
+}
+.wd-on {
+    color: #A4804A;
+}
+.wd-off {
+    color: #2F3137;
+}
+
+wd-color-white {
+    color: #F5F5F5;
+}
+
+wd-color-gray {
+    color: #2F3137;
+}
+
+wd-color-gold {
+    color: #A4804A;
+}
+
+wd-color-red {
+    color: #C8102E;
+}
+
+body {
+    background-color: #000000;
+    color: #F5F5F5;
+
+}
