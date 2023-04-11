@@ -1,17 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom"
+import {getTrack} from "../services/spotify-service"
 
 const SearchResultItem = (
     {
-        result = {
-            "id": 1,
-            "name": "Snow on the Beach",
-            "icon": "https://upload.wikimedia.org/wikipedia/en/9/9f/Midnights_-_Taylor_Swift.png"
-        }
+        result
     }
 ) => {
 
     const detailLink = "/detail/" + result.id.toString();
+
     return(
         <Link to={detailLink}>
             <li className="list-group-item">
@@ -21,10 +19,10 @@ const SearchResultItem = (
                              height={100}
                              className="float-start rounded-circle"
                              alt=""
-                             src={result.icon}/>
+                             src=""/>
                     </div>
                     <div className="w-100 ps-2 fw-bold align-items-center">
-                        {result.name}
+                        {result.name.toString()}
                     </div>
                 </div>
             </li>
