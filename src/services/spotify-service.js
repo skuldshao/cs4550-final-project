@@ -4,40 +4,46 @@ export const CLIENT_ID = "e58f801281ff453f8bf068fbe50cee98";
 export const CLIENT_SECRET = "ffdbe2bf6aed421780a815ec257897d9"
 export const ALBUM_API = "http://localhost:4000/api/songs";
 
-const getToken = async () => {
+const qs = require('qs');
+
+export const getToken = async () => {
     try {
-        const auth = {
-            url: 'https://accounts.spotify.com/api/token',
+        const url = 'https://accounts.spotify.com/api/token';
+        const data = {
+            grant_type: 'client_credentials',
+        };
+        const headers = {
             headers: {
-                'Authorization': 'Basic ' + (new Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64')),
+                Accept: 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            form: {
-                grant_type: 'client_credentials'
+            auth: {
+                username: CLIENT_ID,
+                password: CLIENT_SECRET,
             },
-            json: true
-        }
-        request.post(auth, function (error, response, body) {
-            if (!error && response.statusCode === 200) {
-                return body.access_token;
-                console.log(body.access_token);
-            }
-        })
+        };
+
+        const response = await axios.post(url, qs.stringify(data), headers);
+        //console.log(response.data.access_token);
+        console.log("sucessfully got token");
+        return response.data.access_token;
     }
     catch(e) {
         console.log(e);
     }
 };
 
-export const getTracks = async (trackID) => {
+export const getTrack = async (trackID) => {
     const token  = await getToken();
 
-    const track_url = `https://api.spotify.com/v1/tracks/'${trackID}`;
+    const track_url = `https://api.spotify.com/v1/tracks/${trackID}`;
     try {
         const response = await axios.get(track_url, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
+        console.log(response.data);
         return response.data;
     }
     catch (e) {
@@ -47,14 +53,16 @@ export const getTracks = async (trackID) => {
 
 export const searchTracks = async (query) => {
     const token  = await getToken();
-    const search_url = `"https://api.spotify.com/v1/search?query=${query}&type=track&offset=0&limit=20"`;
+    const search_url = `https://api.spotify.com/v1/search?query=${query}&type=track&offset=0&limit=20`;
     try {
         const response = await axios.get(search_url, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
-        return response.data;
+        const result = await response.data;
+        console.log(result)
+        return result.tracks.items;
     }
     catch (e) {
         console.log(e);

@@ -28,43 +28,46 @@ function SearchBar() {
         }
     }, [query]);
     return (
-        <>
+        <div>
             <h1>Song Search</h1>
             <div className="form-group">
                 <label htmlFor="search-bar">
                     <span className="visually-hidden">Search</span>
                 </label>
-                <div className="d-flex flex-row position-relative align-items-center justify-ccntent-between mb-2">
+                <div className="d-flex">
                     <div className="flex-fill">
-                        <input type="text"
-                               id="search-input"
-                               name="search-bar"
-                               placeholder="search"
-                               value={query}
-                               className="form-control rounded-pill ps-5"/>
+                        <input
+                            type="text"
+                            id="search-input"
+                            name="search-bar"
+                            placeholder="search"
+                            className="form-control rounded-pill"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
                     </div>
-                    <div className="position-absolute">
+                    <div>
                         <button onClick={searchSpotify}
-                                className="btn color-red rounded-circle">
+                                className="btn btn-danger rounded-circle">
                             <i className="bi bi-search "/>
                         </button>
-
                     </div>
+
                 </div>
+
                 <div>
                     <ul className="list-group">
                         {results.map((result) => {
                             return (
-                                <Link to={`/detail/${result.id}`}>
-                                    <br />
-                                    <h2>{result.name.toString()}</h2>
-                                </Link>
-                            );
+                                <SearchResultItem key={result.id} result={result}/>
+                            )
                         })}
                     </ul>
                 </div>
+
+                <pre>{JSON.stringify(results, null, 2)}</pre>
             </div>
-        </>
+        </div>
     );
 }
     /*
