@@ -1,6 +1,5 @@
 import React from "react";
 import ProfileRoute from "./profile";
-import NotLoggedInProfile from "./notLoggedInProfile";
 import Nav from "../nav";
 import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
 
@@ -12,8 +11,7 @@ function Profile() {
         <div>
             <Nav active="profile" user={user}/>
             {admin && <AdminProfileRouter/>}
-            {(!admin && loggedIn) && <ProfileRoute/>}
-            {!loggedIn && <NotLoggedInProfile/>}
+            {!admin && <ProfileRoute loggedIn={loggedIn}/>}
         </div>
     );
 }

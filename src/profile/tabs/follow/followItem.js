@@ -2,11 +2,19 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import users from "../../../data/users.json"
 
-function FollowItem({fid, currentUser}) {
+function FollowItem({fid, currentUser, loggedIn}) {
     const user = users.find(u => u._id === fid)
     const [isFollowing, setIsFollowing] = useState(currentUser.following.includes(fid))
+    const [alert, setAlert] = useState(false)
     return (
         <div className="col-6 pt-2 pb-2">
+            {alert && <div className="alert alert-danger alert-dismissible" role="alert">
+                <div><i className="bi bi-exclamation-triangle-fill"/>You are not logged in, click here to login or here
+                    to register
+                </div>
+                <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"
+                        onClick={() => setAlert(false)}/>
+            </div>}
             <div className="d-flex justify-content-between">
                 <Link to={`/profile/${user._id}`}>
                     <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
@@ -18,7 +26,7 @@ function FollowItem({fid, currentUser}) {
                         <span className="text-secondary fw-normal"> @{user.handle}</span>
                     </Link>
                 </div>
-                {isFollowing ?
+                {loggedIn && (isFollowing ?
                     <button
                         className="btn btn-outline-danger btn-danger text-black rounded-3 fw-bold rounded-3 ms-auto align-self-center"
                         onClick={() => {
@@ -37,7 +45,13 @@ function FollowItem({fid, currentUser}) {
                             }
                             }>
                         FOLLOW
-                    </button>
+                    </button>)
+                }
+                {!loggedIn &&
+                <button className="btn btn-outline-danger rounded-3 fw-bold ms-auto align-self-center"
+                        onClick={() => setAlert(true)}>
+                    FOLLOW
+                </button>
                 }
             </div>
         </div>
