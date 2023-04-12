@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {useParams} from "react-router";
-import {Link} from "react-router-dom"
+import {useParams, useNavigate} from "react-router";
+import {Link, useLocation} from "react-router-dom"
 import {searchTracks} from "../services/spotify-service";
-import {useNavigate} from "react-router";
 
 import "./index.css";
 import SearchResultList from "./search-result-item/search-result-list";
@@ -10,23 +9,42 @@ import SearchResultItem from "./search-result-item/search-result-item";
 
 function SearchBar() {
     const {query} = useParams();
-    const nav = useNavigate();
+    const navigate = useNavigate();
+    const loc = useLocation();
     const [search, setSearch] = useState(query);
     const [results, setResults] = useState([]);
+    //const prev = loc.search.substring(1, loc.search.length);
+
 
     const searchSpotify = async () => {
         const results = await searchTracks(search);
         //console.log(results);
         setResults(results);
-        //navigate(`/search?${search}`);
+        navigate(`/search?${search}`);
     };
+
+    console.log();
     useEffect(() => {
+        const prev = loc.search.substring(1, loc.search.length);
+        console.log(prev);
         if (query) {
             setSearch(query);
-            searchSpotify().then(r => setResults);
-
+            searchSpotify();
         }
+        else if (prev) {
+            setSearch(prev);
+            searchSpotify(prev);
+        }
+        //searchSpotify();
+        /*
+        if (query) {
+            setSearch(query);
+            searchSpotify();
+        }
+
+         */
     }, [query]);
+
     return (
         <div>
             <h1>Song Search</h1>
@@ -59,7 +77,22 @@ function SearchBar() {
                     <ul className="list-group">
                         {results.map((result) => {
                             return (
-                                <SearchResultItem key={result.id} result={result}/>
+                                <Link to={`/detail/${result.id}`}>
+                                    <li className="list-group-item">
+                                        <div className="d-flex align-items-center">
+                                            <div className="">
+                                                <img width={100}
+                                                     height={100}
+                                                     className="float-start rounded-circle"
+                                                     alt=""
+                                                     src={result.album.images[0].url}/>
+                                            </div>
+                                            <div className="w-100 ps-2 fw-bold align-items-center">
+                                                {result.name.toString()}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </Link>
                             )
                         })}
                     </ul>
