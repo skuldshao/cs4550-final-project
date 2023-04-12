@@ -8,17 +8,27 @@ const UserItem = ({user}) => {
     }
 
     const handleEdit = () => {
+        user = {
+            ...user,
+            role,
+            avatarIcon: image,
+            userName,
+            handle,
+            password,
+            number,
+            email
+        }
         setEditing(!editing)
     }
-
+    const [role, setRole] = useState(user.role)
     const [editing, setEditing] = useState(false);
     const [image, setImage] = useState(user.avatarIcon);
     const [showImages, setShowImages] = useState(false);
     const [userName, setUserName] = useState(user.userName);
     const [handle, setHandle] = useState(user.handle);
     const [password, setPassword] = useState(user.password);
-    const [number, setNumber] = useState(user.password);
-    const [eamil, setEmail] = useState(user.password);
+    const [number, setNumber] = useState(user.number);
+    const [email, setEmail] = useState(user.email);
 
     return (
         <li className="list-group-item border-0 bg-black">
@@ -27,12 +37,12 @@ const UserItem = ({user}) => {
                     {!editing && <div className="d-flex justify-content-start ">
                         <Link to={`/profile/${user._id}`}>
                             <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
-                                 src={`/images/${user.avatarIcon}`}/>
+                                 src={`/images/${image}`}/>
                         </Link>
                         <div className="ps-2">
                             <Link to={`/profile/${user._id}`} className="text-white text-decoration-none fs-5 fw-bold ">
-                                {user.userName}<br/>
-                                <span className="text-secondary fw-normal"> @{user.handle}</span>
+                                {userName}<br/>
+                                <span className="text-secondary fw-normal"> @{handle}</span>
                             </Link>
                         </div>
                     </div>}
@@ -40,7 +50,7 @@ const UserItem = ({user}) => {
                         editing && <div className="d-flex justify-content-between">
                             <div className="me-5">
                                 <img className="rounded-circle pt-0 align-self-center" width={60} height={60}
-                                     src={`/images/${user.avatarIcon}`}/><br/>
+                                     src={`/images/${image}`}/><br/>
                                 <button className="btn btn-secondary"
                                         onClick={() => setShowImages(!showImages)}>{showImages ? `Save Image` : `Change Image`}</button>
                                 {showImages &&
@@ -114,14 +124,14 @@ const UserItem = ({user}) => {
                             </div>
                             <div className="me-5">
                                 <label htmlFor={`${user._id} email`}>Email:</label>
-                                <input id={`${user._id} email`} className="form-control" value={userName}
+                                <input id={`${user._id} email`} className="form-control" value={email}
                                        width="500 px"
                                        onChange={(event) => {
                                            setEmail(event.target.value)
                                        }
                                        }/>
                                 <label htmlFor={`${user._id} number`}>Number:</label>
-                                <input id={`${user._id} number`} className="form-control" value={handle}
+                                <input id={`${user._id} number`} className="form-control" value={number}
                                        onChange={(event) => {
                                            setNumber(event.target.value)
                                        }
@@ -136,37 +146,29 @@ const UserItem = ({user}) => {
                                        }
                                        }/>
                                 <br/>
-                                {user.role === "user" && <div className="btn-group" role={`${user._id}group`}
-                                                              aria-label="Basic radio toggle button group"
-                                                              onChange={(event) => {
-                                                                  const rolething = event.target.valueOf().id;
-                                                                  const [id, role] = rolething.split(" ");
-                                                                  if (user._id === id) {
-                                                                      user.role = role;
-                                                                  }
-                                                              }
-                                                              }>
+                                {role === "user" && <div className="btn-group" role={`${user._id}group`}
+                                                         aria-label="Basic radio toggle button group">
                                     <input type="radio" className="btn-check" name={`${user._id}role`}
                                            id={`${user._id} user`} checked/>
                                     <label className="btn btn-outline-secondary"
                                            htmlFor={`${user._id} user`}>User</label>
                                     <input type="radio" className="btn-check" name={`${user._id}role`}
-                                           id={`${user._id} admin`}/>
+                                           id={`${user._id} admin`} onClick={() => setRole("admin")}/>
                                     <label className="btn btn-outline-secondary"
                                            htmlFor={`${user._id} admin`}>Admin</label>
                                 </div>}
-                                {user.role === "admin" && <div className="btn-group" role={`${user._id}group`}
-                                                               aria-label="Basic radio toggle button group"
-                                                               onChange={(event) => {
-                                                                   user.role = event.target.valueOf().id
-                                                               }
-                                                               }>
+                                {role === "admin" && <div className="btn-group" role={`${user._id}group`}
+                                                          aria-label="Basic radio toggle button group">
                                     <input type="radio" className="btn-check" name={`${user._id}role`}
-                                           id={`${user._id} user`}/>
-                                    <label className="btn btn-outline-primary" htmlFor={`${user._id} user`}>User</label>
+                                           id={`${user._id} user`} onClick={(event) => {
+                                        setRole("user")
+                                    }
+                                    }/>
+                                    <label className="btn btn-outline-secondary"
+                                           htmlFor={`${user._id} user`}>User</label>
                                     <input type="radio" className="btn-check" name={`${user._id}role`}
                                            id={`${user._id} admin`} checked/>
-                                    <label className="btn btn-outline-primary"
+                                    <label className="btn btn-outline-secondary"
                                            htmlFor={`${user._id} admin`}>Admin</label>
                                 </div>}
                             </div>

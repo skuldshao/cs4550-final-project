@@ -12,14 +12,31 @@ function ProfileHeaderEdit({
                            }) {
     const [changePhoto, setChangePhoto] = useState(false);
     const [image, setImage] = useState(user.avatarIcon);
-    console.log(image);
+    const [userName, setUserName] = useState(user.userName);
+    const [email, setEmail] = useState(user.email);
+    const [number, setNumber] = useState(user.number);
+    const [handle, setHandle] = useState(user.handle);
+    const [password, setPassword] = useState(user.password);
+
+    const updateUser = () => {
+        user = {
+            ...user,
+            avatarIcon: image,
+            userName,
+            email,
+            number,
+            handle,
+            password
+        }
+        console.log(user);
+    }
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
                 <div>
                     <button className="btn position-relative" onClick={() => setChangePhoto(!changePhoto)}>
                         <img className="pt-0 ms-5 align-self-center rounded-circle" width={100} height={100}
-                             src={`/images/${user.avatarIcon}`}/>
+                             src={`/images/${image}`}/>
                         <div
                             className={`btn text-white bg-opacity-50 bg-black fs-6 fw-bold ${changePhoto ? `position-absolute-profile-save` : `position-absolute-profile-change`}`}>
                             {changePhoto ? 'SAVE' : 'CHANGE'}
@@ -92,24 +109,31 @@ function ProfileHeaderEdit({
                     <input type="text"
                            className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary mb-2"
                            id="userInput"
-                           placeholder="Search Tuiter" value={user.userName}/>
+                           placeholder="user name" value={userName}
+                           onChange={(event) => setUserName(event.target.value)}/>
                     <input type="text"
                            className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
                            id="handleInput"
-                           placeholder="@handle" value={`@${user.handle}`}/>
+                           placeholder="@handle" value={`${handle}`}
+                           onChange={(event) => setHandle(event.target.value)}/>
                     <input type="text"
                            className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
                            id="numberInput"
-                           placeholder="@handle" value={user.number}/>
+                           placeholder="number" value={number} onChange={(event) => setNumber(event.target.value)}/>
                     <input type="email"
                            className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
                            id="emailInput"
-                           placeholder="@handle" value={user.email}/>
+                           placeholder="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                    <input type="password"
+                           className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+                           id="passwordInput"
+                           placeholder="password" type="password" value={password}
+                           onChange={(event) => setPassword(event.target.value)}/>
                 </div>
             </div>
             <div className="align-self-center me-5">
                 <Link to={(type === "admin" || active === "overview") ? `/profile` : `/profile/${active}`}>
-                    <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end">
+                    <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end" onClick={updateUser}>
                         SAVE
                         <i className="bi bi-check-lg ps-1"/>
                     </button>

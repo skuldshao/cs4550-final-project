@@ -17,7 +17,7 @@ const OverViewAdminEdit = ({tabs, user}) => {
                     </div>
                     <div className="col-3 text-white">
                         <p className="fw-bold fs-5">ABOUT</p>
-                        <About isEditing={true}/>
+                        <About isEditing={true} user={user}/>
                     </div>
                 </div>
             </div>

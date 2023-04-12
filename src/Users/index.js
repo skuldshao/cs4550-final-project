@@ -12,6 +12,8 @@ const Users = () => {
     const [userName, setUserName] = useState("");
     const [image, setImage] = useState("profile1.jpeg");
 
+    let activeUsers = users;
+
     const createUser = () => {
         const user = {
             role,
@@ -22,7 +24,7 @@ const Users = () => {
             email,
             avatarIcon: image
         }
-        users.push(user);
+        activeUsers.push(user);
     }
 
 
@@ -99,13 +101,13 @@ const Users = () => {
                                onChange={(event) => {
                                    setPassword(event.target.value)
                                }}/>
-                        <div className="btn-group mb-2" role={`group`} aria-label="Basic radio toggle button group"
-                             onChange={(event) => {
-                                 setRole(event.target.valueOf().id)
-                             }}>
-                            <input type="radio" className="btn-check" name={`role`} id={`user`} checked/>
+                        <div className="btn-group mb-2" role="group">
+                            <input type="radio" className="btn-check" id={`user`} name={"role"}
+                                   checked={role === "user"}
+                                   onClick={() => setRole("user")}/>
                             <label className="btn btn-outline-secondary btn-light" htmlFor={`user`}>User</label>
-                            <input type="radio" className="btn-check" name={`role`} id={`admin`}/>
+                            <input type="radio" className="btn-check" id={`admin`} name="role"
+                                   onClick={() => setRole("admin")} checked={role === "admin"}/>
                             <label className="btn btn-outline-secondary btn-light" htmlFor={`admin`}>Admin</label>
                         </div>
                         <div>
@@ -114,7 +116,7 @@ const Users = () => {
                     </div>
                 </li>
                 {
-                    users.map(user => <UserItem user={user}/>)
+                    activeUsers.map(user => <UserItem user={user}/>)
                 }
             </ul>
         </div>
