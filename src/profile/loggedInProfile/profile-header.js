@@ -5,9 +5,9 @@ function ProfileHeader( { who = {
     "userName": "Rowlet",
     "handle": "rowlie",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-    "phoneNumber": "123-456-7890",
+    "number": "123-456-7890",
     "email": "rowlet@pokemon.com",
-}, active }) {
+}, active, type }) {
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
@@ -16,13 +16,13 @@ function ProfileHeader( { who = {
                     <div className="lh-1 text-white fw-bold fs-1 wd-off-white-fg pb-2">{who.userName}</div>
                     <div className="lh-1 text-secondary pb-1">@{who.handle}</div>
                         <>
-                            <div className="lh-1 text-secondary pb-1">{who.phoneNumber}</div>
+                            <div className="lh-1 text-secondary pb-1">{who.number}</div>
                             <div className="lh-1 text-secondary">{who.email}</div>
                         </>
                 </div>
             </div>
                 <div className="align-self-center me-5">
-                    <Link to={active === "overview" ? `/profile/edit` : `/profile/edit/${active}`}>
+                    <Link to={(type === "admin" || active === "overview") ? `/profile/edit` : `/profile/edit/${active}`}>
                         <button className="btn btn-outline-secondary  rounded-3 fw-bold">
                             EDIT
                             <i className="bi bi-pencil ps-2"/>

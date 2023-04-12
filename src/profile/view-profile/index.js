@@ -3,8 +3,8 @@ import users from "../../data/users.json";
 import OverViewNotSelf from "../tabs/overview/overviewNotSelf";
 import React from "react";
 import ReviewsNotSelf from "../tabs/reviews/reviewsNotSelf";
-import FollowingNotSelf from "../tabs/follow/followingNotSelf";
-import FollowersNotSelf from "../tabs/follow/followersNotSelf";
+import FollowingNotSelf from "../tabs/follow/following/followingNotSelf";
+import FollowersNotSelf from "../tabs/follow/followers/followersNotSelf";
 import FavoritesNotSelf from "../tabs/playlists/favoritesNotSelf";
 import ListenToMoreNotSelf from "../tabs/playlists/listenToMoreNotSelf";
 

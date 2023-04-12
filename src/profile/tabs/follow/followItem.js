@@ -8,7 +8,9 @@ function FollowItem( {fid, currentUser }) {
     return (
             <div className="col-6 pt-2 pb-2">
                 <div className="d-flex justify-content-between">
-                    <img className="rounded-circle pt-0 align-self-center" width={45} height={45} src={`/images/${user.avatarIcon}`}/>
+                    <Link to={`/profile/${user._id}`}>
+                        <img className="rounded-circle pt-0 align-self-center" width={45} height={45} src={`/images/${user.avatarIcon}`}/>
+                    </Link>
                         <div className="ps-2">
                             <Link to={`/profile/${user._id}`} className="text-white text-decoration-none fs-5 fw-bold ">
                                 {user.userName}<br/>

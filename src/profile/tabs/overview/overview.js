@@ -2,8 +2,8 @@ import React from "react";
 import NavTab from "../tab-nav";
 import RecentActivityList from "./recentActivityList";
 import About from "./about";
-import ProfileHeaderEdit from "../../profile-header-edit";
-import ProfileHeader from "../../profile-header";
+import ProfileHeaderEdit from "../../loggedInProfile/profile-header-edit";
+import ProfileHeader from "../../loggedInProfile/profile-header";
 import WhoseProfile from "../../view-profile/whose-profile";
 
 
@@ -12,7 +12,7 @@ function OverView( {tabs, isEditing, isSelf, user = {
     "_id": 5,
     "handle": "2h",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-    "phoneNumber": "tesla.png",
+    "number": "89977",
     "email": "blah",
     "following": [],
     "followers": []}, currentUser = {
@@ -20,7 +20,7 @@ function OverView( {tabs, isEditing, isSelf, user = {
     "_id": 5,
     "handle": "2h",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-    "phoneNumber": "tesla.png",
+    "number": "879876",
     "email": "blah",
     "following": [],
     "followers": []}}

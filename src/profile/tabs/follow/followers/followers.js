@@ -1,9 +1,9 @@
 import React from "react";
-import NavTab from "../tab-nav";
-import FollowItem from "./followItem";
-import ProfileHeaderEdit from "../../profile-header-edit";
-import ProfileHeader from "../../profile-header";
-import WhoseProfile from "../../view-profile/whose-profile";
+import NavTab from "../../tab-nav";
+import FollowItem from "../followItem";
+import ProfileHeaderEdit from "../../../loggedInProfile/profile-header-edit";
+import ProfileHeader from "../../../loggedInProfile/profile-header";
+import WhoseProfile from "../../../view-profile/whose-profile";
 
 function Followers(
     { user = {
@@ -11,7 +11,7 @@ function Followers(
         "_id": 5,
         "handle": "2h",
         "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-        "phoneNumber": "tesla.png",
+        "number": "7898777",
         "email": "blah",
         "followers": [],
         "following": []
@@ -20,7 +20,7 @@ function Followers(
         "_id": 5,
         "handle": "2h",
         "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-        "phoneNumber": "tesla.png",
+        "number": "7899765",
         "email": "blah",
         "followers": [],
         "following": []}}
