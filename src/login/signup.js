@@ -3,8 +3,10 @@ import music from "../images/music.png";
 import css from "../login/index.css";
 
 function Signup() {
-    const accountInfo = {email:null,password:null,username:null,
-        phone:null, bio: null,iamge:null, role:null}
+    const accountInfo = {
+        email: null, password: null, username: null,
+        phone: null, bio: null, iamge: null, role: null
+    }
 
     return (
         <div className='bg-black'>
@@ -12,7 +14,7 @@ function Signup() {
                 <img src={logoIcon} className="logo"/>
             </div>
 
-            <div className='mx-auto'style={{maxWidth:650}}>
+            <div className='mx-auto' style={{maxWidth: 650}}>
 
                 <div className='loginHits text-center mb-4'>Sign up with your email address</div>
                 <div className='loginInputLayout'>
@@ -21,8 +23,8 @@ function Signup() {
                 </div>
 
                 <div className='loginInputLayout'>
-                        <label htmlFor="username" className="loginHits mb-1">Confirm your email</label>
-                        <input type="email" className="inputBox" id="username" placeholder="Enter your email Again"/>
+                    <label htmlFor="username" className="loginHits mb-1">Confirm your email</label>
+                    <input type="email" className="inputBox" id="username" placeholder="Enter your email Again"/>
                 </div>
 
                 <div className='loginInputLayout'>
@@ -54,13 +56,14 @@ function Signup() {
                     <label htmlFor="bio" className="loginHits mb-1">Please upload your avatar</label>
                     <div className="input-group mb-3">
                         <input type="file" className="form-control" id="avatar"/>
-                            <label className="input-group-text"
-                                   htmlFor="avatar">Upload</label>
+                        <label className="input-group-text"
+                               htmlFor="avatar">Upload</label>
                     </div>
                 </div>
 
                 <div className='loginInputLayout mt-3'>
-                    <label htmlFor="bio" className="loginHits mb-1">what role would you love to choose for your account?</label>
+                    <label htmlFor="bio" className="loginHits mb-1">what role would you love to choose for your
+                        account?</label>
                     <div className="dropdown">
                         <button className="btn btn-secondary dropdown-toggle" type="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
