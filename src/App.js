@@ -19,7 +19,9 @@ function App() {
                                element={<Login/>}/>
                         <Route path="/profile/*"
                                element={<Profile/>}/>
-                        <Route path="/search/*"
+                        <Route path="/search"
+                               element={<Search/>}/>
+                        <Route path="/search/:query"
                                element={<Search/>}/>
                         <Route path="/detail/:id"
                                element={<Detail/>}/>
