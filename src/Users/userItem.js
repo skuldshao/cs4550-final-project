@@ -17,6 +17,8 @@ const UserItem = ({user}) => {
     const [userName, setUserName] = useState(user.userName);
     const [handle, setHandle] = useState(user.handle);
     const [password, setPassword] = useState(user.password);
+    const [number, setNumber] = useState(user.password);
+    const [eamil, setEmail] = useState(user.password);
 
     return (
         <li className="list-group-item border-0 bg-black">
@@ -107,6 +109,21 @@ const UserItem = ({user}) => {
                                 <input id={`${user._id} handle`} className="form-control" value={handle}
                                        onChange={(event) => {
                                            setHandle(event.target.value)
+                                       }
+                                       }/>
+                            </div>
+                            <div className="me-5">
+                                <label htmlFor={`${user._id} email`}>Email:</label>
+                                <input id={`${user._id} email`} className="form-control" value={userName}
+                                       width="500 px"
+                                       onChange={(event) => {
+                                           setEmail(event.target.value)
+                                       }
+                                       }/>
+                                <label htmlFor={`${user._id} number`}>Number:</label>
+                                <input id={`${user._id} number`} className="form-control" value={handle}
+                                       onChange={(event) => {
+                                           setNumber(event.target.value)
                                        }
                                        }/>
                             </div>
