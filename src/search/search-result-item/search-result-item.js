@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom"
-import {getTrack} from "../services/spotify-service"
 
 const SearchResultItem = (
     {
@@ -10,7 +9,7 @@ const SearchResultItem = (
 
     const detailLink = "/detail/" + result.id.toString();
 
-    return(
+    return (
         <Link to={detailLink}>
             <li className="list-group-item">
                 <div className="d-flex align-items-center">
