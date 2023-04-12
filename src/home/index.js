@@ -6,7 +6,7 @@ import "../styles.css"
 export const Home = () => {
     return (
         <div className="white">
-            <Nav user="user" active="home"/>
+            <Nav user="admin" active="home"/>
             <ul className="list-group">
             {
                 reviews.map(review => {

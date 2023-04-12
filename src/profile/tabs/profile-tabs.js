@@ -2,8 +2,8 @@ import React from "react";
 import {Routes, Route} from "react-router";
 import Overview from "./overview/overview";
 import Reviews from "./reviews/reviews";
-import Following from "./follow/following";
-import Followers from "./follow/followers";
+import Following from "./follow/following/following";
+import Followers from "./follow/followers/followers";
 import ListenToMore from "./playlists/listenToMore";
 import Favorites from "./playlists/favorites";
 

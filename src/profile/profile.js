@@ -5,10 +5,10 @@ import {Route} from "react-router-dom";
 import ProfileTabs from "./tabs/profile-tabs";
 import OverViewSelfNoEdit from "./tabs/overview/overViewSelfNoEdit";
 import ReviewsSelfNoEdit from "./tabs/reviews/ReviewsSelfNoEdit";
-import FollowingSelfNoEdit from "./tabs/follow/followingSelfNoEdit";
+import FollowingSelfNoEdit from "./tabs/follow/following/followingSelfNoEdit";
 import FavoritesSelfNoEdit from "./tabs/playlists/favoritesSelfNoEdit";
 import ListenToMoreSelfNoEdit from "./tabs/playlists/listenToMoreSelfNoEdit";
-import FollowerSelfNoEdit from "./tabs/follow/followersSelfNoEdit";
+import FollowerSelfNoEdit from "./tabs/follow/followers/followersSelfNoEdit";
 import ViewProfile from "./view-profile";
 
 function ProfileRoute() {

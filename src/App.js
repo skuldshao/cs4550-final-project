@@ -9,6 +9,7 @@ import Profile from "./profile";
 import Detail from "./detail";
 import ProfileTabs from "./profile/tabs/profile-tabs";
 import React from "react";
+import Users from "./Users";
 
 function App() {
     return (
@@ -24,8 +25,10 @@ function App() {
                                element={<Login/>}/>
                         <Route path="/signup"
                                element={<Signup/>}/>
+                        <Route path="/users"
+                               element={<Users/>}/>
                         <Route path="/profile/*"
-                               element={<Profile loggedIn={true}/>}/>
+                               element={<Profile/>}/>
                         <Route path="/search/*"
                                element={<Search/>}/>
                         <Route path="/detail/:id"

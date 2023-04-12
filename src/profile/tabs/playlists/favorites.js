@@ -1,5 +1,5 @@
-import ProfileHeaderEdit from "../../profile-header-edit";
-import ProfileHeader from "../../profile-header";
+import ProfileHeaderEdit from "../../loggedInProfile/profile-header-edit";
+import ProfileHeader from "../../loggedInProfile/profile-header";
 import NavTab from "../tab-nav";
 import React from "react";
 import WhoseProfile from "../../view-profile/whose-profile";
@@ -9,13 +9,13 @@ const Favorites = ({ user = {
     "_id": 5,
     "handle": "2h",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-    "phoneNumber": "tesla.png",
+    "number": "8899878777",
     "email": "blah"}, tabs, isEditing, isSelf, currentUser = {
     "userName": "SpaceX",
     "_id": 5,
     "handle": "2h",
     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-    "phoneNumber": "tesla.png",
+    "number": "78898777",
     "email": "blah",
     "following": [],
     "followers": []} }) => {

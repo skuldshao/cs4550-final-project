@@ -7,7 +7,7 @@ function FollowerSelfNoEdit(
         "userName": "SpaceX",
         "handle": "2h",
         "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-        "phoneNumber": "tesla.png",
+        "number": "8888888",
         "email": "blah",
         "following": [],
         "followers": []
@@ -15,7 +15,6 @@ function FollowerSelfNoEdit(
 ) {
     return (
         <div>
-            {console.log("followers")}
             <Followers tabs={tabs} isEditing={false} isSelf={true} user={user}/>
         </div>
     );

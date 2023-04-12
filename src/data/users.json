@@ -74,5 +74,24 @@
     "reviews": [],
     "newSongs": [],
     "favoriteSongs": []
+  },
+  {
+    "_id": 5,
+    "handle": "ali",
+    "avatarIcon": "rowlet.avif",
+    "userName": "Ali Schueler",
+    "email": "schueler.a@northeastern.edu",
+    "number": "978-289-2080",
+    "password": "password!",
+    "joined": "",
+    "bio": "",
+    "location": "",
+    "locationPublic": false,
+    "role": "admin",
+    "following": [],
+    "followers": [],
+    "reviews": [],
+    "newSongs": [],
+    "favoriteSongs": []
   }
 ]
