@@ -18,8 +18,8 @@ function Signup() {
     const [number, setNumber] = useState("")
     const [role, setRole] = useState("user")
 
-    const [goodEmail, setGoodEmail] = useState(true)
-    const [goodHandle, setGoodHandle] = useState(true)
+    const [goodEmail, setGoodEmail] = useState(false)
+    const [goodHandle, setGoodHandle] = useState(false)
 
     const signup = () => {
         const user = {
@@ -62,7 +62,8 @@ function Signup() {
                                placeholder="Enter your email" onChange={(event) => {
                             setEmail(event.target.value);
                             const index = users.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
-                            setGoodEmail(index === -1);
+                            console.log("hi" + event.target.value + "hi")
+                            setGoodEmail(index === -1 || event.target.value.length > 0);
                         }}/>
                         {goodEmail ? <i className="bi bi-check fs-2"/> : <i className="bi bi-exclamation-circle fs-2"/>}
                     </div>
@@ -91,7 +92,7 @@ function Signup() {
                                placeholder="Enter a handle" onChange={(event) => {
                             setHandle(event.target.value);
                             const index = users.findIndex(u => (u.handle).toLowerCase() === (event.target.value).toLowerCase());
-                            setGoodHandle(index === -1);
+                            setGoodHandle(index === -1 || event.target.value.length > 0);
                         }}/>
                         {goodHandle ? <i className="bi bi-check fs-2"/> :
                             <i className="bi bi-exclamation-circle fs-2"/>}

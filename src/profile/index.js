@@ -4,7 +4,7 @@ import Nav from "../nav";
 import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
 
 function Profile() {
-    const loggedIn = false;
+    const loggedIn = true;
     const admin = false
     const user = "user";
     return (

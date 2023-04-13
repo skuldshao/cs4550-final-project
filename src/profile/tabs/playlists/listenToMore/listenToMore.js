@@ -3,6 +3,7 @@ import ProfileHeader from "../../../loggedInProfile/profile-header";
 import NavTab from "../../tab-nav";
 import React from "react";
 import WhoseProfile from "../../../view-profile/whose-profile";
+import PlaylistItem from "../playlistItem";
 
 const ListenToMore = ({
                           user = {
@@ -23,12 +24,16 @@ const ListenToMore = ({
         "followers": []
     }, loggedIn
                       }) => {
+    const newSongs = user.newSongs;
     return (
         <div>
             <div className="row wd-black-bg text-start">
                 {!isSelf ? <WhoseProfile user={user} currentUser={currentUser} loggedIn={loggedIn}/> :
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
+                {
+                    newSongs.map(f => <PlaylistItem item={f}/>)
+                }
             </div>
         </div>
     )

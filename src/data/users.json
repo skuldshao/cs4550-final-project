@@ -23,7 +23,10 @@
     ],
     "reviews": [],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [
+      "1wtOxkiel43cVs0Yux5Q4h",
+      "1wtOxkiel43cVs0Yux5Q4h"
+    ]
   },
   {
     "_id": 2,
@@ -41,7 +44,9 @@
     "following": [],
     "followers": [],
     "reviews": [],
-    "newSongs": [],
+    "newSongs": [
+      "1wtOxkiel43cVs0Yux5Q4h"
+    ],
     "favoriteSongs": []
   },
   {
