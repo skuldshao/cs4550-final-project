@@ -12,17 +12,14 @@ function SearchBar() {
     const loc = useLocation();
     const { query } = useParams();
     const navigate = useNavigate();
-    const prev =  loc.search.substring(1, loc.search.length);
-
+    //const prev =  loc.search.substring(1, loc.search.length);
     //console.log("q: " + q);
     //const [prev, setPrev] = useState("");
     const [search, setSearch] = useState(query);
     const [results, setResults] = useState([]);
     //const prev = loc.search.substring(1, loc.search.length);
-    console.log("search: " + search);
-    console.log("query: " + query);
-
-
+    //console.log("search: " + search);
+    //console.log("query: " + query);
 
     const searchSpotify = async () => {
         const results = await searchTracks(search);
@@ -33,17 +30,11 @@ function SearchBar() {
     };
 
     useEffect(() => {
-        // searchNapster();
-
         if (query) {
             setSearch(query);
             searchSpotify();
         }
-
-
-
     }, [query]);
-
 
     return (
         <div>
