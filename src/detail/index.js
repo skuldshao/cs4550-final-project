@@ -9,6 +9,8 @@ function Detail() {
     return(
         <>
             <TrackDetail/>
+            <WriteReview/>
+
 
 
         </>

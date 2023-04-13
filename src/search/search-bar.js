@@ -18,8 +18,8 @@ function SearchBar() {
     const [search, setSearch] = useState(query);
     const [results, setResults] = useState([]);
     //const prev = loc.search.substring(1, loc.search.length);
-    //console.log("search: " + search);
-    //console.log("query: " + query);
+    console.log("search: " + search);
+    console.log("query: " + query);
 
     const searchSpotify = async () => {
         const results = await searchTracks(search);
@@ -54,7 +54,7 @@ function SearchBar() {
                             name="search-bar"
                             placeholder="search"
                             className="form-control rounded-pill"
-                            value={search.toString()}
+                            value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
@@ -66,14 +66,23 @@ function SearchBar() {
                     </div>
 
                 </div>
+                {
+                    query?
 
-                <ul className="list-group">
-                    {
-                        results.map((result) => {
-                            return(<SearchResultItem key={result.id} result={result}/>)
-                        })
-                    }
-                </ul>
+                    <ul className="list-group">
+                        {
+                            results.map((result) => {
+                                return(<SearchResultItem key={result.id} result={result}/>)
+                            })
+                        }
+                    </ul>
+
+                        :
+
+                        <div>
+                            no results
+                        </div>
+                }
 
                 <pre>{JSON.stringify(results, null, 2)}</pre>
             </div>
