@@ -2,8 +2,8 @@ import logoIcon from "../images/logo.png";
 import music from "../images/music.png";
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import users from "../data/users.json"
 import {useNavigate} from "react-router";
+import users from "../data/users.json"
 
 function Signup() {
     const navigate = useNavigate();
