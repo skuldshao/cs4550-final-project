@@ -5,8 +5,8 @@ import OverViewAdmin from "../../tabs/overview/overViewAdmin";
 import ReviewsAdmin from "../../tabs/reviews/reviewsAdmin";
 import FollowingAdmin from "../../tabs/follow/following/followingAdmin";
 import FollowersAdmin from "../../tabs/follow/followers/followersAdmin";
-import FavoritesAdmin from "../../tabs/playlists/favoritesAdmin";
-import ListenToMoreAdmin from "../../tabs/playlists/listenToMoreAdmin";
+import FavoritesAdmin from "../../tabs/playlists/favorites/favoritesAdmin";
+import ListenToMoreAdmin from "../../tabs/playlists/listenToMore/listenToMoreAdmin";
 
 const ViewProfileAsAdminRouter = ({tabs}) => {
     const params = useParams();

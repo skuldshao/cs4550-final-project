@@ -6,17 +6,27 @@
     "userName": "Donald Duck",
     "email": "donaldd@gmail.com",
     "number": "999-999-9999",
-    "password": "",
+    "password": "pass",
     "joined": "",
     "bio": "",
     "location": "",
     "locationPublic": true,
     "role": "user",
-    "following": [3, 4],
-    "followers": [2, 3, 4],
+    "following": [
+      3,
+      4
+    ],
+    "followers": [
+      2,
+      3,
+      4
+    ],
     "reviews": [],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [
+      "1wtOxkiel43cVs0Yux5Q4h",
+      "1wtOxkiel43cVs0Yux5Q4h"
+    ]
   },
   {
     "_id": 2,
@@ -25,7 +35,7 @@
     "userName": "Minnie Mouse",
     "email": "minnieMouse@gmail.com",
     "number": "999-999-9999",
-    "password": "",
+    "password": "pass",
     "joined": "",
     "bio": "",
     "location": "",
@@ -34,7 +44,9 @@
     "following": [],
     "followers": [],
     "reviews": [],
-    "newSongs": [],
+    "newSongs": [
+      "1wtOxkiel43cVs0Yux5Q4h"
+    ],
     "favoriteSongs": []
   },
   {

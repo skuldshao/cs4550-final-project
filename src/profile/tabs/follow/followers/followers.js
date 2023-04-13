@@ -30,14 +30,15 @@ function Followers(
 ) {
     const followers = user.followers;
     return (
-        <div className="row wd-black-bg text-start">
+        <div className="wd-black-bg text-start">
             {!isSelf ? <WhoseProfile user={user} currentUser={currentUser} loggedIn={loggedIn}/> :
                 (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
             <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
-            <div className="row wd-black-bg p-3 pt-4 ps-5 align-items-center">
+            <div className="wd-black-bg align-items-center">
                 {followers.length === 0 ? (isSelf ? <span
-                            className=" d-flex justify-content-center text-white ms-5 fw-normal">You have no followers</span> :
-                        <span className=" d-flex justify-content-center text-white ms-5 fw-normal">{user.userName} has no followers</span>) :
+                            className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-3">You have no followers</span> :
+                        <span
+                            className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} has no followers</span>) :
                     followers.map(followerItem => <FollowItem fid={followerItem} currentUser={currentUser}
                                                               loggedIn={loggedIn}/>)}
             </div>

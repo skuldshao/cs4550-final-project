@@ -5,8 +5,8 @@ import React from "react";
 import ReviewsNotSelf from "../tabs/reviews/reviewsNotSelf";
 import FollowingNotSelf from "../tabs/follow/following/followingNotSelf";
 import FollowersNotSelf from "../tabs/follow/followers/followersNotSelf";
-import FavoritesNotSelf from "../tabs/playlists/favoritesNotSelf";
-import ListenToMoreNotSelf from "../tabs/playlists/listenToMoreNotSelf";
+import FavoritesNotSelf from "../tabs/playlists/favorites/favoritesNotSelf";
+import ListenToMoreNotSelf from "../tabs/playlists/listenToMore/listenToMoreNotSelf";
 
 const ViewProfile = ({tabs, loggedIn}) => {
     const params = useParams();

@@ -7,7 +7,6 @@ import Signup from "./login/signup";
 import Search from "./search";
 import Profile from "./profile";
 import Detail from "./detail";
-import ProfileTabs from "./profile/tabs/profile-tabs";
 import React from "react";
 import Users from "./Users";
 

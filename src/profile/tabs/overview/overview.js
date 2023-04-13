@@ -31,7 +31,7 @@ function OverView({
 ) {
     return (
         <div>
-            <div className="row wd-black-bg text-start">
+            <div className="wd-black-bg text-start">
                 {!isSelf ? <WhoseProfile user={user} currentUser={currentUser} loggedIn={loggedIn}/> :
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>

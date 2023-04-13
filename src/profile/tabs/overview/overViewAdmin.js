@@ -7,7 +7,7 @@ import ViewProfileAsAdmin from "../../admin/viewProfileAsAdmin";
 const OverViewAdmin = ({tabs, user}) => {
     return (
         <div>
-            <div className="row wd-black-bg text-start">
+            <div className="wd-black-bg text-start">
                 <ViewProfileAsAdmin active={tabs.active} user={user}/>
                 <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}/>
                 <div className="row ps-5 pt-4">
