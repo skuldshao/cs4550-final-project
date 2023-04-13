@@ -2,19 +2,41 @@
 .wd-bright-red {
     color: #c8102e
 }
+
 .wd-white {
     color: #F5F5F5
 }
+
 .wd-gold {
     color: #A4804A
 }
+
 .wd-grey {
     color: #2F3137
 }
+
 .wd-bg-grey {
     background-color: #2F3137;
     color: #F5F5F5;
 }
+
 .wd-bg-gold {
     background-color: #A4804A;
+}
+
+.wd-small {
+    height: 30px;
+    width: 40px;
+}
+
+.position-absolute-profile-change {
+    position: absolute;
+    left: 65px;
+    top: 108px;
+}
+
+.position-absolute-profile-save {
+    position: absolute;
+    left: 77px;
+    top: 108px;
 }

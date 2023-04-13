@@ -8,11 +8,11 @@ export const Home = () => {
         <div className="white">
             <Nav user="user" active="home"/>
             <ul className="list-group">
-            {
-                reviews.map(review => {
-                    return(<HomeList review={review} loggedIn={false}/>);
-                })
-            }
+                {
+                    reviews.map(review => {
+                        return (<HomeList review={review} loggedIn={true}/>);
+                    })
+                }
             </ul>
         </div>
     )

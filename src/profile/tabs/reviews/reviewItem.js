@@ -12,9 +12,18 @@ function ReviewItem( {reviewItem = {
                                  "stars": 4
                              }}
 ) {
+    const rating = reviewItem.stars;
+    const stars = [];
+    for (let i = 0; i < Math.floor(rating); i++) {
+        stars.push(<i className="bi bi-star-fill wd-gold"/>);
+    }
+    let half = false;
+    if ((rating - stars.length) > 0) {
+        half = true;
+    }
     return (
         <div>
-            <div className="row wd-black-bg p-3 pt-4 align-items-center">
+            <div className="row wd-black-bg p-3 pt-4 align-items-center ps-5">
                 <div className="col-8 position-relative">
                     <img className="" width={45} height={45} src={reviewItem.songCover}/>
                     <div className="position-absolute start-0 top-0 ms-4 ps-5">
@@ -31,8 +40,15 @@ function ReviewItem( {reviewItem = {
                 </div>
                 <div className="col-2 text-warning">
                     <div className="float-end">
-                        {[...Array(reviewItem.stars).keys()].map(() => <i className="bi bi-star-fill"> </i>)}
-                        {[...Array(5 - reviewItem.stars).keys()].map(() => <i className="bi bi-star"> </i>)}
+                        {
+                            stars.map(() => {
+                                return(<i className="bi bi-star-fill wd-gold"/>)
+                            })
+                        }
+                        {
+                            half && <i className="bi bi-star-half wd-gold"/>
+                        }
+                        {[...Array(5 - Math.ceil(reviewItem.stars)).keys()].map(() => <i className="bi bi-star wd-gold"/>)}
                     </div>
 
                 </div>
