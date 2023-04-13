@@ -4,12 +4,11 @@ import Nav from "../nav";
 import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
 
 function Profile() {
-    const loggedIn = false;
-    const admin = false
-    const user = "user";
+    const loggedIn = true;
+    const admin = true
     return (
         <div>
-            <Nav active="profile" user={user}/>
+            <Nav active="profile" user={admin ? "admin" : "user"}/>
             {admin && <AdminProfileRouter/>}
             {!admin && <ProfileRoute loggedIn={loggedIn}/>}
         </div>

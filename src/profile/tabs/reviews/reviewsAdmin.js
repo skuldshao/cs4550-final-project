@@ -1,7 +1,6 @@
 import React from "react";
 import NavTab from "../tab-nav";
 import ReviewItem from "./reviewItem";
-import reviewArray from "./reviews.json"
 import ViewProfileAsAdmin from "../../admin/viewProfileAsAdmin";
 
 function ReviewsAdmin({
@@ -14,12 +13,17 @@ function ReviewsAdmin({
                               "email": "blah"
                           }, tabs
                       }) {
+    const reviews = user.reviews
     return (
         <div>
             <div className="wd-black-bg text-start">
                 <ViewProfileAsAdmin active={tabs.active} user={user}/>
                 <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}/>
-                {reviewArray.map(reviewItem => <ReviewItem reviewItem={reviewItem}/>)}
+                {reviews.length > 0 ?
+                    reviews.map(rid => <ReviewItem reviewItem={rid}/>) :
+                    (<span
+                        className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has not left any reviews!</span>)
+                }
             </div>
         </div>
     );

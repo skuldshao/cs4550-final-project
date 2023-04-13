@@ -22,7 +22,7 @@ const PlaylistItem = ({item}) => {
         <div className="pt-2 pb-2 ms-5 mt-3">
             <div className="d-flex justify-content-start">
                 <Link to={`/detail/${item}`}>
-                    <img className="rounded-circle pt-0 align-self-center" width={50} height={50}
+                    <img className="pt-0 align-self-center" width={50} height={50}
                          src={album.images && album.images[0].url}/>
                 </Link>
                 <div className="ms-3">
