@@ -5,8 +5,8 @@ import ReviewsAdminEdit from "../../tabs/reviews/reviewsAdminEdit";
 import OverViewAdminEdit from "../../tabs/overview/overViewAdminEdit";
 import FollowingAdminEdit from "../../tabs/follow/following/FollowingAdminEdit";
 import FollowersAdminEdit from "../../tabs/follow/followers/followersAdminEdit";
-import FavoritesAdminEdit from "../../tabs/playlists/favoritesAdminEdit";
-import ListenToMoreAdminEdit from "../../tabs/playlists/listenToMoreAdminEdit";
+import FavoritesAdminEdit from "../../tabs/playlists/favorites/favoritesAdminEdit";
+import ListenToMoreAdminEdit from "../../tabs/playlists/listenToMore/listenToMoreAdminEdit";
 
 const EditProfileAsAdminRouter = ({tabs}) => {
     const params = useParams();

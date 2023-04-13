@@ -15,6 +15,7 @@ function Login() {
         const index = users.findIndex(u => u.email === email && u.password === password);
         if (index !== -1) {
             const user = users.find(u => u.email === email && u.password === password);
+            // navigate(-1)
             navigate("/home")
         } else {
             setAlert(true)

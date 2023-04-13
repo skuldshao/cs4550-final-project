@@ -1,8 +1,8 @@
-import ProfileHeaderEdit from "../../loggedInProfile/profile-header-edit";
-import ProfileHeader from "../../loggedInProfile/profile-header";
-import NavTab from "../tab-nav";
+import ProfileHeaderEdit from "../../../loggedInProfile/profile-header-edit";
+import ProfileHeader from "../../../loggedInProfile/profile-header";
+import NavTab from "../../tab-nav";
 import React from "react";
-import WhoseProfile from "../../view-profile/whose-profile";
+import WhoseProfile from "../../../view-profile/whose-profile";
 
 const ListenToMore = ({
                           user = {
