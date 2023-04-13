@@ -15,6 +15,7 @@ function Following(
             "number": "tesla.png",
             "email": "blah",
             "following": [],
+            "followers": [],
         }, tabs, isEditing, isSelf, currentUser = {
         "userName": "SpaceX",
         "_id": 5,

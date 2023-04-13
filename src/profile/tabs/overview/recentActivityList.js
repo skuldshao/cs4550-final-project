@@ -4,8 +4,8 @@ import React from "react";
 
 function RecentActivityList() {
     return (
-        <div className="row wd-black-bg ps-3">
-            { activityArray.map(activityItem => (<RecentActivityItem activityItem={activityItem}/>))}
+        <div className="wd-black-bg ps-3">
+            {activityArray.map(activityItem => (<RecentActivityItem activityItem={activityItem}/>))}
         </div>
     );
 }

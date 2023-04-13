@@ -1,6 +1,7 @@
 import NavTab from "../../tab-nav";
 import React from "react";
 import EditProfileAsAdmin from "../../../admin/editProfileAsAdmin";
+import PlaylistItem from "../playlistItem";
 
 const FavoritesAdminEdit = ({
                                 user = {
@@ -12,11 +13,19 @@ const FavoritesAdminEdit = ({
                                     "email": "blah"
                                 }, tabs
                             }) => {
+    const favorites = user.favoriteSongs;
     return (
         <div>
-            <div className="row wd-black-bg text-start">
+            <div className="wd-black-bg text-start">
                 <EditProfileAsAdmin user={user} active={tabs.active}/>
                 <NavTab tabs={tabs} isEditing={true} user={user} isSelf={false}/>
+                {
+                    favorites.length > 0 ? favorites.map(f => <PlaylistItem
+                            item={f}/>) :
+                        (
+                            <span
+                                className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has no songs in their favorites playlist</span>)
+                }
             </div>
         </div>
     )

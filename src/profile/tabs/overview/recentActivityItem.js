@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function RecentActivityItem( {activityItem}
+function RecentActivityItem({activityItem}
 ) {
     if (activityItem.type === "review") {
         return (
@@ -9,19 +9,20 @@ function RecentActivityItem( {activityItem}
                 <Link to={`profile/${activityItem.handle}`} className="text-white text-decoration-none">
                     <span className="fw-bold">{activityItem.user} (@{activityItem.handle})</span>
                 </Link> left a
-                <Link to={`profile/${activityItem.reviewLink}`} className="text-white text-decoration-none fw-bold"> review
+                <Link to={`profile/${activityItem.reviewLink}`}
+                      className="text-white text-decoration-none fw-bold"> review
                 </Link> for
                 <Link to={activityItem.songLink} className="text-white text-decoration-none">
                     <span className="fw-bold"> {activityItem.songReviewed}</span>
                 </Link>
-                {activityItem.reviewPreview? (<>: {activityItem.reviewPreview}...</>): (<>.</>)}
+                {activityItem.reviewPreview ? (<>: {activityItem.reviewPreview}...</>) : (<>.</>)}
                 <span className="text-secondary lh-lg"> • {activityItem.time}</span>
             </div>
         )
 
     } else if (activityItem.type === "follow") {
         return (
-            <div className="row wd-black-bg">
+            <div className="wd-black-bg">
                 <div>
                     <Link to={`profile/${activityItem.handle}`} className="text-white text-decoration-none">
                         <span className="fw-bold">{activityItem.user} (@{activityItem.handle})</span>

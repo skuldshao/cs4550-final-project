@@ -9,8 +9,10 @@ function FollowItem({fid, currentUser, loggedIn}) {
     return (
         <div className="pt-2 pb-2 ms-5 mt-3">
             {alert && <div className="alert alert-danger alert-dismissible" role="alert">
-                <div><i className="bi bi-exclamation-triangle-fill"/>You are not logged in, click here to login or here
-                    to register
+                <div className="fs-5 fw-normal"><i className="bi bi-exclamation-triangle-fill"/>You are not logged
+                    in, <Link to="/login" className="text-decoration-none text-danger fw-bold">click here
+                        to login</Link> or <Link to="/signup" className="text-decoration-none text-danger fw-bold">here
+                        to register</Link>
                 </div>
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"
                         onClick={() => setAlert(false)}/>

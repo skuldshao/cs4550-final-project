@@ -1,16 +1,18 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function ReviewItem( {reviewItem = {
-                                 "song":"Song Name",
-                                 "songLink": "song link",
-                                 "songCover": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-                                 "songArtist": "song artist",
-                                 "songArtistLink": "song artist link",
-                                 "reviewPreview": "review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview",
-                                 "reviewTime": "5h",
-                                 "stars": 4
-                             }}
+function ReviewItem({
+                        reviewItem = {
+                            "song": "Song Name",
+                            "songLink": "song link",
+                            "songCover": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
+                            "songArtist": "song artist",
+                            "songArtistLink": "song artist link",
+                            "reviewPreview": "review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview review preview",
+                            "reviewTime": "5h",
+                            "stars": 4
+                        }
+                    }
 ) {
     const rating = reviewItem.stars;
     const stars = [];
@@ -23,7 +25,7 @@ function ReviewItem( {reviewItem = {
     }
     return (
         <div>
-            <div className="row wd-black-bg p-3 pt-4 align-items-center ps-5">
+            <div className="wd-black-bg p-3 pt-4 align-items-center ps-5">
                 <div className="col-8 position-relative">
                     <img className="" width={45} height={45} src={reviewItem.songCover}/>
                     <div className="position-absolute start-0 top-0 ms-4 ps-5">
@@ -42,19 +44,20 @@ function ReviewItem( {reviewItem = {
                     <div className="float-end">
                         {
                             stars.map(() => {
-                                return(<i className="bi bi-star-fill wd-gold"/>)
+                                return (<i className="bi bi-star-fill wd-gold"/>)
                             })
                         }
                         {
                             half && <i className="bi bi-star-half wd-gold"/>
                         }
-                        {[...Array(5 - Math.ceil(reviewItem.stars)).keys()].map(() => <i className="bi bi-star wd-gold"/>)}
+                        {[...Array(5 - Math.ceil(reviewItem.stars)).keys()].map(() => <i
+                            className="bi bi-star wd-gold"/>)}
                     </div>
 
                 </div>
             </div>
-            { reviewItem.reviewPreview?
-                <div className="row wd-black-bg p-3 pt-0 align-items-center">
+            {reviewItem.reviewPreview ?
+                <div className="wd-black-bg p-3 pt-0 align-items-center">
                     <div className="col-10 ms-4 ps-5 text-secondary">
                         {reviewItem.reviewPreview}
                     </div>
@@ -62,7 +65,7 @@ function ReviewItem( {reviewItem = {
             }
 
         </div>
-        )
+    )
 }
 
 export default ReviewItem
