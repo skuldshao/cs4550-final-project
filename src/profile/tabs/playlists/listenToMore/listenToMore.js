@@ -12,7 +12,8 @@ const ListenToMore = ({
                               "handle": "2h",
                               "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
                               "number": "tesla.png",
-                              "email": "blah"
+                              "email": "blah",
+                              "newSongs": []
                           }, tabs, isEditing, isSelf, currentUser = {
         "userName": "SpaceX",
         "_id": 5,
@@ -21,10 +22,12 @@ const ListenToMore = ({
         "number": "tesla.png",
         "email": "blah",
         "following": [],
-        "followers": []
+        "followers": [],
+        "newSongs": []
     }, loggedIn
                       }) => {
     const newSongs = user.newSongs;
+    console.log(newSongs)
     return (
         <div>
             <div className="row wd-black-bg text-start">
@@ -32,7 +35,12 @@ const ListenToMore = ({
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
                 {
-                    newSongs.map(f => <PlaylistItem item={f}/>)
+                    newSongs.length > 0 ? newSongs.map(f => <PlaylistItem
+                            item={f}/>) :
+                        (isSelf ? <span
+                                className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">You have no songs in your new songs playlist</span> :
+                            <span
+                                className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has no songs in their new songs playlist</span>)
                 }
             </div>
         </div>

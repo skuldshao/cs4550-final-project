@@ -32,7 +32,12 @@ const Favorites = ({
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
                 {
-                    favorites.map(f => <PlaylistItem item={f}/>)
+                    favorites.length > 0 ? favorites.map(f => <PlaylistItem
+                            item={f}/>) :
+                        (isSelf ? <span
+                                className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">You have no songs in your favorites playlist</span> :
+                            <span
+                                className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has no songs in their favorites playlist</span>)
                 }
             </div>
         </div>
