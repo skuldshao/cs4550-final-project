@@ -25,7 +25,7 @@ export const getToken = async () => {
 
         const response = await axios.post(url, qs.stringify(data), headers);
         //console.log(response.data.access_token);
-        console.log("sucessfully got token");
+        //console.log("sucessfully got token");
         return response.data.access_token;
     }
     catch(e) {
@@ -43,7 +43,8 @@ export const getTrack = async (trackID) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        console.log(response.data);
+        //console.log(response.data);
+
         return response.data;
     }
     catch (e) {
@@ -61,10 +62,11 @@ export const searchTracks = async (query) => {
             }
         });
         const result = await response.data;
-        console.log(result)
+        //console.log(result)
         return result.tracks.items;
     }
     catch (e) {
+        console.log(query);
         console.log(e);
     }
 };

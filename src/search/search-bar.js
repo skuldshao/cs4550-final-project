@@ -1,53 +1,47 @@
 import React, { useState, useEffect } from "react";
-import {useParams, useNavigate} from "react-router";
-import {Link, useLocation} from "react-router-dom"
+import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {searchTracks} from "../services/spotify-service";
 
 import "./index.css";
 import SearchResultList from "./search-result-item/search-result-list";
 import SearchResultItem from "./search-result-item/search-result-item";
+import {useLocation} from "react-router";
 
 function SearchBar() {
-    const {query} = useParams();
-    const navigate = useNavigate();
     const loc = useLocation();
+    const { query } = useParams();
+    const navigate = useNavigate();
+    //const prev =  loc.search.substring(1, loc.search.length);
+    //console.log("q: " + q);
+    //const [prev, setPrev] = useState("");
     const [search, setSearch] = useState(query);
     const [results, setResults] = useState([]);
     //const prev = loc.search.substring(1, loc.search.length);
-
+    //console.log("search: " + search);
+    //console.log("query: " + query);
 
     const searchSpotify = async () => {
         const results = await searchTracks(search);
-        //console.log(results);
+        //console.log("query: " + query);
+        //console.log("search: " + search);
         setResults(results);
-        navigate(`/search?${search}`);
+        navigate(`/search/${search}`);
     };
 
-    console.log();
     useEffect(() => {
-        const prev = loc.search.substring(1, loc.search.length);
-        console.log(prev);
         if (query) {
             setSearch(query);
             searchSpotify();
         }
-        else if (prev) {
-            setSearch(prev);
-            searchSpotify(prev);
-        }
-        //searchSpotify();
-        /*
-        if (query) {
-            setSearch(query);
-            searchSpotify();
-        }
-
-         */
     }, [query]);
 
     return (
         <div>
             <h1>Song Search</h1>
+            <div>
+                <p>The result is: {query}</p>
+            </div>
             <div className="form-group">
                 <label htmlFor="search-bar">
                     <span className="visually-hidden">Search</span>
@@ -60,7 +54,7 @@ function SearchBar() {
                             name="search-bar"
                             placeholder="search"
                             className="form-control rounded-pill"
-                            value={search}
+                            value={search.toString()}
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
@@ -73,36 +67,20 @@ function SearchBar() {
 
                 </div>
 
-                <div>
-                    <ul className="list-group">
-                        {results.map((result) => {
-                            return (
-                                <Link to={`/detail/${result.id}`}>
-                                    <li className="list-group-item">
-                                        <div className="d-flex align-items-center">
-                                            <div className="">
-                                                <img width={100}
-                                                     height={100}
-                                                     className="float-start rounded-circle"
-                                                     alt=""
-                                                     src={result.album.images[0].url}/>
-                                            </div>
-                                            <div className="w-100 ps-2 fw-bold align-items-center">
-                                                {result.name.toString()}
-                                            </div>
-                                        </div>
-                                    </li>
-                                </Link>
-                            )
-                        })}
-                    </ul>
-                </div>
+                <ul className="list-group">
+                    {
+                        results.map((result) => {
+                            return(<SearchResultItem key={result.id} result={result}/>)
+                        })
+                    }
+                </ul>
 
                 <pre>{JSON.stringify(results, null, 2)}</pre>
             </div>
         </div>
     );
 }
+export default SearchBar;
     /*
     return (
         <>
@@ -177,4 +155,4 @@ const SearchBar1 = () => (
 
  */
 
-export default SearchBar;
+// export default SearchBar;
