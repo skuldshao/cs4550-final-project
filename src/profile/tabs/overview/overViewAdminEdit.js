@@ -13,7 +13,7 @@ const OverViewAdminEdit = ({tabs, user}) => {
                 <div className="row ms-5 mt-3">
                     <div className="col-xl-6 col-sm-7 col-8 text-white">
                         <p className="fw-bold fs-5">RECENT ACTIVITY</p>
-                        <RecentActivityList user={user}/>
+                        <RecentActivityList user={user} isSelf={false}/>
                     </div>
                     <div className="col-xl-6 col-sm-5 col-4 text-white">
                         <About isEditing={true} user={user}/>
