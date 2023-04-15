@@ -8,7 +8,7 @@ function ReviewItem({reviewItem, date}) {
     const review = reviews.find(r => r._id === reviewItem)
 
     return (
-        <div className=" ms-5 mt-3 mb-3">
+        <div className="ms-5 mt-3 mb-3">
             <div className="row wd-black-bg align-items-center">
                 <div className="d-flex justify-content-between">
                     <div className="d-flex justify-content-start me-2">
@@ -43,7 +43,7 @@ function ReviewItem({reviewItem, date}) {
                             review.review ?
                                 <div className="wd-black-bg align-items-center fw-normal wd-gold">
                                     <div className="">
-                                        {review.review.length > 100 ? `${review.review.substring(0, 75)}...` : review.review}
+                                        {review.review.length > 75 ? `${review.review.substring(0, 75)}...` : review.review}
                                     </div>
                                 </div> : <></>
                         }

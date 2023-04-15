@@ -2,7 +2,7 @@ import RecentActivityItem from "./recentActivityItem";
 import React from "react";
 import reviewsAr from "../../../data/reviews.json"
 
-function RecentActivityList({user}) {
+function RecentActivityList({user, isSelf}) {
     const reviews = user.reviews;
     const favorites = user.favoriteSongs;
     const newSongs = user.newSongs;
@@ -42,7 +42,11 @@ function RecentActivityList({user}) {
     });
     return (
         <div className="wd-black-bg">
-            {overviewList.map(activityItem => (<RecentActivityItem activityItem={activityItem}/>))}
+            {overviewList.length > 0 ?
+                overviewList.map(activityItem => (<RecentActivityItem activityItem={activityItem}/>)) :
+                (isSelf ? <span className="fw-normal fs-5">You have no recent activity to report</span> :
+                    <span className="fw-normal fs-5">{user.userName} has no recent activity to report</span>)
+            }
         </div>
     );
 }

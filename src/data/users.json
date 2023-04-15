@@ -61,7 +61,18 @@
       }
     ],
     "favoriteSongs": [],
-    "comments": []
+    "comments": [
+      {
+        "date": 1681407290,
+        "reviewID": 1,
+        "comment": "I totally agree!"
+      },
+      {
+        "date": 1681407290,
+        "reviewID": 1,
+        "comment": "This is actually so untrue! The song is subjective and the fact that you think it is only relatable to a certain part of the population is terrible! This should be taken down immediately"
+      }
+    ]
   },
   {
     "_id": 3,
