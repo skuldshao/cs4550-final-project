@@ -1,6 +1,6 @@
 import React from "react";
-import ProfileRoute from "./profile";
 import Nav from "../nav";
+import ProfileRoute from "./profile";
 import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
 
 function Profile() {
