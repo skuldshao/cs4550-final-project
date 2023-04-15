@@ -6,6 +6,11 @@ export const createUser = async (user) => {
     return response.data;
 }
 
+export const findUserById = async (userId) => {
+    const response = await axios.get(`${USER_API}/${userId}`);
+    const user = response.data;
+    return user;
+}
 
 export const findUser = async () => {
     const response = await axios.get(USERS_API);

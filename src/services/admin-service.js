@@ -18,6 +18,11 @@ export const deleteAdmin = async (adminId) => {
     return response.data;
 }
 
+export const findAdminById = async (adminId) => {
+    const response = await axios.get(`${ADMIN_API}/${adminId}`);
+    return response.data;
+}
+
 
 export const updateAdmin = async (admin) => {
     const response = await axios

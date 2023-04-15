@@ -8,6 +8,11 @@ export const findAdminThunk = createAsyncThunk(
         await service.findAdmin()
 )
 
+export const findAdminByIdThunk = createAsyncThunk(
+    'admin/findAdminsById', async (adminId) =>
+        await service.findAdminById(adminId)
+)
+
 export const createAdminThunk = createAsyncThunk(
     'admins/createAdmin',
     async (admin) => {

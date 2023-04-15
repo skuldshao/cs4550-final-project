@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
     createUserThunk,
-    deleteUserThunk,
+    deleteUserThunk, findUserByIdThunk,
     findUserThunk,
     updateUserThunk
 } from "../services/user-thunk";
@@ -30,15 +30,30 @@ const userSlice = createSlice({
                                           state.loading = false
                                           state.users = action.error
                                           },
-                                      [deleteUserThunk.fulfilled]:
-                                          (state,{ payload }) => {
-                                          state.loading = false
-                                          state.users = state.users.filter(user => user._id !== payload)
+                                      [findUserByIdThunk.pending]:
+                                          (state) => {
+                                              state.loading = true
+                                              state.users = []
+                                          },
+                                      [findUserByIdThunk.fulfilled]:
+                                          (state, { payload }) => {
+                                              state.loading = false
+                                              state.users = payload
+                                          },
+                                      [findUserByIdThunk.rejected]:
+                                          (state, action) => {
+                                              state.loading = false
+                                              state.error = action.error
                                           },
                                       [createUserThunk.fulfilled]:
                                           (state,{ payload }) => {
                                               state.loading = false
                                               state.users.push(payload)
+                                          },
+                                      [deleteUserThunk.fulfilled]:
+                                          (state,{ payload }) => {
+                                              state.loading = false
+                                              state.users = state.users.filter(user => user._id !== payload)
                                           },
                                       [updateUserThunk.fulfilled]:
                                           (state,{ payload }) => {

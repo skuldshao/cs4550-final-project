@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
     createAdminThunk,
-    deleteAdminThunk,
+    deleteAdminThunk, findAdminByIdThunk,
     findAdminThunk,
     updateAdminThunk
 } from "../services/admin-thunk";
@@ -34,6 +34,22 @@ const adminSlice = createSlice({
                                            (state,{ payload }) => {
                                                state.loading = false
                                                state.admins.push(payload)
+                                           },
+                                       [findAdminByIdThunk.fulfilled]:
+                                           (state, { payload }) => {
+                                               state.loading = false
+                                               state.admins = payload
+                                           },
+                                       [findAdminByIdThunk.rejected]:
+                                           (state, action) => {
+                                               state.loading = false
+                                               state.error = action.error
+                                           },
+                                       [deleteAdminThunk.fulfilled] :
+                                           (state, { payload }) => {
+                                               state.loading = false
+                                               state.admins = state.admins
+                                                   .filter(t => t._id !== payload)
                                            },
                                        [deleteAdminThunk.fulfilled]:
                                            (state,{ payload }) => {
