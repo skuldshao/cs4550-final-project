@@ -1,7 +1,7 @@
 import React from "react";
 import ProfileRoute from "./profile";
-import Nav from "../nav";
 import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
+import Nav from "../nav";
 
 function Profile() {
     const loggedIn = true;
