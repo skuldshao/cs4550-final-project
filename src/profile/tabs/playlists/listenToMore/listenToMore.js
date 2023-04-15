@@ -29,7 +29,6 @@ const ListenToMore = ({
     }, loggedIn
                       }) => {
     const newSongs = user.newSongs;
-    console.log(newSongs.length)
     return (
         <div>
             <div className="wd-black-bg text-start">

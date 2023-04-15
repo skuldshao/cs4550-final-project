@@ -28,7 +28,6 @@ function ProfileHeaderEdit({
             handle,
             password
         }
-        console.log(user);
     }
     return (
         <div className="d-flex justify-content-between">

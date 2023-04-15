@@ -7,7 +7,7 @@ const PlaylistItem = ({item}) => {
     const [artists, setArtists] = useState([]);
     const [album, setAlbum] = useState({});
     const fetchTrack = async () => {
-        const track = await getTrack(item);
+        const track = await getTrack(item.musicID);
         setTrack(track);
         const artists = track.artists;
         setArtists(artists);
@@ -29,7 +29,7 @@ const PlaylistItem = ({item}) => {
                     <Link to={`/detail/${item}`} className="text-white text-decoration-none fs-5 fw-bold ">
                         {track.name}
                         <br/>
-                        {artists[0] && artists[0].name}
+                        <span className="text-secondary">{artists[0] && artists[0].name}</span>
                     </Link>
                 </div>
             </div>

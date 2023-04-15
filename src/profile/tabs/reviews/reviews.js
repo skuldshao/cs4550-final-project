@@ -35,7 +35,7 @@ function Reviews({
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> : <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
                 {reviews.length > 0 ?
-                    reviews.map(rid => <ReviewItem reviewItem={rid}/>) :
+                    reviews.map(rid => <ReviewItem reviewItem={rid} date={true}/>) :
                     (isSelf ? <span className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">You have not made any reviews!</span> :
                         <span
                             className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has not left any reviews!</span>)
