@@ -2,19 +2,19 @@ import React, {useState} from "react";
 
 function About({
                    user = {
-                       yearJoined: 2023,
+                       joined: 2023,
                        bio: "Biography biography biography biography biography biography biography biography biography biography biography biography biography biography biography biography biography",
                        location: "Boston",
                        publicLocation: true
                    }, isEditing, type = "user"
                }
 ) {
-
     const [bio, setBio] = useState(user.bio);
     const [publicLocation, setPublicLocation] = useState(user.publicLocation);
     return (
-        <div className="row ps-3 text-secondary">
-            <p>Joined {user.yearJoined}</p>
+        <div className="text-secondary pe-3 pb-3 wd-bg-grey rounded-3 ps-3">
+            <p className=" text-white fw-bold fs-5">ABOUT</p>
+            <div className="pb-2">Joined {user.joined}</div>
             {isEditing ?
                 <form>
                     <textarea
@@ -38,9 +38,15 @@ function About({
                         </label></>}
                 </form> :
                 <div>
-                    <p>{bio}</p>
+                    <span className="text-white fw-normal">
+                        {bio}
+                    </span>
                     {type === "user" && (publicLocation ?
-                        <p><i className="bi bi-geo-alt-fill"/> {user.location}</p> : <></>)}
+                            <span className="text-white fw-normal">
+                            <i className="bi bi-geo-alt-fill"/> {user.location}
+                        </span> :
+                            <></>
+                    )}
                 </div>
             }
         </div>

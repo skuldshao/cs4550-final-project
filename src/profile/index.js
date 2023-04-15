@@ -5,7 +5,7 @@ import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
 
 function Profile() {
     const loggedIn = true;
-    const admin = true
+    const admin = false
     return (
         <div>
             <Nav active="profile" user={admin ? "admin" : "user"}/>

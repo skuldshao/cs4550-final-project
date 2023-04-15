@@ -35,7 +35,6 @@ function Signup() {
             role,
             joined: 2023
         }
-        console.log(user);
         users.push(user);
         navigate("/home")
     }

@@ -10,13 +10,12 @@ const OverViewAdminEdit = ({tabs, user}) => {
             <div className="wd-black-bg text-start">
                 <EditProfileAsAdmin active={tabs.active} user={user}/>
                 <NavTab tabs={tabs} isEditing={true} user={user} isSelf={false}/>
-                <div className="row ps-5 pt-4">
-                    <div className="col-9 text-white">
+                <div className="row ms-5 mt-3">
+                    <div className="col-xl-6 col-sm-7 col-8 text-white">
                         <p className="fw-bold fs-5">RECENT ACTIVITY</p>
-                        <RecentActivityList/>
+                        <RecentActivityList user={user}/>
                     </div>
-                    <div className="col-3 text-white">
-                        <p className="fw-bold fs-5">ABOUT</p>
+                    <div className="col-xl-6 col-sm-5 col-4 text-white">
                         <About isEditing={true} user={user}/>
                     </div>
                 </div>

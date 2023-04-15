@@ -7,9 +7,9 @@
     "email": "donaldd@gmail.com",
     "number": "999-999-9999",
     "password": "pass",
-    "joined": "",
-    "bio": "",
-    "location": "",
+    "joined": "2020",
+    "bio": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    "location": "Boston",
     "locationPublic": true,
     "role": "user",
     "following": [
@@ -27,9 +27,16 @@
     ],
     "newSongs": [],
     "favoriteSongs": [
-      "1wtOxkiel43cVs0Yux5Q4h",
-      "1wtOxkiel43cVs0Yux5Q4h"
-    ]
+      {
+        "date": 1681407290,
+        "musicID": "1wtOxkiel43cVs0Yux5Q4h"
+      },
+      {
+        "date": 1681407290,
+        "musicID": "1wtOxkiel43cVs0Yux5Q4h"
+      }
+    ],
+    "comments": []
   },
   {
     "_id": 2,
@@ -48,9 +55,13 @@
     "followers": [],
     "reviews": [],
     "newSongs": [
-      "1wtOxkiel43cVs0Yux5Q4h"
+      {
+        "date": 1681407290,
+        "musicID": "1wtOxkiel43cVs0Yux5Q4h"
+      }
     ],
-    "favoriteSongs": []
+    "favoriteSongs": [],
+    "comments": []
   },
   {
     "_id": 3,
@@ -69,7 +80,8 @@
     "followers": [],
     "reviews": [],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [],
+    "comments": []
   },
   {
     "_id": 4,
@@ -88,7 +100,8 @@
     "followers": [],
     "reviews": [],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [],
+    "comments": []
   },
   {
     "_id": 5,
@@ -107,6 +120,7 @@
     "followers": [],
     "reviews": [],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [],
+    "comments": []
   }
 ]

@@ -20,7 +20,7 @@ function ReviewsAdmin({
                 <ViewProfileAsAdmin active={tabs.active} user={user}/>
                 <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}/>
                 {reviews.length > 0 ?
-                    reviews.map(rid => <ReviewItem reviewItem={rid}/>) :
+                    reviews.map(rid => <ReviewItem reviewItem={rid} date={true}/>) :
                     (<span
                         className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has not left any reviews!</span>)
                 }
