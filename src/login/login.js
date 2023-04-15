@@ -6,7 +6,6 @@ import users from "../data/users.json"
 import {useNavigate} from "react-router";
 
 function Login() {
-    const ADMINKEY = "ADMINKEY123!"
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -101,3 +100,4 @@ function Login() {
 }
 
 export default Login;
+export const ADMINKEY = "ADMINKEY123!";

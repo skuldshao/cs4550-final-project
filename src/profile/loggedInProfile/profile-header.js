@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
+import {ADMINKEY} from "../../login/login"
 
 function ProfileHeader({
                            who = {
@@ -12,6 +13,7 @@ function ProfileHeader({
                            }, active, type
                        }) {
     const navigate = useNavigate()
+    console.log(ADMINKEY)
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
@@ -23,6 +25,7 @@ function ProfileHeader({
                     <>
                         <div className="lh-1 text-secondary pb-1">{who.number}</div>
                         <div className="lh-1 text-secondary">{who.email}</div>
+                        {type === "admin" && <div className="lh-1 text-secondary pt-1">{ADMINKEY}</div>}
                     </>
                 </div>
             </div>
