@@ -8,14 +8,31 @@ function RecentActivityList({user, isSelf}) {
     const newSongs = user.newSongs;
     const comments = user.comments;
     const userReviews = reviews.map(r => {
-        const date = reviewsAr.find(r2 => r2._id === r).date
-        return {
-            "_id": r,
-            date,
-            "type": "review"
+        const nx = reviewsAr.findIndex(r2 => r2._id === r)
+        if (nx !== -1) {
+            const nx = reviewsAr.findIndex(r2 => r2._id === r)
+            if (nx !== -1) {
+                const date = reviewsAr.find(r2 => r2._id === r).date
+                return {
+                    "_id": r,
+                    date,
+                    "type": "review"
+                }
+            } else {
+                return {
+                    "_id": r,
+                    "date": Date.now(),
+                    "type": "review"
+                }
+            }
+        } else {
+            return {
+                "_id": r,
+                "date": Date.now(),
+                "type": "review"
+            }
         }
     });
-    console.log(userReviews)
     const userFavorites = favorites.map(r => {
         return {
             ...r,
@@ -34,7 +51,6 @@ function RecentActivityList({user, isSelf}) {
             "type": "comments"
         }
     });
-    console.log(userComments)
 
     const overviewList = [...userReviews, ...userFavorites, ...userNewSongs, ...userComments];
     overviewList.sort(function (a, b) {

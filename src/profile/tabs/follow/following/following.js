@@ -29,6 +29,8 @@ function Following(
     }
 ) {
     const following = user.following;
+    console.log("following")
+    console.log(user);
     return (
         <div>
             <div className="wd-black-bg text-start">
@@ -42,7 +44,6 @@ function Following(
                                 className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-1">{user.userName} is not following anyone</span>) :
                         following.map(followingItem => <FollowItem fid={followingItem} currentUser={currentUser}
                                                                    loggedIn={loggedIn}/>)}
-                    }
                 </div>
             </div>
         </div>

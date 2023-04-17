@@ -1,5 +1,6 @@
 import axios from "axios";
-const USERS_API = 'http://localhost:4000/api/users';
+
+const USERS_API = "http://localhost:4000/api/users";
 
 export const createUser = async (user) => {
     const response = await axios.post(USERS_API, user)
@@ -7,15 +8,13 @@ export const createUser = async (user) => {
 }
 
 export const findUserById = async (userId) => {
-    const response = await axios.get(`${USER_API}/${userId}`);
-    const user = response.data;
-    return user;
+    const response = await axios.get(`${USERS_API}/${userId}`);
+    return response.data;
 }
 
 export const findUser = async () => {
     const response = await axios.get(USERS_API);
-    const users = response.data;
-    return users;
+    return response.data;
 }
 
 export const deleteUser = async (userId) => {
