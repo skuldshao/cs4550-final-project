@@ -5,7 +5,7 @@ function NavTab(
     {tabs, isEditing, user, isSelf}
 ) {
     return (
-        <ul className="nav nav-tabs p-0 pt-2 mt-3 border-none border-0 ps-5">
+        <ul className="nav nav-tabs p-0 pt-2 mt-3 border-none border-0 ms-5">
             <li className="nav-item pe-2">
                 <div className={`nav-link ${isEditing ? `disabled` : ``}`}>
                     <Link to={isSelf ? `/profile` : `/profile/${user._id}`}

@@ -27,7 +27,6 @@ function FollowingAdmin(
                             className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-1">{user.userName} is not following anyone</span> :
                         following.map(followingItem => <FollowItemAdmin fid={followingItem} pUser={user}
                                                                         tab="following"/>)}
-                    }
                 </div>
             </div>
         </div>
