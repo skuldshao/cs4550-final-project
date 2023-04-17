@@ -21,7 +21,7 @@ function FollowersAdminEdit(
     return (
         <div className="wd-black-bg text-start">
             <EditProfileAsAdmin active={tabs.active} user={user}/>
-            <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}/>
+            <NavTab tabs={tabs} isEditing={true} user={user} isSelf={false}/>
             <div className="wd-black-bg align-items-center">
                 {followers.length === 0 ? (<span
                         className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} has no followers</span>) :
