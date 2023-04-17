@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export const SPOTIFY_API = "https://api.spotify.com";
 export const CLIENT_ID = "e58f801281ff453f8bf068fbe50cee98";
 export const CLIENT_SECRET = "ffdbe2bf6aed421780a815ec257897d9"
@@ -27,14 +28,13 @@ export const getToken = async () => {
         //console.log(response.data.access_token);
         //console.log("sucessfully got token");
         return response.data.access_token;
-    }
-    catch(e) {
+    } catch (e) {
         console.log(e);
     }
 };
 
 export const getTrack = async (trackID) => {
-    const token  = await getToken();
+    const token = await getToken();
 
     const track_url = `https://api.spotify.com/v1/tracks/${trackID}`;
     try {
@@ -43,17 +43,14 @@ export const getTrack = async (trackID) => {
                 'Authorization': `Bearer ${token}`
             }
         });
-        //console.log(response.data);
-
         return response.data;
-    }
-    catch (e) {
+    } catch (e) {
         console.log(e);
     }
 };
 
 export const searchTracks = async (query) => {
-    const token  = await getToken();
+    const token = await getToken();
     const search_url = `https://api.spotify.com/v1/search?query=${query}&type=track&offset=0&limit=20`;
     try {
         const response = await axios.get(search_url, {
@@ -64,8 +61,7 @@ export const searchTracks = async (query) => {
         const result = await response.data;
         //console.log(result)
         return result.tracks.items;
-    }
-    catch (e) {
+    } catch (e) {
         console.log(query);
         console.log(e);
     }

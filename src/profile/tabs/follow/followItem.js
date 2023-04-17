@@ -1,11 +1,18 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import users from "../../../data/users.json"
+import * as userService from "../../../services/user-service"
 
 function FollowItem({fid, currentUser, loggedIn}) {
-    const user = users.find(u => u._id === fid)
+    const [user, setUser] = useState({});
     const [isFollowing, setIsFollowing] = useState(currentUser.following.includes(fid))
     const [alert, setAlert] = useState(false)
+    const getUserByUsername = async () => {
+        const user = await userService.findUserById(fid);
+        setUser(user);
+    };
+    useEffect(() => {
+        getUserByUsername();
+    }, []);
     return (
         <div className="pt-2 pb-2 ms-5 mt-3">
             {alert && <div className="alert alert-danger alert-dismissible" role="alert">
@@ -17,7 +24,7 @@ function FollowItem({fid, currentUser, loggedIn}) {
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"
                         onClick={() => setAlert(false)}/>
             </div>}
-            <div className="d-flex justify-content-between">
+            {user && <div className="d-flex justify-content-between">
                 <Link to={`/profile/${user._id}`}>
                     <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
                          src={`/images/${user.avatarIcon}`}/>
@@ -34,6 +41,7 @@ function FollowItem({fid, currentUser, loggedIn}) {
                         onClick={() => {
                             user.followers.remove(currentUser._id)
                             currentUser.following.remove(user._id);
+                            setIsFollowing(!isFollowing)
                         }
                         }>
                         FOLLOWING
@@ -56,6 +64,7 @@ function FollowItem({fid, currentUser, loggedIn}) {
                 </button>
                 }
             </div>
+            }
         </div>
     )
 }

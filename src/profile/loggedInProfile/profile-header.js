@@ -13,7 +13,6 @@ function ProfileHeader({
                            }, active, type
                        }) {
     const navigate = useNavigate()
-    console.log(ADMINKEY)
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
