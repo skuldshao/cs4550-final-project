@@ -1,70 +1,77 @@
-import {createSlice}
-    from "@reduxjs/toolkit";
-import {deleteAdminThunk, findAdminsThunk, findAdminByIdThunk, createAdminThunk, updateAdminThunk}
-    from "../services/admin-thunks";
+import { createSlice } from "@reduxjs/toolkit";
+import {createAdminThunk, deleteAdminThunk, findAdminByIdThunk, findAdminThunk, updateAdminThunk} from "../services/admin-thunk";
 
 const initialState = {
     admins: [],
     loading: false
 }
 
-const adminsSlice = createSlice({
-    name: 'admins',
-    initialState,
-    extraReducers: {
-        [findAdminsThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.admins = []
-            },
-        [findAdminsThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                state.admins = payload
-            },
-        [findAdminsThunk.rejected]:
-            (state, action) => {
-                state.loading = false
-                state.error = action.error
-            },
-        [findAdminByIdThunk.pending]:
-            (state) => {
-                state.loading = true
-                state.admins = []
-            },
-        [findAdminByIdThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                state.admins = payload
-            },
-        [findAdminByIdThunk.rejected]:
-            (state, action) => {
-                state.loading = false
-                state.error = action.error
-            },
-        [deleteAdminThunk.fulfilled] :
-            (state, { payload }) => {
-                state.loading = false
-                state.admins = state.admins
-                    .filter(t => t._id !== payload)
-            },
-        [createAdminThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                state.admins.push(payload)
-            },
-        [updateAdminThunk.fulfilled]:
-            (state, { payload }) => {
-                state.loading = false
-                const adminNdx = state.admins
-                    .findIndex((a) => a._id === payload._id)
-                state.admins[adminNdx] = {
-                    ...state.admins[adminNdx],
-                    ...payload
-                }
-            }
-    },
-    reducers: { }
-});
+const adminSlice = createSlice({
+       name:"admins",
+       initialState,
+       extraReducers:{
+           [findAdminThunk.pending]:
+               (state) => {
+                   state.loading = true
+                   state.admins = []
+               },
+           [findAdminThunk.fulfilled]:
+               (state,{ payload }) => {
+                   state.loading = false
+                   state.admins = payload
+               },
+           [findAdminThunk.rejected]:
+               (state,action) => {
+                   state.loading = false
+                   state.admins = action.error
+               },
+           [createAdminThunk.fulfilled]:
+               (state,{ payload }) => {
+                   state.loading = false
+                   state.admins.push(payload)
+               },
+           [findAdminByIdThunk.pending]:
+               (state) => {
+                   state.loading = true
+                   state.admins = []
+               },
+           [findAdminByIdThunk.fulfilled]:
+               (state, { payload }) => {
+                   state.loading = false
+                   state.admins = payload
+               },
+           [findAdminByIdThunk.rejected]:
+               (state, action) => {
+                   state.loading = false
+                   state.error = action.error
+               },
+           [findAdminByIdThunk.fulfilled]:
+               (state, { payload }) => {
+                   state.loading = false
+                   state.admins = payload
+               },
+           [findAdminByIdThunk.rejected]:
+               (state, action) => {
+                   state.loading = false
+                   state.error = action.error
+               },
+           [deleteAdminThunk.fulfilled]:
+               (state,{ payload }) => {
+                   state.loading = false
+                   state.admins = state.admins.filter(admin => admin._id !== payload)
+               },
+           [updateAdminThunk.fulfilled]:
+               (state,{ payload }) => {
+                   state.loading = false
+                   const adminUpdate = state.admins
+                       .findIndex((admin) => admin._id === payload._id)
+                   state.admins[adminUpdate] = {
+                       ...state.admins[adminUpdate],
+                       ...payload
+                   }
+               },
+       }
+   }
+)
 
-export default adminsSlice.reducer;
+export default adminSlice.reducer;

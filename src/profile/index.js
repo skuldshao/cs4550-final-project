@@ -1,15 +1,18 @@
-
 import React from "react";
 import ProfileRoute from "./profile";
-import NotLoggedInProfile from "./notLoggedInProfile";
+import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
 import Nav from "../nav";
 
-function Profile({loggedIn}) {
+function Profile() {
+    const loggedIn = true;
+    const admin = true
     return (
-       <div>
-           <Nav active="profile" user="user"/>
-           {loggedIn ? <ProfileRoute/> : <NotLoggedInProfile/>}
-       </div>
+        <div>
+            <Nav active="profile" user={admin ? "admin" : "user"}/>
+            {admin && <AdminProfileRouter/>}
+            {!admin && <ProfileRoute loggedIn={loggedIn}/>}
+        </div>
     );
 }
+
 export default Profile;

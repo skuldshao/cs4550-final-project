@@ -7,32 +7,46 @@ import Signup from "./login/signup";
 import Search from "./search";
 import Profile from "./profile";
 import Detail from "./detail";
-import ProfileTabs from "./profile/tabs/profile-tabs";
 import React from "react";
+import Users from "./Users";
+import {Provider} from "react-redux";
+import {configureStore} from "@reduxjs/toolkit";
+import userReducer from "./reducers/user-reducer"
+import adminReducer from "./reducers/admin-reducer"
+import reviewReducer from "./reducers/review-reducer"
+
+const store = configureStore(
+    {reducer: {userData: userReducer, adminData: adminReducer, review: reviewReducer}});
 
 function App() {
     return (
         <div className="App wd-bg-gold">
-            <BrowserRouter>
-                <div className="container pb-2 bg-black ">
-                    <Routes>
-                        <Route index
-                               element={<Home/>}/>
-                        <Route path="/home"
-                               element={<Home/>}/>
-                        <Route path="/login"
-                               element={<Login/>}/>
-                        <Route path="/signup"
-                               element={<Signup/>}/>
-                        <Route path="/profile/*"
-                               element={<Profile loggedIn={true}/>}/>
-                        <Route path="/search/*"
-                               element={<Search/>}/>
-                        <Route path="/detail/:id"
-                               element={<Detail/>}/>
-                    </Routes>
-                </div>
-            </BrowserRouter>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <div className="container pb-2 bg-black ">
+                        <Routes>
+                            <Route index
+                                   element={<Home/>}/>
+                            <Route path="/home"
+                                   element={<Home/>}/>
+                            <Route path="/login"
+                                   element={<Login/>}/>
+                            <Route path="/signup"
+                                   element={<Signup/>}/>
+                            <Route path="/users"
+                                   element={<Users/>}/>
+                            <Route path="/profile/*"
+                                   element={<Profile/>}/>
+                            <Route path="/search"
+                                   element={<Search/>}/>
+                            <Route path="/search/:query"
+                                   element={<Search/>}/>
+                            <Route path="/detail/:id"
+                                   element={<Detail/>}/>
+                        </Routes>
+                    </div>
+                </BrowserRouter>
+            </Provider>
         </div>
     );
 }

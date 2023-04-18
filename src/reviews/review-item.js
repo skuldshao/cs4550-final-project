@@ -16,7 +16,7 @@ const ReviewItem = (
         }
     }) => {
 
-    return(
+    return (
 
         <div className="border">
             <Rating/>
@@ -30,8 +30,8 @@ const ReviewItem = (
                 </div>
                 <div className="wd-color-white">
                     <p>{review.rating}</p>
-                    <i className="bi bi-star-fill"></i>
-                    <i className="bi bi-star-fill"></i>
+                    <i className="bi bi-star-fill"/>
+                    <i className="bi bi-star-fill"/>
                     <i className="bi bi-star-fill"></i>
                     <i className="bi bi-star-fill"></i>
                     <i className="bi bi-star"></i>

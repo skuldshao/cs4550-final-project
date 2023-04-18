@@ -1,0 +1,26 @@
+[
+  {
+    "_id": 1,
+    "itemID": "1wtOxkiel43cVs0Yux5Q4h",
+    "itemName": "Snow on the Beach",
+    "artist": "Taylor Swift",
+    "art": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
+    "userID": 1,
+    "date": 1681407290,
+    "review": "this is my review!",
+    "comments": [],
+    "rating": 4.5
+  },
+  {
+    "_id": 2,
+    "itemID": "1wtOxkiel43cVs0Yux5Q4h",
+    "itemName": "Snow on the Beach",
+    "artist": "Taylor Swift",
+    "art": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
+    "userID": 1,
+    "date": 1681407300,
+    "review": "this is my review long review! This is a great song but really only people who live in colder climates close to the coast can truly experience!",
+    "comments": [],
+    "rating": 4
+  }
+]

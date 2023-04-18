@@ -14,7 +14,7 @@ const Nav = ({user, active}) => {
         return (
             <div className="mb-3 pt-3">
                 <div>
-                    <img src='/images/smallLogo.png'/>
+                    <img src='/images/smallLogo.png'height="40px" className="float-start"/>
                 </div>
                 <div>
                     <AdminNav active={active}/>

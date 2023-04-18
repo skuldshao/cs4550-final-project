@@ -6,17 +6,37 @@
     "userName": "Donald Duck",
     "email": "donaldd@gmail.com",
     "number": "999-999-9999",
-    "password": "",
-    "joined": "",
-    "bio": "",
-    "location": "",
+    "password": "pass",
+    "joined": "2020",
+    "bio": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    "location": "Boston",
     "locationPublic": true,
     "role": "user",
-    "following": [3, 4],
-    "followers": [2, 3, 4],
-    "reviews": [],
+    "following": [
+      3,
+      4
+    ],
+    "followers": [
+      2,
+      3,
+      4
+    ],
+    "reviews": [
+      1,
+      2
+    ],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [
+      {
+        "date": 1681407290,
+        "musicID": "1wtOxkiel43cVs0Yux5Q4h"
+      },
+      {
+        "date": 1681407290,
+        "musicID": "1wtOxkiel43cVs0Yux5Q4h"
+      }
+    ],
+    "comments": []
   },
   {
     "_id": 2,
@@ -25,7 +45,7 @@
     "userName": "Minnie Mouse",
     "email": "minnieMouse@gmail.com",
     "number": "999-999-9999",
-    "password": "",
+    "password": "pass",
     "joined": "",
     "bio": "",
     "location": "",
@@ -34,8 +54,25 @@
     "following": [],
     "followers": [],
     "reviews": [],
-    "newSongs": [],
-    "favoriteSongs": []
+    "newSongs": [
+      {
+        "date": 1681407290,
+        "musicID": "1wtOxkiel43cVs0Yux5Q4h"
+      }
+    ],
+    "favoriteSongs": [],
+    "comments": [
+      {
+        "date": 1681407290,
+        "reviewID": 1,
+        "comment": "I totally agree!"
+      },
+      {
+        "date": 1681407290,
+        "reviewID": 1,
+        "comment": "This is actually so untrue! The song is subjective and the fact that you think it is only relatable to a certain part of the population is terrible! This should be taken down immediately"
+      }
+    ]
   },
   {
     "_id": 3,
@@ -54,7 +91,8 @@
     "followers": [],
     "reviews": [],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [],
+    "comments": []
   },
   {
     "_id": 4,
@@ -73,6 +111,27 @@
     "followers": [],
     "reviews": [],
     "newSongs": [],
-    "favoriteSongs": []
+    "favoriteSongs": [],
+    "comments": []
+  },
+  {
+    "_id": 5,
+    "handle": "ali",
+    "avatarIcon": "rowlet.avif",
+    "userName": "Ali Schueler",
+    "email": "schueler.a@northeastern.edu",
+    "number": "978-289-2080",
+    "password": "password!",
+    "joined": "",
+    "bio": "",
+    "location": "",
+    "locationPublic": false,
+    "role": "admin",
+    "following": [],
+    "followers": [],
+    "reviews": [],
+    "newSongs": [],
+    "favoriteSongs": [],
+    "comments": []
   }
 ]
