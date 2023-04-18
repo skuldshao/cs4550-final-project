@@ -88,7 +88,9 @@ export const HomeList = ({activityItem}) => {
                                      height="50" width="50"/>
                             </div>
                             <div className="ms-2 align-self-center">
-                                a new user, {activityItem.user.userName}, just <span className="fw-bold">joined </span>
+                                a new <span className="fw-bold">{activityItem.kind}</span>, {activityItem.user.userName},
+                                just <span
+                                className="fw-bold">joined </span>
                             </div>
                         </div>
                         <div className="align-self-center text-white me-0"><TimeDisplay itemDate={activityItem.date}/>
