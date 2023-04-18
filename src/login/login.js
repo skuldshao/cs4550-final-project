@@ -1,9 +1,11 @@
 import logoIcon from '../images/logo.png'
 import music from '../images/music.png'
 import {Link} from "react-router-dom";
-import React, {useState} from "react";
-import users from "../data/users.json"
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {findUserThunk} from "../services/user-thunk";
+import {findAdminThunk} from "../services/admin-thunk";
 
 function Login() {
     const navigate = useNavigate();
@@ -11,20 +13,31 @@ function Login() {
     const [password, setPassword] = useState("");
     const [alert, setAlert] = useState(false);
     const [adminKey, setAdminKey] = useState("");
-
+    const {users} = useSelector(state => state.userData);
+    const {admins} = useSelector(state => state.adminData);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(findUserThunk());
+        dispatch(findAdminThunk());
+    }, []);
     const handleLogin = () => {
-        let index;
+        let indexUser = -1;
+        let indexAdmin = -1;
         if (adminKey !== "") {
-            index = users.findIndex(u => u.email === email && u.password === password && u.role === "admin");
-            if (adminKey === ADMINKEY) {
-                navigate("/home")
+            indexAdmin = admins.findIndex(u => u.email === email && u.password === password);
+            if (indexAdmin !== -1) {
+                if (adminKey === ADMINKEY) {
+                    navigate("/home")
+                } else {
+                    setAlert(true);
+                }
             } else {
                 setAlert(true);
             }
         } else {
-            index = users.findIndex(u => u.email === email && u.password === password);
+            indexUser = users.findIndex(u => u.email === email && u.password === password);
         }
-        if (index !== -1) {
+        if (indexUser !== -1) {
             const user = users.find(u => u.email === email && u.password === password);
             // navigate(-1)
             navigate("/home")

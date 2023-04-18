@@ -1,12 +1,17 @@
 import logoIcon from "../images/logo.png";
 import music from "../images/music.png";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
-import users from "../data/users.json"
+import {useDispatch, useSelector} from "react-redux";
+import {createUserThunk, findUserThunk} from "../services/user-thunk";
+import {createAdminThunk, findAdminThunk} from "../services/admin-thunk";
 
 function Signup() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {users} = useSelector(state => state.userData);
+    const {admins} = useSelector(state => state.adminData);
     const [image, setImage] = useState("profile1.jpeg")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -22,22 +27,38 @@ function Signup() {
     const [goodHandle, setGoodHandle] = useState(false)
 
     const signup = () => {
-        const user = {
-            avatarIcon: image,
-            email,
-            password,
-            location,
-            publicLocation,
-            handle,
-            userName,
-            bio,
-            number,
-            role,
-            joined: 2023
+        if (role === "user") {
+            const user = {
+                avatarIcon: image,
+                email,
+                password,
+                location,
+                publicLocation,
+                handle,
+                userName,
+                bio,
+                number,
+                joined: 2023
+            }
+            dispatch(createUserThunk(user));
+        } else {
+            const admin = {
+                avatarIcon: image,
+                email,
+                password,
+                handle,
+                userName,
+                number,
+                joined: 2023
+            }
+            dispatch(createAdminThunk(admin));
         }
-        users.push(user);
         navigate("/home")
     }
+    useEffect(() => {
+        dispatch(findUserThunk());
+        dispatch(findAdminThunk());
+    }, [])
 
     return (
         <div className='bg-black'>
@@ -60,9 +81,9 @@ function Signup() {
                                id="email"
                                placeholder="Enter your email" onChange={(event) => {
                             setEmail(event.target.value);
-                            const index = users.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
-                            console.log("hi" + event.target.value + "hi")
-                            setGoodEmail(index === -1 || event.target.value.length > 0);
+                            const usersNX = users.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
+                            const adminsNX = admins.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
+                            setGoodEmail(usersNX === -1 && event.target.value.length > 0 && adminsNX === -1);
                         }}/>
                         {goodEmail ? <i className="bi bi-check fs-2"/> : <i className="bi bi-exclamation-circle fs-2"/>}
                     </div>
@@ -90,8 +111,9 @@ function Signup() {
                                id="handle"
                                placeholder="Enter a handle" onChange={(event) => {
                             setHandle(event.target.value);
-                            const index = users.findIndex(u => (u.handle).toLowerCase() === (event.target.value).toLowerCase());
-                            setGoodHandle(index === -1 || event.target.value.length > 0);
+                            const usersNX = users.findIndex(u => (u.handle).toLowerCase() === (event.target.value).toLowerCase());
+                            const adminsNX = admins.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
+                            setGoodHandle(usersNX === -1 && event.target.value.length > 0 && adminsNX === -1);
                         }}/>
                         {goodHandle ? <i className="bi bi-check fs-2"/> :
                             <i className="bi bi-exclamation-circle fs-2"/>}
@@ -103,27 +125,6 @@ function Signup() {
                     <input type="tel" className="inputBox fs-5 fw-normal form-control border border-danger border-2"
                            id="phone"
                            placeholder="Enter your phone number" onChange={(event) => setNumber(event.target.value)}/>
-                </div>
-
-                <div className='loginInputLayout mb-3 wd-gold'>
-                    <label htmlFor="bio" className="loginHits mb- fs-5 fw-bold">Please enter your biography</label>
-                    <textarea className="form-control fs-5 fw-normal border border-danger border-2"
-                              placeholder="What would you love to let others know about you?"
-                              id="bio" onChange={(event) => setBio(event.target.value)}/>
-                </div>
-
-                <div className='loginInputLayout mb-3 wd-gold'>
-                    <label htmlFor="location" className="loginHits mb- fs-5 fw-bold">Please tell us your
-                        location</label>
-                    <input className="form-control fs-5 fw-normal border border-danger border-2"
-                           placeholder="Location"
-                           id="location" onChange={(event) => setLocation(event.target.value)}/>
-                </div>
-                <div className="btn-group mb-3" role="group">
-                    <input type="checkbox" className="btn-check" id="btncheck1" autoComplete="off"/>
-                    <label className="btn btn-outline-danger fs-5 fw-bold" htmlFor="btncheck1"
-                           onClick={() => setPublicLocation(!publicLocation)}>Make Location
-                        Public</label>
                 </div>
 
                 <div className='loginInputLayout mb-3 wd-gold fs-5 fw-bold'>
@@ -179,7 +180,6 @@ function Signup() {
                              setImage("profile10.jpeg")
                          }}/>
                 </div>
-
                 <div className='loginInputLayout mb-3 wd-gold'>
                     <label htmlFor="bio" className="loginHits mb-1 fs-5 fw-bold">What role will you have in this
                         account?</label>
@@ -191,6 +191,31 @@ function Signup() {
                         </option>
                     </select>
                 </div>
+
+                {role === "user" && <>
+                    <div className='loginInputLayout mb-3 wd-gold'>
+                        <label htmlFor="bio" className="loginHits mb- fs-5 fw-bold">Please enter your biography</label>
+                        <textarea className="form-control fs-5 fw-normal border border-danger border-2"
+                                  placeholder="What would you love to let others know about you?"
+                                  value={bio}
+                                  id="bio" onChange={(event) => setBio(event.target.value)}/>
+                    </div>
+
+                    <div className='loginInputLayout mb-3 wd-gold'>
+                        <label htmlFor="location" className="loginHits mb- fs-5 fw-bold">Please tell us your
+                            location</label>
+                        <input className="form-control fs-5 fw-normal border border-danger border-2"
+                               placeholder="Location"
+                               value={location}
+                               id="location" onChange={(event) => setLocation(event.target.value)}/>
+                    </div>
+                    <div className="btn-group mb-3" role="group">
+                        <input type="checkbox" className="btn-check" id="btncheck1" autoComplete="off"/>
+                        <label className="btn btn-outline-danger fs-5 fw-bold" htmlFor="btncheck1"
+                               onClick={() => setPublicLocation(!publicLocation)}>Make Location
+                            Public</label>
+                    </div>
+                </>}
                 <br/>
                 <div className='d-flex justify-content-center'>
                     <button className='loginButton btn btn-danger fs-5 fw-bold'
