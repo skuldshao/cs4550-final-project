@@ -1,12 +1,16 @@
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createUserThunk, deleteUserThunk, updateUserThunk} from "../services/user-thunk";
 import {createAdminThunk, deleteAdminThunk, updateAdminThunk} from "../services/admin-thunk";
 
 const UserItem = ({user, roles}) => {
     const currentUser = 5;
     const dispatch = useDispatch();
+    const {users} = useSelector(state => state.userData);
+    const {admins} = useSelector(state => state.adminData)
+    const [goodEmail, setGoodEmail] = useState(true);
+    const [goodHandle, setGoodHandle] = useState(true);
     const deleteUserHandler = (id) => {
         if (roles === "user") {
             dispatch(deleteUserThunk(id))
@@ -73,7 +77,7 @@ const UserItem = ({user, roles}) => {
                         </div>
                     </div>}
                     {
-                        roles === "admin" &&
+                        (!editing && roles === "admin") &&
                         <div className="d-flex justify-content-start ">
                             <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
                                  src={`/images/${image}`}/>
@@ -157,18 +161,26 @@ const UserItem = ({user, roles}) => {
                                 <label htmlFor={`${user._id} handle`}>Handle:</label>
                                 <input id={`${user._id} handle`} className="form-control" value={handle}
                                        onChange={(event) => {
-                                           setHandle(event.target.value)
-                                       }
-                                       }/>
+                                           setHandle(event.target.value);
+                                           const usersNX = users.findIndex(u => (u.handle).toLowerCase() === (event.target.value).toLowerCase());
+                                           const adminsNX = admins.findIndex(u => (u.handle).toLowerCase() === (event.target.value).toLowerCase());
+                                           setGoodHandle((usersNX === -1 && event.target.value.length > 0 && adminsNX === -1) || event.target.value === user.handle);
+                                       }}/>
+                                {goodHandle ? <i className="bi bi-check fs-2"/> :
+                                    <i className="bi bi-exclamation-circle fs-2"/>}
                             </div>
                             <div className="me-5">
                                 <label htmlFor={`${user._id} email`}>Email:</label>
                                 <input id={`${user._id} email`} className="form-control" value={email}
                                        width="500 px"
                                        onChange={(event) => {
-                                           setEmail(event.target.value)
-                                       }
-                                       }/>
+                                           setEmail(event.target.value);
+                                           const usersNX = users.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
+                                           const adminsNX = admins.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
+                                           setGoodEmail((usersNX === -1 && event.target.value.length > 0 && adminsNX === -1) || event.target.value === user.email);
+                                       }}/>
+                                {goodEmail ? <i className="bi bi-check fs-2"/> :
+                                    <i className="bi bi-exclamation-circle fs-2"/>}
                                 <label htmlFor={`${user._id} number`}>Number:</label>
                                 <input id={`${user._id} number`} className="form-control" value={number}
                                        onChange={(event) => {

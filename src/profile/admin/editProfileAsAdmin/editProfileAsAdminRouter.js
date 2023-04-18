@@ -11,7 +11,7 @@ import {findUserByIdThunk} from "../../../services/user-thunk";
 
 const EditProfileAsAdminRouter = ({tabs}) => {
     const {uid} = useParams();
-    const {users, loading, display} = useSelector((state) => state.userData)
+    const {foundUser, loading, displayFoundUser} = useSelector((state) => state.userData)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUserByIdThunk(uid))
@@ -19,12 +19,13 @@ const EditProfileAsAdminRouter = ({tabs}) => {
     return (
         <div className="text-white">
             {loading && <div>LOADING DATA</div>}
-            {(tabs.active === "overview" && display) && <OverViewAdminEdit tabs={tabs} user={users}/>}
-            {(tabs.active === "reviews" && display) && <ReviewsAdminEdit tabs={tabs} user={users}/>}
-            {(tabs.active === "following" && display) && <FollowingAdminEdit tabs={tabs} user={users}/>}
-            {(tabs.active === "followers" && display) && <FollowersAdminEdit tabs={tabs} user={users}/>}
-            {(tabs.active === "favoriteSongs" && display) && <FavoritesAdminEdit tabs={tabs} user={users}/>}
-            {(tabs.active === "newSongs" && display) && <ListenToMoreAdminEdit tabs={tabs} user={users}/>}
+            {(tabs.active === "overview" && displayFoundUser) && <OverViewAdminEdit tabs={tabs} user={foundUser}/>}
+            {(tabs.active === "reviews" && displayFoundUser) && <ReviewsAdminEdit tabs={tabs} user={foundUser}/>}
+            {(tabs.active === "following" && displayFoundUser) && <FollowingAdminEdit tabs={tabs} user={foundUser}/>}
+            {(tabs.active === "followers" && displayFoundUser) && <FollowersAdminEdit tabs={tabs} user={foundUser}/>}
+            {(tabs.active === "favoriteSongs" && displayFoundUser) &&
+            <FavoritesAdminEdit tabs={tabs} user={foundUser}/>}
+            {(tabs.active === "newSongs" && displayFoundUser) && <ListenToMoreAdminEdit tabs={tabs} user={foundUser}/>}
         </div>
     )
 }

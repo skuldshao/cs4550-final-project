@@ -37,9 +37,9 @@ function Following(
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
                 <div className="wd-black-bg align-items-center">
                     {following.length === 0 ? (isSelf ?
-                            <span className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-1">You are not following anyone</span> :
+                            <span className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-1">You are not following anyone</span> :
                             <span
-                                className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-1">{user.userName} is not following anyone</span>) :
+                                className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-1">{user.userName} is not following anyone</span>) :
                         following.map(followingItem => <FollowItem fid={followingItem} currentUser={currentUser}
                                                                    loggedIn={loggedIn}/>)}
                 </div>

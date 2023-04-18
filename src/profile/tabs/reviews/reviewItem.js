@@ -55,7 +55,7 @@ function ReviewItem({reviewItem, date}) {
                         </Link>
                     </div>
                 </div>
-            </> : <div className="fw-normal fs-5">No Review Information available</div>
+            </> : <div className="text-white fw-normal fs-5">No Review Information available</div>
             }
         </div>
     )

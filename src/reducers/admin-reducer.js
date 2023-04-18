@@ -25,8 +25,6 @@ const adminSlice = createSlice({
                 },
             [findAdminThunk.fulfilled]:
                 (state, {payload}) => {
-                    console.log("payload")
-                    console.log(payload)
                     state.loadingAdmin = false
                     state.displayAdmin = true;
                     state.admins = payload
