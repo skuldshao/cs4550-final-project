@@ -16,20 +16,21 @@ export const findAdminByIdThunk = createAsyncThunk(
 export const createAdminThunk = createAsyncThunk(
     'admins/createAdmin',
     async (admin) => {
-        await service.createAdmin(admin)
+        return await service.createAdmin(admin)
     }
 )
 
 export const deleteAdminThunk = createAsyncThunk(
     'admins/deleteAdmin',
-    async(adminId) => {
+    async (adminId) => {
         await service.deleteAdmin(adminId)
+        return adminId
     }
 )
 
 export const updateAdminThunk = createAsyncThunk(
     'admins/updateAdmin',
-    async(admin) =>{
-        await service.updateAdmin(admin);
+    async (admin) => {
+        return await service.updateAdmin(admin);
     }
 )

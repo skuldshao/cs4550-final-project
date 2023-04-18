@@ -40,6 +40,10 @@ const adminSlice = createSlice({
                     state.loadingAdmin = false
                     state.admins.push(payload)
                 },
+            [createAdminThunk.pending]:
+                (state, {payload}) => {
+                    state.loadingAdmin = true
+                },
             [findAdminByIdThunk.fulfilled]:
                 (state, {payload}) => {
                     state.loadingAdmin = false
