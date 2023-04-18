@@ -11,24 +11,30 @@ import {findUserByIdThunk} from "../../services/user-thunk";
 
 const ViewProfile = ({tabs, loggedIn}) => {
     const {uid} = useParams();
-    const {users, loading, display} = useSelector((state) => state.userData)
+    const {foundUser, loading, displayFoundUser} = useSelector((state) => state.userData)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUserByIdThunk(uid))
     }, [uid]);
+    console.log("foundUser")
+    console.log(foundUser);
+    console.log(uid);
+    console.log(displayFoundUser);
     return (
         <div className="text-white">
             {loading && <div>LOADING DATA</div>}
-            {(tabs.active === "overview" && display) && <OverViewNotSelf tabs={tabs} user={users} loggedIn={loggedIn}/>}
-            {(tabs.active === "reviews" && display) && <ReviewsNotSelf tabs={tabs} user={users} loggedIn={loggedIn}/>}
-            {(tabs.active === "following" && display) &&
-            <FollowingNotSelf tabs={tabs} user={users} loggedIn={loggedIn}/>}
-            {(tabs.active === "followers" && display) &&
-            <FollowersNotSelf tabs={tabs} user={users} loggedIn={loggedIn}/>}
-            {(tabs.active === "favoriteSongs" && display) &&
-            <FavoritesNotSelf tabs={tabs} user={users} loggedIn={loggedIn}/>}
-            {(tabs.active === "newSongs" && display) &&
-            <ListenToMoreNotSelf tabs={tabs} user={users} loggedIn={loggedIn}/>}
+            {(tabs.active === "overview" && displayFoundUser) &&
+            <OverViewNotSelf tabs={tabs} user={foundUser} loggedIn={loggedIn}/>}
+            {(tabs.active === "reviews" && displayFoundUser) &&
+            <ReviewsNotSelf tabs={tabs} user={foundUser} loggedIn={loggedIn}/>}
+            {(tabs.active === "following" && displayFoundUser) &&
+            <FollowingNotSelf tabs={tabs} user={foundUser} loggedIn={loggedIn}/>}
+            {(tabs.active === "followers" && displayFoundUser) &&
+            <FollowersNotSelf tabs={tabs} user={foundUser} loggedIn={loggedIn}/>}
+            {(tabs.active === "favoriteSongs" && displayFoundUser) &&
+            <FavoritesNotSelf tabs={tabs} user={foundUser} loggedIn={loggedIn}/>}
+            {(tabs.active === "newSongs" && displayFoundUser) &&
+            <ListenToMoreNotSelf tabs={tabs} user={foundUser} loggedIn={loggedIn}/>}
         </div>
     )
 }

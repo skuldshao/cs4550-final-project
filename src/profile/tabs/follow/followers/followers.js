@@ -36,9 +36,9 @@ function Followers(
             <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}/>
             <div className="wd-black-bg align-items-center">
                 {followers.length === 0 ? (isSelf ? <span
-                            className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-3">You have no followers</span> :
+                            className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">You have no followers</span> :
                         <span
-                            className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} has no followers</span>) :
+                            className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} has no followers</span>) :
                     followers.map(followerItem => <FollowItem fid={followerItem} currentUser={currentUser}
                                                               loggedIn={loggedIn}/>)}
             </div>

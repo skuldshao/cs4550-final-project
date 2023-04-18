@@ -24,7 +24,7 @@ function FollowingAdminEdit(
                 <NavTab tabs={tabs} isEditing={true} user={user} isSelf={false}/>
                 <div className="wd-black-bg align-items-center">
                     {following.length === 0 ? <span
-                            className=" d-flex justify-content-center text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} is not following anyone</span> :
+                            className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} is not following anyone</span> :
                         following.map(followingItem => <FollowItemAdmin fid={followingItem} pUser={user}
                                                                         tab="following"/>)}
                     }
