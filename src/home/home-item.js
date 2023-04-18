@@ -1,13 +1,12 @@
 import "../styles.css"
-import {Link} from "react-router-dom";
-import Stars from "../stars";
-import reviewsAr from "../data/reviews.json";
-import RecentActivityItem from "../profile/tabs/overview/recentActivityItem";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {HomeItemsAdmin} from "./HomeItemsAdmin";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserThunk} from "../services/user-thunk";
 import {findAdminThunk} from "../services/admin-thunk";
+import NotLoggedInHome from "./NotLoggedInHome";
+import HomeItemsUser from "./HomeItemsUser";
+import * as userService from "../services/user-service";
 
 export const HomeItem = ({loggedIn, type}) => {
     const dispatch = useDispatch();
@@ -17,13 +16,12 @@ export const HomeItem = ({loggedIn, type}) => {
         dispatch(findUserThunk())
         dispatch(findAdminThunk())
     }, [])
-    if (type === "admin") {
-        return (
-            <div>
-                <HomeItemsAdmin users={users}/>
-            </div>
-        );
-    } else {
-
-    }
+    return (
+        <div>
+            {type === "admin" && <HomeItemsAdmin users={users} admins={admins}/>}
+            {(type === "user" && loggedIn) ? <HomeItemsUser/> :
+                <NotLoggedInHome users={users}/>
+            }
+        </div>
+    )
 }

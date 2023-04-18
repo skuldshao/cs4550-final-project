@@ -1,15 +1,12 @@
-import React from "react";
 import reviewsAr from "../data/reviews.json";
 import {HomeList} from "./home-list";
+import React from "react";
 
-export const HomeItemsAdmin = ({users, admins}) => {
+const NotLoggedInHome = ({users}) => {
     let overviewList = [];
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
         const reviews = user.reviews;
-        const favorites = user.favoriteSongs;
-        const newSongs = user.newSongs;
-        const comments = user.comments;
         const userReviews = reviews.map(r => {
             const nx = reviewsAr.findIndex(r2 => r2._id === r)
             if (nx !== -1) {
@@ -39,44 +36,13 @@ export const HomeItemsAdmin = ({users, admins}) => {
                 }
             }
         });
-        const userFavorites = favorites.map(r => {
-            return {
-                ...r,
-                "type": "favorites",
-                "user": user
-            }
-        });
-        const userNewSongs = newSongs.map(r => {
-            return {
-                ...r,
-                "type": "newSongs",
-                "user": user
-            }
-        });
-        const userComments = comments.map(r => {
-            return {
-                ...r,
-                "type": "comments",
-                "user": user
-            }
-        });
         const joined = {
             "date": user.joined,
             "type": "joined",
             "user": user,
             "kind": "user"
         };
-        overviewList = [...overviewList, ...userReviews, ...userFavorites, ...userNewSongs, ...userComments, joined];
-    }
-    for (let i = 0; i < admins.length; i++) {
-        const admin = admins[i];
-        const joined = {
-            "date": admin.joined,
-            "type": "joined",
-            "user": admin,
-            "kind": "admin"
-        };
-        overviewList = [...overviewList, joined]
+        overviewList = [...overviewList, ...userReviews, joined];
     }
     overviewList.sort(function (a, b) {
         return b.date - a.date;
@@ -92,3 +58,4 @@ export const HomeItemsAdmin = ({users, admins}) => {
         </div>
     )
 }
+export default NotLoggedInHome

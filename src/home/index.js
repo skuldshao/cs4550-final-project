@@ -3,7 +3,7 @@ import "../styles.css"
 import {HomeItem} from "./home-item";
 
 export const Home = () => {
-    const user = "admin"
+    const user = "user"
     const loggedIn = true
     return (
         <div className="white">
