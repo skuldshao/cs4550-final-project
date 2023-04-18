@@ -24,7 +24,7 @@ const ListenToMoreAdminEdit = ({
                             item={f}/>) :
                         (
                             <span
-                                className="d-flex justify-content-center text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has no songs in their new songs playlist</span>)
+                                className="d-flex justify-content-start text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has no songs in their new songs playlist</span>)
                 }
             </div>
         </div>

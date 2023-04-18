@@ -52,7 +52,7 @@ const CommentItem = ({item, date}) => {
                     </div>
                 </div>
             </>}
-            {!review && <div>Comment Information is unavailable</div>}
+            {!review && <div className="text-white fs-5 fw-normal">Comment Information is unavailable</div>}
         </div>
     )
 }
