@@ -1,16 +1,27 @@
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {createUserThunk, deleteUserThunk, updateUserThunk} from "../services/user-thunk";
+import {createAdminThunk, deleteAdminThunk, updateAdminThunk} from "../services/admin-thunk";
 
-const UserItem = ({user}) => {
+const UserItem = ({user, roles}) => {
     const currentUser = 5;
-    const handleDelete = () => {
-        //TODO: delete
+    const dispatch = useDispatch();
+    const {users} = useSelector(state => state.userData);
+    const {admins} = useSelector(state => state.adminData)
+    const [goodEmail, setGoodEmail] = useState(true);
+    const [goodHandle, setGoodHandle] = useState(true);
+    const deleteUserHandler = (id) => {
+        if (roles === "user") {
+            dispatch(deleteUserThunk(id))
+        } else {
+            dispatch(deleteAdminThunk(id))
+        }
     }
 
     const handleEdit = () => {
-        user = {
+        const edit = {
             ...user,
-            role,
             avatarIcon: image,
             userName,
             handle,
@@ -18,9 +29,28 @@ const UserItem = ({user}) => {
             number,
             email
         }
+        const edit2 = {
+            avatarIcon: image,
+            userName,
+            handle,
+            password,
+            number,
+            email
+        }
+        if (roles === "user" && role === roles) {
+            dispatch(updateUserThunk(edit));
+        } else if (roles === "admin" && role === roles) {
+            dispatch(updateAdminThunk(edit))
+        } else if (role === "user") {
+            dispatch(deleteAdminThunk(user._id))
+            dispatch(createUserThunk(edit2))
+        } else if (role === "admin") {
+            dispatch(deleteUserThunk(user._id))
+            dispatch(createAdminThunk(edit2))
+        }
         setEditing(!editing)
     }
-    const [role, setRole] = useState(user.role)
+    const [role, setRole] = useState(roles)
     const [editing, setEditing] = useState(false);
     const [image, setImage] = useState(user.avatarIcon);
     const [showImages, setShowImages] = useState(false);
@@ -34,7 +64,7 @@ const UserItem = ({user}) => {
         <li className="list-group-item border-0 bg-black">
             <div className="wd-bg-grey p-2 rounded-2">
                 <div className="d-flex justify-content-between">
-                    {!editing && <div className="d-flex justify-content-start ">
+                    {(!editing && roles !== "admin") && <div className="d-flex justify-content-start ">
                         <Link to={`/profile/${user._id}`}>
                             <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
                                  src={`/images/${image}`}/>
@@ -47,8 +77,21 @@ const UserItem = ({user}) => {
                         </div>
                     </div>}
                     {
-                        editing && <div className="d-flex justify-content-between">
-                            <div className="me-5">
+                        (!editing && roles === "admin") &&
+                        <div className="d-flex justify-content-start ">
+                            <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
+                                 src={`/images/${image}`}/>
+                            <div className="ps-2">
+                                <div className="text-white text-decoration-none fs-5 fw-bold ">
+                                    {userName}<br/>
+                                    <span className="text-secondary fw-normal"> @{handle}</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    {
+                        editing && <div className="row me-2 ms-2 mt-2">
+                            <div className="col-6">
                                 <img className="rounded-circle pt-0 align-self-center" width={60} height={60}
                                      src={`/images/${image}`}/><br/>
                                 <button className="btn btn-secondary"
@@ -107,46 +150,63 @@ const UserItem = ({user}) => {
                                          }}/>
                                 </div>}
                             </div>
-                            <div className="me-5">
-                                <label htmlFor={`${user._id} userName`}>User name:</label>
-                                <input id={`${user._id} userName`} className="form-control" value={userName}
+                            <div className="col-6">
+                                <label htmlFor={`${user._id} userName`} className="text-white fw-bold form-label">User
+                                    name:</label>
+                                <input id={`${user._id} userName`} className="form-control mb-2" value={userName}
                                        width="500 px"
                                        onChange={(event) => {
                                            setUserName(event.target.value)
                                        }
                                        }/>
-                                <label htmlFor={`${user._id} handle`}>Handle:</label>
-                                <input id={`${user._id} handle`} className="form-control" value={handle}
-                                       onChange={(event) => {
-                                           setHandle(event.target.value)
-                                       }
-                                       }/>
+                                <label htmlFor={`${user._id} handle`}
+                                       className="text-white fw-bold form-label">Handle:</label>
+                                <div className="d-flex">
+                                    <input id={`${user._id} handle`} className="form-control mb-2" value={handle}
+                                           onChange={(event) => {
+                                               setHandle(event.target.value);
+                                               const usersNX = users.findIndex(u => (u.handle).toLowerCase() === (event.target.value).toLowerCase());
+                                               const adminsNX = admins.findIndex(u => (u.handle).toLowerCase() === (event.target.value).toLowerCase());
+                                               setGoodHandle((usersNX === -1 && event.target.value.length > 0 && adminsNX === -1) || event.target.value === user.handle);
+                                           }}/>
+                                    {goodHandle ? <i className="bi bi-check fs-2"/> :
+                                        <i className="bi bi-exclamation-circle fs-2"/>}
+                                </div>
                             </div>
-                            <div className="me-5">
-                                <label htmlFor={`${user._id} email`}>Email:</label>
-                                <input id={`${user._id} email`} className="form-control" value={email}
-                                       width="500 px"
-                                       onChange={(event) => {
-                                           setEmail(event.target.value)
-                                       }
-                                       }/>
-                                <label htmlFor={`${user._id} number`}>Number:</label>
-                                <input id={`${user._id} number`} className="form-control" value={number}
+                            <div className="col-6">
+                                <label htmlFor={`${user._id} email`}
+                                       className="text-white fw-bold form-label">Email:</label>
+                                <div className="d-flex">
+                                    <input id={`${user._id} email`} className="form-control mb-2" value={email}
+                                           width="500 px"
+                                           onChange={(event) => {
+                                               setEmail(event.target.value);
+                                               const usersNX = users.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
+                                               const adminsNX = admins.findIndex(u => (u.email).toLowerCase() === (event.target.value).toLowerCase());
+                                               setGoodEmail((usersNX === -1 && event.target.value.length > 0 && adminsNX === -1) || event.target.value === user.email);
+                                           }}/>
+                                    {goodEmail ? <i className="bi bi-check fs-2"/> :
+                                        <i className="bi bi-exclamation-circle fs-2"/>}
+                                </div>
+                                <label htmlFor={`${user._id} number`}
+                                       className="text-white fw-bold form-label">Number:</label>
+                                <input id={`${user._id} number`} className="form-control mb-2" value={number}
                                        onChange={(event) => {
                                            setNumber(event.target.value)
                                        }
                                        }/>
                             </div>
-                            <div>
-                                <label htmlFor={`${user._id} password`}>Password:</label>
-                                <input id={`${user._id} password`} className="form-control" type="password"
+                            <div className="col-6">
+                                <label htmlFor={`${user._id} password`}
+                                       className="text-white fw-bold form-label">Password:</label>
+                                <input id={`${user._id} password`} className="form-control mb-2" type="password"
                                        value={password}
                                        onChange={(event) => {
                                            setPassword(event.target.value)
                                        }
                                        }/>
                                 <br/>
-                                {role === "user" && <div className="btn-group" role={`${user._id}group`}
+                                {role === "user" && <div className="btn-group mt-2" role={`${user._id}group`}
                                                          aria-label="Basic radio toggle button group">
                                     <input type="radio" className="btn-check" name={`${user._id}role`}
                                            id={`${user._id} user`} checked/>
@@ -157,7 +217,7 @@ const UserItem = ({user}) => {
                                     <label className="btn btn-outline-secondary"
                                            htmlFor={`${user._id} admin`}>Admin</label>
                                 </div>}
-                                {role === "admin" && <div className="btn-group" role={`${user._id}group`}
+                                {role === "admin" && <div className="btn-group mt-2" role={`${user._id}group`}
                                                           aria-label="Basic radio toggle button group">
                                     <input type="radio" className="btn-check" name={`${user._id}role`}
                                            id={`${user._id} user`} onClick={(event) => {
@@ -175,9 +235,10 @@ const UserItem = ({user}) => {
                         </div>
                     }
                     <div className="float-end">
-                        {!editing && <i className="bi bi-pencil-fill" onClick={handleEdit}/>}
-                        {editing && <i className="bi bi-save-fill" onClick={handleEdit}/>}<br/>
-                        {user._id !== currentUser ? <i className="bi bi-trash3-fill" onClick={handleDelete}/> : ""}
+                        {!editing && <i className="bi bi-pencil-fill" onClick={() => setEditing(true)}/>}
+                        {editing && <i className="bi bi-save-fill" onClick={() => handleEdit()}/>}<br/>
+                        {user._id !== currentUser ?
+                            <i className="bi bi-trash3-fill" onClick={() => deleteUserHandler(user._id)}/> : ""}
                     </div>
                 </div>
             </div>
