@@ -21,15 +21,20 @@ const userSlice = createSlice({
         [findUserThunk.pending]:
             (state) => {
                 state.loading = true
+                state.display = false
                 state.users = []
             },
         [findUserThunk.fulfilled]:
             (state, {payload}) => {
+                console.log("users")
+                console.log(payload)
+                state.display = true
                 state.loading = false
                 state.users = payload
             },
         [findUserThunk.rejected]:
             (state, action) => {
+                state.display = false
                 state.loading = false
                 state.users = action.error
             },

@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
+import {updateUserThunk} from "../../../services/user-thunk";
+import {useDispatch} from "react-redux";
 
 function EditProfileAsAdmin({
                                 user = {
@@ -10,15 +12,20 @@ function EditProfileAsAdmin({
                                     "email": "rowlet@pokemon.com"
                                 }, active
                             }) {
+    const dispatch = useDispatch();
     const [changePhoto, setChangePhoto] = useState(false);
     const [image, setImage] = useState(user.avatarIcon);
+    const [userName, setUsername] = useState(user.userName);
+    const [handle, setHandle] = useState(user.handle);
+    const [email, setEmail] = useState(user.email);
+    const [number, setNumber] = useState(user.number);
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
                 <div>
                     <button className="btn position-relative" onClick={() => setChangePhoto(!changePhoto)}>
                         <img className="pt-0 ms-5 align-self-center rounded-circle" width={100} height={100}
-                             src={`/images/${user.avatarIcon}`}/>
+                             src={`/images/${image}`}/>
                         <div
                             className={`btn text-white bg-opacity-50 bg-black fs-6 fw-bold ${changePhoto ? `position-absolute-profile-save` : `position-absolute-profile-change`}`}>
                             {changePhoto ? 'SAVE' : 'CHANGE'}
@@ -91,24 +98,45 @@ function EditProfileAsAdmin({
                     <input type="text"
                            className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary mb-2"
                            id="userInput"
-                           placeholder="user name" value={user.userName}/>
+                           placeholder="user name" value={userName}
+                           onChange={(event) => {
+                               setUsername(event.target.value)
+                           }}/>
                     <input type="text"
                            className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
                            id="handleInput"
-                           placeholder="@handle" value={`@${user.handle}`}/>
+                           placeholder="@handle" value={`${handle}`}
+                           onChange={(event) => {
+                               setHandle(event.target.value)
+                           }}/>
                     <input type="text"
                            className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
                            id="numberInput"
-                           placeholder="number" value={user.number}/>
+                           placeholder="number" value={number} onChange={(event) => {
+                        setNumber(event.target.value)
+                    }}/>
                     <input type="email"
                            className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
                            id="emailInput"
-                           placeholder="email" value={user.email}/>
+                           placeholder="email" value={email} onChange={(event) => {
+                        setEmail(event.target.value)
+                    }}/>
                 </div>
             </div>
             <div className="align-self-center me-5">
                 <Link to={active === "overview" ? `/profile/${user._id}` : `/profile/${active}/${user._id}`}>
-                    <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end">
+                    <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end"
+                            onClick={() => {
+                                const toUpdate = {
+                                    ...user,
+                                    avatarIcon: image,
+                                    email,
+                                    handle,
+                                    number,
+                                    userName
+                                }
+                                dispatch(updateUserThunk(toUpdate))
+                            }}>
                         SAVE
                         <i className="bi bi-check-lg ps-1"/>
                     </button>

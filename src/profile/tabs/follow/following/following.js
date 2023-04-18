@@ -29,8 +29,6 @@ function Following(
     }
 ) {
     const following = user.following;
-    console.log("following")
-    console.log(user);
     return (
         <div>
             <div className="wd-black-bg text-start">

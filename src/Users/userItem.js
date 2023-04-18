@@ -1,16 +1,23 @@
 import {Link} from "react-router-dom";
 import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {createUserThunk, deleteUserThunk, updateUserThunk} from "../services/user-thunk";
+import {createAdminThunk, deleteAdminThunk, updateAdminThunk} from "../services/admin-thunk";
 
-const UserItem = ({user}) => {
+const UserItem = ({user, roles}) => {
     const currentUser = 5;
-    const handleDelete = () => {
-        //TODO: delete
+    const dispatch = useDispatch();
+    const deleteUserHandler = (id) => {
+        if (roles === "user") {
+            dispatch(deleteUserThunk(id))
+        } else {
+            dispatch(deleteAdminThunk(id))
+        }
     }
 
     const handleEdit = () => {
-        user = {
+        const edit = {
             ...user,
-            role,
             avatarIcon: image,
             userName,
             handle,
@@ -18,9 +25,28 @@ const UserItem = ({user}) => {
             number,
             email
         }
+        const edit2 = {
+            avatarIcon: image,
+            userName,
+            handle,
+            password,
+            number,
+            email
+        }
+        if (roles === "user" && role === roles) {
+            dispatch(updateUserThunk(edit));
+        } else if (roles === "admin" && role === roles) {
+            dispatch(updateAdminThunk(edit))
+        } else if (role === "user") {
+            dispatch(deleteAdminThunk(user._id))
+            dispatch(createUserThunk(edit2))
+        } else if (role === "admin") {
+            dispatch(deleteUserThunk(user._id))
+            dispatch(createAdminThunk(edit2))
+        }
         setEditing(!editing)
     }
-    const [role, setRole] = useState(user.role)
+    const [role, setRole] = useState(roles)
     const [editing, setEditing] = useState(false);
     const [image, setImage] = useState(user.avatarIcon);
     const [showImages, setShowImages] = useState(false);
@@ -34,7 +60,7 @@ const UserItem = ({user}) => {
         <li className="list-group-item border-0 bg-black">
             <div className="wd-bg-grey p-2 rounded-2">
                 <div className="d-flex justify-content-between">
-                    {!editing && <div className="d-flex justify-content-start ">
+                    {(!editing && roles !== "admin") && <div className="d-flex justify-content-start ">
                         <Link to={`/profile/${user._id}`}>
                             <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
                                  src={`/images/${image}`}/>
@@ -46,6 +72,19 @@ const UserItem = ({user}) => {
                             </Link>
                         </div>
                     </div>}
+                    {
+                        roles === "admin" &&
+                        <div className="d-flex justify-content-start ">
+                            <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
+                                 src={`/images/${image}`}/>
+                            <div className="ps-2">
+                                <div className="text-white text-decoration-none fs-5 fw-bold ">
+                                    {userName}<br/>
+                                    <span className="text-secondary fw-normal"> @{handle}</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
                     {
                         editing && <div className="d-flex justify-content-between">
                             <div className="me-5">
@@ -175,9 +214,10 @@ const UserItem = ({user}) => {
                         </div>
                     }
                     <div className="float-end">
-                        {!editing && <i className="bi bi-pencil-fill" onClick={handleEdit}/>}
-                        {editing && <i className="bi bi-save-fill" onClick={handleEdit}/>}<br/>
-                        {user._id !== currentUser ? <i className="bi bi-trash3-fill" onClick={handleDelete}/> : ""}
+                        {!editing && <i className="bi bi-pencil-fill" onClick={() => setEditing(true)}/>}
+                        {editing && <i className="bi bi-save-fill" onClick={() => handleEdit()}/>}<br/>
+                        {user._id !== currentUser ?
+                            <i className="bi bi-trash3-fill" onClick={() => deleteUserHandler(user._id)}/> : ""}
                     </div>
                 </div>
             </div>
