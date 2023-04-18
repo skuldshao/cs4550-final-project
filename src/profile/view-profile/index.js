@@ -16,10 +16,6 @@ const ViewProfile = ({tabs, loggedIn}) => {
     useEffect(() => {
         dispatch(findUserByIdThunk(uid))
     }, [uid]);
-    console.log("foundUser")
-    console.log(foundUser);
-    console.log(uid);
-    console.log(displayFoundUser);
     return (
         <div className="text-white">
             {loading && <div>LOADING DATA</div>}
