@@ -28,8 +28,3 @@ export const updateAdmin = async (admin) => {
         .put(`${ADMIN_API}/${admin._id}`, admin);
     return response.data;
 }
-
-export const findAdminById = async (adminId) => {
-    const response = await axios.get(`${ADMIN_API}/${adminId}`);
-    return response.data;
-}

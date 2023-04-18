@@ -45,16 +45,6 @@ const adminSlice = createSlice({
                    state.loading = false
                    state.error = action.error
                },
-           [findAdminByIdThunk.fulfilled]:
-               (state, { payload }) => {
-                   state.loading = false
-                   state.admins = payload
-               },
-           [findAdminByIdThunk.rejected]:
-               (state, action) => {
-                   state.loading = false
-                   state.error = action.error
-               },
            [deleteAdminThunk.fulfilled]:
                (state,{ payload }) => {
                    state.loading = false
