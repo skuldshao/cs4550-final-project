@@ -16,7 +16,7 @@ import adminReducer from "./reducers/admin-reducer"
 import reviewReducer from "./reducers/review-reducer"
 
 const store = configureStore(
-    {reducer: {userData: userReducer, admin: adminReducer, review: reviewReducer}});
+    {reducer: {userData: userReducer, adminData: adminReducer, review: reviewReducer}});
 
 function App() {
     return (
