@@ -1,19 +1,14 @@
 import Nav from "../nav";
-import reviews from "./home-reviews.json";
-import {HomeList} from "./home-list";
 import "../styles.css"
+import {HomeItem} from "./home-item";
 
 export const Home = () => {
+    const user = "admin"
+    const loggedIn = true
     return (
         <div className="white">
-            <Nav user="user" active="home"/>
-            <ul className="list-group">
-                {
-                    reviews.map(review => {
-                        return (<HomeList review={review} loggedIn={true}/>);
-                    })
-                }
-            </ul>
+            <Nav user={user} active="home"/>
+            <HomeItem type={user} loggedIn={loggedIn}/>
         </div>
     )
 }
