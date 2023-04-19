@@ -1,11 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
-import {
-    createAdminThunk,
-    deleteAdminThunk,
-    findAdminByIdThunk,
-    findAdminThunk,
-    updateAdminThunk
-} from "../services/admin-thunk";
+import { createSlice } from "@reduxjs/toolkit";
+import {createAdminThunk, deleteAdminThunk, findAdminByIdThunk, findAdminThunk, updateAdminThunk} from "../services/admin-thunk";
 
 const initialState = {
     admins: [],

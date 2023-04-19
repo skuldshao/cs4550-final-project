@@ -3,9 +3,11 @@ import {
     createReviewThunk,
     deleteReviewThunk,
     findReviewThunk,
+    findReviewByIdThunk,
+    findReviewByUserIdThunk,
+    findReviewBySongIdThunk,
     updateReviewThunk
 } from "../services/review-thunk";
-import {findAdminThunk} from "../services/admin-thunk";
 // import reviews from '../reviews/review.json'
 
 const currentUser = {
@@ -27,6 +29,7 @@ const initialState = {
 const reviewSlice = createSlice({
     name: 'reviews',
     initialState,
+
     reducers: {
         createReview(state, action) {
             state.unshift({
@@ -36,6 +39,8 @@ const reviewSlice = createSlice({
             })
         }
     },
+
+
     extraReducers:{
         [findReviewThunk.pending]:
             (state) => {
@@ -47,10 +52,55 @@ const reviewSlice = createSlice({
                 state.loading = false
                 state.reviews = payload
             },
-        [findAdminThunk.rejected]:
+        [findReviewThunk.rejected]:
             (state,action) => {
                 state.loading = false
                 state.reviews = action.error
+            },
+        [findReviewBySongIdThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.reviews = []
+            },
+        [findReviewBySongIdThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.reviews = payload
+            },
+        [findReviewBySongIdThunk.rejected]:
+            (state, action) => {
+                state.loading = false
+                state.error = action.error
+            },
+        [findReviewByUserIdThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.reviews = []
+            },
+        [findReviewByUserIdThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.reviews = payload
+            },
+        [findReviewByUserIdThunk.rejected]:
+            (state, action) => {
+                state.loading = false
+                state.error = action.error
+            },
+        [findReviewByIdThunk.pending]:
+            (state) => {
+                state.loading = true
+                state.reviews = []
+            },
+        [findReviewByIdThunk.fulfilled]:
+            (state, { payload }) => {
+                state.loading = false
+                state.reviews = payload
+            },
+        [findReviewByIdThunk.rejected]:
+            (state, action) => {
+                state.loading = false
+                state.error = action.error
             },
         [createReviewThunk.fulfilled]:
             (state,{ payload }) => {
