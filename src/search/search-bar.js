@@ -37,11 +37,11 @@ function SearchBar() {
     }, [query]);
 
     return (
-        <div>
+        <div className="text-white">
             <h1>Song Search</h1>
-            <div>
-                <p>The result is: {query}</p>
-            </div>
+            {query? <div>
+                Results for: {query}
+            </div> : <div></div>}
             <div className="form-group">
                 <label htmlFor="search-bar">
                     <span className="visually-hidden">Search</span>
@@ -64,8 +64,8 @@ function SearchBar() {
                             <i className="bi bi-search "/>
                         </button>
                     </div>
-
                 </div>
+                <br></br>
                 {
                     query?
 
@@ -79,12 +79,12 @@ function SearchBar() {
 
                         :
 
-                        <div>
+                        <div className="text-center">
                             no results
                         </div>
                 }
 
-                <pre>{JSON.stringify(results, null, 2)}</pre>
+                {/*<pre>{JSON.stringify(results, null, 2)}</pre>*/}
             </div>
         </div>
     );
