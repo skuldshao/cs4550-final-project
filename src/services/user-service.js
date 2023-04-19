@@ -8,8 +8,13 @@ export const createUser = async (user) => {
 }
 
 export const findUserById = async (userId) => {
-    console.log("userId")
     const response = await axios.get(`${USERS_API}/${userId}`);
+    return response.data;
+}
+
+export const findUserFollowersById = async (userId) => {
+    const response = await axios.get(`${USERS_API}/followers/${userId}`);
+    console.log(response.data)
     return response.data;
 }
 
@@ -26,7 +31,6 @@ export const deleteUser = async (userId) => {
 
 
 export const updateUser = async (user) => {
-    const response = await axios
-        .put(`${USERS_API}/${user._id}`, user);
+    await axios.put(`${USERS_API}/${user._id}`, user);
     return user;
 }

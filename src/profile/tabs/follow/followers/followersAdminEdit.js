@@ -18,6 +18,8 @@ function FollowersAdminEdit(
     }
 ) {
     const followers = user.followers;
+    console.log("followers")
+    console.log(followers)
     return (
         <div className="wd-black-bg text-start">
             <EditProfileAsAdmin active={tabs.active} user={user}/>
