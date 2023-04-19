@@ -27,6 +27,7 @@ const initialState = {
 const reviewSlice = createSlice({
     name: 'reviews',
     initialState,
+
     reducers: {
         createReview(state, action) {
             state.unshift({
@@ -36,6 +37,8 @@ const reviewSlice = createSlice({
             })
         }
     },
+
+
     extraReducers:{
         [findReviewThunk.pending]:
             (state) => {
