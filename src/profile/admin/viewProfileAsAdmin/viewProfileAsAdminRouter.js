@@ -21,7 +21,7 @@ const ViewProfileAsAdminRouter = ({tabs}) => {
         dispatch(findUserFollowersByIdThunk(uid))
         console.log("other")
     }, []);
-    console.log(foundUser)
+    console.log(followers)
     return (
         <div className="text-white">
             {loading && <div>LOADING DATA</div>}

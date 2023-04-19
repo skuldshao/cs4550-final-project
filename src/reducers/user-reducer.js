@@ -14,7 +14,7 @@ const initialState = {
     error: null,
     foundUser: null,
     displayFoundUser: false,
-    followers: {},
+    followers: [],
 }
 
 const userSlice = createSlice({
@@ -63,7 +63,7 @@ const userSlice = createSlice({
             [findUserFollowersByIdThunk.pending]:
                 (state) => {
                     state.loading = true
-                    state.followers = {}
+                    state.followers = []
                 },
             [findUserFollowersByIdThunk.fulfilled]:
                 (state, {payload}) => {

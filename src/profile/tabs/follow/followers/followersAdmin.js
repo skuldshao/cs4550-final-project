@@ -25,8 +25,8 @@ function FollowersAdmin(
             <div className="wd-black-bg align-items-center">
                 {followers.length === 0 ? (<span
                         className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} has no followers</span>) :
-                    (followers.followers).map(followerItem => <FollowItemAdmin fid={followerItem} pUser={user}
-                                                                               tab={"followers"}/>)}
+                    (followers).map(followerItem => <FollowItemAdmin fid={followerItem} pUser={user}
+                                                                     tab={"followers"}/>)}
             </div>
         </div>
     );
