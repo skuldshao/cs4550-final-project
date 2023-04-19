@@ -14,9 +14,11 @@ import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer"
 import adminReducer from "./reducers/admin-reducer"
 import reviewReducer from "./reducers/review-reducer"
+import adminAuthReducer from "./reducers/admin-auth-reducer";
+import userAuthReducer from "./reducers/user-auth-reducer";
 
 const store = configureStore(
-    {reducer: {userData: userReducer, adminData: adminReducer, review: reviewReducer}});
+    {reducer: {userData: userReducer, adminData: adminReducer, review: reviewReducer, userAuth: userAuthReducer, adminAuth: adminAuthReducer}});
 
 function App() {
     return (

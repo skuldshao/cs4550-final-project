@@ -3,31 +3,31 @@ import * as authService from "./admin-auth-service";
 
 
 export const loginThunk = createAsyncThunk(
-    "user/login", async (credentials) => {
+    "adminAuth/login", async (credentials) => {
         const user = await authService.login(credentials);
         return user;
     }
 );
 
 export const logoutThunk = createAsyncThunk(
-    "auth/logout", async () => {
+    "adminAuth/logout", async () => {
         return await authService.logout();
     });
 
 export const profileThunk = createAsyncThunk(
-    "userAuth/profile", async () => {
+    "adminAuth/profile", async () => {
         return await authService.profile();
     });
 
-export const updateUserThunk = createAsyncThunk(
-    "userAuth/updateUser", async (admin) => {
+export const updateAdminThunk = createAsyncThunk(
+    "adminAuth/updateAdmin", async (admin) => {
         await authService.updateAdmin(admin);
         return admin;
     }
 );
 
 export const registerThunk = createAsyncThunk(
-    "userAuth/registerUser", async (admin) => {
+    "adminAuth/registerUser", async (admin) => {
         return await authService.register(admin);
     }
 );

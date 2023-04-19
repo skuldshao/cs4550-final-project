@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE = "http://localhost:4000/" || process.env.REACT_APP_API_BASE;
+const API_BASE = "http://localhost:4000/api" || process.env.REACT_APP_API_BASE;
 const ADMIN_API = `${API_BASE}/admin`;
 
 export const createAdmin = async (admin) => {
