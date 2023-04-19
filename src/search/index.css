@@ -3,6 +3,30 @@ body {
     color: #F5F5F5;
 
 }
+.wd-add-review {
+    background-color: gray;
+    color: black;
+    border: 2px solid gray;
+}
+
+.wd-add-review:hover {
+    background-color: #2F3137;
+    color: white;
+}
+
+.wd-star-rating {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.wd-on {
+    color: #A4804A;
+}
+.wd-off {
+    color: #2F3137;
+}
 
 wd-color-white {
     color: #F5F5F5;
@@ -18,4 +42,15 @@ wd-color-gold {
 
 wd-color-red {
     color: #C8102E;
+}
+
+.wd-add-review {
+    background-color: gray;
+    color: black;
+    border: 2px solid gray;
+}
+
+.wd-add-review:hover {
+    background-color: #2F3137;
+    color: white;
 }

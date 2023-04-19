@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getTrack } from "../services/spotify-service"
 
-function TrackDetail() {
+function TrackDetail(props) {
     const { id } = useParams();
     const [track, setTrack] = useState({});
     const [artists, setArtists] = useState([]);
@@ -17,7 +17,8 @@ function TrackDetail() {
         const album = track.album;
         setAlbum(album);
 
-        //console.log(track);
+        props.returnItemDetails({itemName: track.name, artist: artists[0].name});
+        //console.log("in detail: " + artists[0].name);
     };
 
     useEffect(() => {
@@ -85,6 +86,7 @@ function TrackDetail() {
 
 
             {/*<pre>{JSON.stringify(track, null, 1)}</pre>*/}
+
 
         </div>
     )

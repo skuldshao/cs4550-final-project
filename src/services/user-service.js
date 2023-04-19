@@ -25,7 +25,6 @@ export const deleteUser = async (userId) => {
 
 
 export const updateUser = async (user) => {
-    const response = await axios
-        .put(`${USERS_API}/${user._id}`, user);
+    await axios.put(`${USERS_API}/${user._id}`, user);
     return user;
 }
