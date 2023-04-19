@@ -4,7 +4,7 @@ import * as userService from "../../../services/user-service";
 import {useDispatch} from "react-redux";
 import {updateUserThunk} from "../../../services/user-thunk";
 
-function FollowItemAdmin({fid, tab, pUser}) {
+function FollowItemAdmin({fid, tab, pUser, isEditing}) {
     const [user, setUser] = useState({});
     const dispatch = useDispatch();
     const getUserByUsername = async () => {
@@ -36,19 +36,21 @@ function FollowItemAdmin({fid, tab, pUser}) {
                 </div>
                 {tab === "following" ?
                     <button
-                        className="btn btn-outline-danger btn-danger text-black rounded-3 fw-bold rounded-3 ms-auto align-self-center me-5"
+                        className={`btn btn-danger text-black rounded-3 fw-bold rounded-3 ms-auto align-self-center me-5`}
+                        disabled={isEditing}
                         onClick={() => {
-                            // const newFollowers = userFollowers.filter(f => f !== pUser._id)
+                            const newFollowers = userFollowers.filter(f => f !== pUser._id)
                             const newFollowing = pFollowing.filter(f => f !== user._id)
-                            // setUserFollowers(newFollowers)
+                            setUserFollowers(newFollowers)
                             setPFollowing(newFollowing)
-                            // dispatch(updateUserThunk({...user, "followers": newFollowers}))
+                            dispatch(updateUserThunk({...user, "followers": newFollowers}))
                             dispatch(updateUserThunk({...pUser, "following": newFollowing}))
                         }
                         }>
                         STOP FOLLOWING
                     </button> :
                     <button className="btn btn-outline-danger rounded-3 fw-bold ms-auto align-self-center me-5"
+                            disabled={isEditing}
                             onClick={() => {
                                 const newFollowers = pFollowers.filter(f => f !== user._id);
                                 const newFollowing = userFollowing.filter(f => f !== pUser._id)

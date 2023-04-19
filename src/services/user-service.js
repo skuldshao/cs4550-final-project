@@ -12,12 +12,6 @@ export const findUserById = async (userId) => {
     return response.data;
 }
 
-export const findUserFollowersById = async (userId) => {
-    const response = await axios.get(`${USERS_API}/followers/${userId}`);
-    console.log(response.data)
-    return response.data;
-}
-
 export const findUser = async () => {
     const response = await axios.get(USERS_API);
     return response.data;

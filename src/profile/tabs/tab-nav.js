@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 function NavTab(
-    {tabs, isEditing, user, isSelf}
+    {tabs, isEditing, user, isSelf, followers, following}
 ) {
     return (
         <ul className="nav nav-tabs p-0 pt-2 mt-3 border-none border-0 ms-5">
@@ -39,7 +39,7 @@ function NavTab(
                     <Link to={isSelf ? `/profile/following` : `/profile/following/${user._id}`}
                           className={`${isEditing ? `text-secondary` : `text-white`} fw-bold text-decoration-none pb-2 border-bottom border-2 ${
                               tabs.active === "following" ? `border-danger` : `border-secondary`}`}>FOLLOWING
-                        ({user.following.length})</Link>
+                        ({following ? following : 0})</Link>
                 </div>
             </li>
             <li className="nav-item ps-2 pe-2">
@@ -47,7 +47,7 @@ function NavTab(
                     <Link to={isSelf ? `/profile/followers` : `/profile/followers/${user._id}`}
                           className={`${isEditing ? `text-secondary` : `text-white`} fw-bold text-decoration-none pb-2 border-bottom border-2 ${
                               tabs.active === "followers" ? `border-danger` : `border-secondary`}`}>FOLLOWERS
-                        ({user.followers.length})</Link>
+                        ({followers ? followers : 0})</Link>
                 </div>
             </li>
         </ul>

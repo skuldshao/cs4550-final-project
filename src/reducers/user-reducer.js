@@ -2,8 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     createUserThunk,
     deleteUserThunk,
-    findUserByIdThunk, findUserFollowersByIdThunk,
-    findUserThunk, updateFollowerThunk,
+    findUserByIdThunk,
+    findUserThunk,
     updateUserThunk
 } from "../services/user-thunk";
 
@@ -14,7 +14,6 @@ const initialState = {
     error: null,
     foundUser: null,
     displayFoundUser: false,
-    followers: [],
 }
 
 const userSlice = createSlice({
@@ -59,26 +58,6 @@ const userSlice = createSlice({
                     state.foundUser = null
                     state.error = action.error
                 },
-
-            [findUserFollowersByIdThunk.pending]:
-                (state) => {
-                    state.loading = true
-                    state.followers = []
-                },
-            [findUserFollowersByIdThunk.fulfilled]:
-                (state, {payload}) => {
-                    console.log(payload)
-                    state.loading = false
-                    state.followers = payload
-                    console.log(state.followers)
-                },
-            [findUserFollowersByIdThunk.rejected]:
-                (state, action) => {
-                    state.loading = false
-                    state.error = action.error
-                },
-
-
             [createUserThunk.fulfilled]:
                 (state, {payload}) => {
                     state.display = true
@@ -110,10 +89,6 @@ const userSlice = createSlice({
                         ...state.users[userUpdate],
                         ...payload
                     }
-                    console.log("update")
-                    console.log(payload)
-                    console.log(state.users[userUpdate])
-                    console.log(state.users[userUpdate].followers)
                 },
         },
     })
