@@ -49,6 +49,22 @@ export const getTrack = async (trackID) => {
     }
 };
 
+export const getAlbum = async (albumID) => {
+    const token = await getToken();
+
+    const album_url = `https://api.spotify.com/v1/albums/${albumID}`;
+    try {
+        const response = await axios.get(album_url, {
+            header: {
+                'Authorization' : `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export const searchItems = async (query) => {
     const token = await getToken();
     const search_url = `https://api.spotify.com/v1/search?query=${query}&type=track,album&offset=0&limit=20`;

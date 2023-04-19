@@ -91,5 +91,4 @@ function TrackDetail(props) {
         </div>
     )
 }
-
-
+export default TrackDetail;

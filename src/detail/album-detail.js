@@ -1,17 +1,18 @@
+
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getTrack } from "../services/spotify-service"
+import { getAlbum } from "../services/spotify-service"
 
-function TrackDetail(props) {
+function AlbumDetail(props) {
     const { id } = useParams();
-    const [track, setTrack] = useState({});
-    const [artists, setArtists] = useState([]);
     const [album, setAlbum] = useState({});
+    const [artists, setArtists] = useState([]);
+    const [tracks, setTracks] = useState({});
 
-    const fetchTrack = async () => {
-        const track = await getTrack(id);
-        setTrack(track);
+    const fetchAlbum = async () => {
+        const track = await getAlbum(id);
+        setAlbum(album);
         const artists = track.artists;
         setArtists(artists);
         const album = track.album;
@@ -22,7 +23,7 @@ function TrackDetail(props) {
     };
 
     useEffect(() => {
-        fetchTrack();
+        fetchAlbum();
     }, []);
 
     /*
@@ -91,5 +92,4 @@ function TrackDetail(props) {
         </div>
     )
 }
-
-
+export default AlbumDetail;
