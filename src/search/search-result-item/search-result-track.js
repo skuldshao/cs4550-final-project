@@ -18,7 +18,7 @@ const SearchResultTrack = (
     }
 ) => {
 
-    const detailLink = "/detail/" + result.id.toString();
+    const detailLink = "/detail/track/" + result.id.toString();
 
     return (
 

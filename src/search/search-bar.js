@@ -23,8 +23,8 @@ function SearchBar() {
     const [searchType, setSearchType]  = useState("tracks");
     const [isLoading, setIsLoading] = useState(false);
     //const prev = loc.search.substring(1, loc.search.length);
-    console.log("search: " + search);
-    console.log("query: " + query);
+    //console.log("search: " + search);
+    //console.log("query: " + query);
 
     const showItem = (e) => {
         setSearchType(e.target.value)
@@ -34,8 +34,8 @@ function SearchBar() {
     const searchSpotify = async () => {
         //setIsLoading(true);
         const results = await searchItems(search);
-        console.log(results.albums);
-        console.log(results.tracks);
+        //console.log(results.albums);
+        //console.log(results.tracks);
         //console.log("query: " + query);
         //console.log("search: " + search);
 
