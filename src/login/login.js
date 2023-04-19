@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import { loginThunk as adminLoginThunk } from "../services/admin-auth-thunk";
-import { loginThunk as userLoginThunk } from "../services/user-auth-thunk";
+import {loginThunk as adminLoginThunk} from "../services/admin-auth-thunk";
+import {loginThunk as userLoginThunk} from "../services/user-auth-thunk";
 
 function Login() {
     const navigate = useNavigate();
@@ -25,8 +25,7 @@ function Login() {
     const handleLogin = async () => {
         let payload;
         try {
-            if (adminKey != "")
-            {
+            if (adminKey !== "") {
                 console.log("here");
                 payload = await dispatch(adminLoginThunk({email, password}));
                 if (adminKey === ADMINKEY && payload.type !== 'userAuth/login/rejected') {
@@ -37,15 +36,13 @@ function Login() {
             } else {
                 // console.log("there");
                 payload = await dispatch(userLoginThunk({email, password}));
-                if (payload.type === 'userAuth/login/rejected')
-                {
+                if (payload.type === 'userAuth/login/rejected') {
                     setAlert(true);
                 } else {
                     navigate("/home");
                 }
             }
-        } catch (e)
-        {
+        } catch (e) {
             console.log(e);
             setAlert(true);
         }

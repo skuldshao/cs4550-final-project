@@ -1,10 +1,11 @@
 import axios from "axios";
+
 const SERVER_API_URL = "http://localhost:4000/api";
 const USERS_URL = `${SERVER_API_URL}/users`;
 
-const api = axios.create({ withCredentials: true });
+const api = axios.create({withCredentials: true});
 
-export const login = async ({ email, password }) => {
+export const login = async ({email, password}) => {
     const response = await api.post(`${USERS_URL}/login`, {
         email,
         password,
@@ -20,7 +21,7 @@ export const logout = async () => {
 
 
 export const profile = async () => {
-    const response = await api.post(`${USERS_URL}/profile`);
+    const response = await api.get(`${USERS_URL}/profile`);
     return response.data;
 };
 
