@@ -6,6 +6,8 @@ import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {createUserThunk, findUserThunk} from "../services/user-thunk";
 import {createAdminThunk, findAdminThunk} from "../services/admin-thunk";
+import {registerThunk as userRegisterThunk} from "../services/user-auth-thunk";
+import {registerThunk as adminRegisterThunk} from "../services/user-auth-thunk";
 
 function Signup({inCode = false}) {
     const navigate = useNavigate();
@@ -27,6 +29,7 @@ function Signup({inCode = false}) {
     const [goodHandle, setGoodHandle] = useState(false)
 
     const signup = () => {
+        let payload;
         if (role === "user") {
             const user = {
                 avatarIcon: image,
@@ -40,7 +43,10 @@ function Signup({inCode = false}) {
                 number,
                 joined: 2023
             }
-            dispatch(createUserThunk(user));
+            payload = dispatch(userRegisterThunk(user));
+            if (payload.type !== 'userAuth/registerUser/rejected') {
+                navigate("/home")
+            }
             clearFields();
         } else {
             const admin = {
@@ -52,8 +58,11 @@ function Signup({inCode = false}) {
                 number,
                 joined: 2023
             }
-            dispatch(createAdminThunk(admin));
+            payload = dispatch(adminRegisterThunk(admin));
             clearFields();
+            if (payload.type !== 'adminAuth/registerAdmin/rejected') {
+                navigate("/home")
+            }
         }
         if (!inCode) {
             navigate("/home")
