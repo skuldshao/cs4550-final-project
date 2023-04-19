@@ -12,6 +12,8 @@ const userAuthSlice = createSlice({
         [loginThunk.fulfilled]: (state, { payload }) => {
             state.loadingUser = false
             state.currentUser = payload
+            console.log(payload);
+            console.log(state.currentUser);
         },
         [loginThunk.rejected]:
             (state, action) => {
@@ -48,6 +50,8 @@ const userAuthSlice = createSlice({
         [profileThunk.fulfilled]: (state, { payload }) => {
             state.loadingUser = false
             state.currentUser = payload
+            console.log(payload);
+            console.log(state.currentUser);
         },
         [profileThunk.rejected]:
             (state, action) => {

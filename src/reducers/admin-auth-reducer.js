@@ -27,6 +27,10 @@ const adminAuthSlice = createSlice({
                 state.loadingAdmin = false
                 state.error = action.error
             },
+        [registerThunk.fulfilled]: (state, { payload }) => {
+            state.loadingUser = false
+            state.currentUser = payload
+        },
         [registerThunk.rejected]:
             (state, action) => {
                 state.loadingUser = false

@@ -1,18 +1,63 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import {ADMINKEY} from "../../login/login"
+import { profileThunk as userProfileThunk, logoutThunk as userLogoutThunk} from "../../services/user-auth-thunk";
+import { profileThunk as adminProfileThunk, logoutThunk as adminLogoutThunk} from "../../services/admin-auth-thunk";
+import {useDispatch, useSelector} from "react-redux";
+import userAuthReducer from "../../reducers/user-auth-reducer";
 
 function ProfileHeader({
-                           who = {
-                               "userName": "Rowlet",
-                               "handle": "rowlie",
-                               "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-                               "number": "123-456-7890",
-                               "email": "rowlet@pokemon.com",
-                           }, active, type
+                           // who = {
+                           //     "userName": "Rowlet",
+                           //     "handle": "rowlie",
+                           //     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
+                           //     "number": "123-456-7890",
+                           //     "email": "rowlet@pokemon.com",
+                           // },
+                           active, type
                        }) {
-    const navigate = useNavigate()
+    const { currentUser } = useSelector(state => state.userAuth);
+    const [who, setWho] = useState({currentUser});
+    console.log(currentUser);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    let admin;
+    let adminPayload;
+    //
+    useEffect ( () => {
+        adminPayload = dispatch(adminProfileThunk());
+        admin = adminPayload.type !== 'adminAuth/profile/rejected' && adminPayload.type !== undefined;
+
+        let response;
+
+        if (admin) {
+            const {payload} = dispatch(adminProfileThunk());
+            console.log(payload);
+            setWho(payload);
+        } else {
+            const {payload} = dispatch(userProfileThunk());
+            console.log(payload);
+            setWho(payload);
+        }
+
+    }, []);
+
+    const handleLogout = async () => {
+        let payload;
+
+        if (admin) {
+            payload = await dispatch(adminLogoutThunk());
+        } else {
+            payload = await dispatch(userLogoutThunk());
+        }
+
+        if (payload !== 'adminAuth/logout/rejected' && payload !== 'userAuth/logout/rejected')
+        {
+            navigate("/login")
+        }
+    }
+
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
@@ -29,8 +74,8 @@ function ProfileHeader({
                 </div>
             </div>
             <div className="align-self-center me-5">
-                <button className="btn btn-outline-danger  rounded-3 fw-bold mb-2" onClick={() => {
-                    navigate("/login")
+                <button className="btn btn-outline-danger  rounded-3 fw-bold mb-2" onClick={async () => {
+                    // await handleLogout()
                 }}>
                     LOGOUT
                 </button>
