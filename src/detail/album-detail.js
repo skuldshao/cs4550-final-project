@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getAlbum } from "../services/spotify-service"
 import TrackDetail from "./track-detail";
+import {Link} from "react-router-dom"
 
 
 function AlbumDetail(props) {
@@ -46,14 +47,23 @@ function AlbumDetail(props) {
                     <div className="row border">
                         popularity: {album.popularity}
                     </div>
-                    {
-                        tracks.map((result) =>
-                        <div className="row border">
-                            {result.name}
-                        </div>
-                        )
-                    }
-
+                    <div className="row">
+                        <h2>Tracks</h2>
+                    </div>
+                    <hr/>
+                    <div className="row">
+                        <ol className="list-group list-group-flush ps-5">
+                            {
+                                tracks.map((result) =>
+                                    <Link to={`/detail/tracks/${result.id}`} className="text-">
+                                        <li>
+                                            {result.name}
+                                        </li>
+                                    </Link>
+                                )
+                            }
+                        </ol>
+                    </div>
                 </div>
 
                 {/* ----------------------------------------------------------------------------------------*/}
