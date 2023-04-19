@@ -1,77 +1,61 @@
-
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getAlbum } from "../services/spotify-service"
+import TrackDetail from "./track-detail";
+
 
 function AlbumDetail(props) {
     const { id } = useParams();
     const [album, setAlbum] = useState({});
     const [artists, setArtists] = useState([]);
-    const [tracks, setTracks] = useState({});
+    const [tracks, setTracks] = useState([]);
 
     const fetchAlbum = async () => {
-        const track = await getAlbum(id);
+        const album = await getAlbum(id);
         setAlbum(album);
-        const artists = track.artists;
-        setArtists(artists);
-        const album = track.album;
-        setAlbum(album);
-
-        props.returnItemDetails({itemName: track.name, artist: artists[0].name});
-        //console.log("in detail: " + artists[0].name);
-    };
+        const artists = album.artists;
+        setArtists(album.artists);
+        const tracks = album.tracks.items;
+        setTracks(tracks);
+        //props.returnItemDetails({itemName: album.name, artist: artists[0].name})
+    }
 
     useEffect(() => {
         fetchAlbum();
     }, []);
 
-    /*
-    Todo:
-     adjust data (duration ms -> xx:xx format)
-     check for empty cases
-     map (artists, genres)
-     link to album page
-     */
+    console.log(tracks);
 
-    //console.log(artists[0]);
     return (
-        <div className="container wd-white">
+        <div className="container text-white">
             <div className="row border">
-                <h1>{track.name}</h1>
+                <h1>{album.name}</h1>
             </div>
             <div className="row border">
                 <div className="col-lg-8 col-xl-8 col-xxl-8 col-md-6 col-sm-6 col-xs-6 col-6">
                     <div className="row border">
                         artist: {artists[0] && artists[0].name}
                     </div>
-
-                    <div className="row border">
-                        genre:
-                    </div>
-                    <div className="row border">
-                        duration: {track.duration_ms}
-                    </div>
-                    <div className="row border">
-                        explicit: {track.explicit && track.explicit.toString()}
-                    </div>
-                    <div className="row border">
-                        album: {album.name}
-                    </div>
                     <div className="row border">
                         release date: {album.release_date}
                     </div>
                     <div className="row border">
-                        popularity: {track.popularity}
+                        genre:
                     </div>
-
-                    {   track.preview_url &&
+                    <div className="row border">
+                        popularity: {album.popularity}
+                    </div>
+                    {
+                        tracks.map((result) =>
                         <div className="row border">
-                            <audio controls src={track.preview_url}></audio>
+                            {result.name}
                         </div>
+                        )
                     }
 
                 </div>
+
                 {/* ----------------------------------------------------------------------------------------*/}
                 <div className="col">
                     <div className="row border">
@@ -82,14 +66,15 @@ function AlbumDetail(props) {
 
                 </div>
 
+
             </div>
 
 
 
-            {/*<pre>{JSON.stringify(track, null, 1)}</pre>*/}
 
 
         </div>
     )
+
 }
 export default AlbumDetail;

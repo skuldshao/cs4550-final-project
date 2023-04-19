@@ -26,7 +26,7 @@ function Detail() {
         detailComponent = <TrackDetail returnItemDetails={handleItemDetailChange}/>
     }
     else if (window.location.pathname.includes("/detail/album")) {
-        detailComponent = <TrackDetail returnItemDetails={handleItemDetailChange}/>
+        detailComponent = <AlbumDetail returnItemDetails={handleItemDetailChange}/>
     }
 
 /*

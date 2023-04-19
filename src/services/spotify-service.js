@@ -55,15 +55,15 @@ export const getAlbum = async (albumID) => {
     const album_url = `https://api.spotify.com/v1/albums/${albumID}`;
     try {
         const response = await axios.get(album_url, {
-            header: {
-                'Authorization' : `Bearer ${token}`
+            headers: {
+                'Authorization': `Bearer ${token}`
             }
         });
         return response.data;
     } catch (e) {
         console.log(e);
     }
-}
+};
 
 export const searchItems = async (query) => {
     const token = await getToken();

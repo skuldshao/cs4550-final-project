@@ -18,7 +18,7 @@ const SearchResultAlbum = (
     }
 ) => {
 
-    const detailLink = "/detail/album" + result.id.toString();
+    const detailLink = "/detail/album/" + result.id.toString();
 
     return (
 
