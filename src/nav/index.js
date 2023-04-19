@@ -1,9 +1,10 @@
 import AdminNav from "./admin-nav";
 import UserNav from "./user-nav";
+
 const Nav = ({user, active}) => {
     if (user === "user") {
         return (
-            <div className="mb-3 pt-3">
+            <div className="mb-3 pt-3 sticky-top bg-black pb-3">
                 <img src='/images/smallLogo.png' height="40px" className="float-start"/>
                 <div>
                     <UserNav active={active}/>
@@ -12,9 +13,9 @@ const Nav = ({user, active}) => {
         )
     } else if (user === "admin") {
         return (
-            <div className="mb-3 pt-3">
+            <div className="mb-3 pt-3 sticky-top bg-black pb-3">
                 <div>
-                    <img src='/images/smallLogo.png'height="40px" className="float-start"/>
+                    <img src='/images/smallLogo.png' height="40px" className="float-start"/>
                 </div>
                 <div>
                     <AdminNav active={active}/>

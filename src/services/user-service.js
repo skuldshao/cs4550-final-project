@@ -8,6 +8,7 @@ export const createUser = async (user) => {
 }
 
 export const findUserById = async (userId) => {
+    console.log("userId")
     const response = await axios.get(`${USERS_API}/${userId}`);
     return response.data;
 }

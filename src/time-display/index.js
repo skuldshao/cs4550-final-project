@@ -1,7 +1,8 @@
 import React from "react";
 
 const TimeDisplay = ({itemDate}) => {
-    const diff = (Date.now() / 1000) - (itemDate);
+    const now = (Date.now() / 1000);
+    const diff = now - (itemDate / 1000);
     let timeElapsedString = "";
 
     const elapsedDays = Math.floor(diff / (60 * 60 * 24));
@@ -22,7 +23,7 @@ const TimeDisplay = ({itemDate}) => {
         }
     }
     return (
-        <span className="text-secondary fw-normal me-5">{timeElapsedString} ago</span>
+        <span className="fw-normal me-5">{timeElapsedString} ago</span>
     )
 }
 export default TimeDisplay;

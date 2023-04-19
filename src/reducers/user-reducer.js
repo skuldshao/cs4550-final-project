@@ -41,14 +41,12 @@ const userSlice = createSlice({
             },
         [findUserByIdThunk.pending]:
             (state) => {
-                console.log("pening")
                 state.loading = true
                 state.displayFoundUser = false
                 state.foundUser = null
             },
         [findUserByIdThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload)
                 state.loading = false
                 state.displayFoundUser = true
                 state.foundUser = payload
@@ -73,7 +71,6 @@ const userSlice = createSlice({
             },
         [deleteUserThunk.fulfilled]:
             (state, {payload}) => {
-                console.log(payload)
                 state.loading = false
                 state.display = true
                 state.users = state.users.filter(user => user._id !== payload)
