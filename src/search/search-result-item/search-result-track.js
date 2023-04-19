@@ -23,7 +23,7 @@ const SearchResultTrack = (
     return (
 
         <Link to={detailLink}>
-            <li className="list-group-item">
+            <li className="list-group-item border-white rounded-5 bg-black ms-3 me-3 mb-2">
                 <div className="d-flex align-items-center">
                     <div className="">
                         <img width={100}
@@ -32,7 +32,7 @@ const SearchResultTrack = (
                              alt=""
                              src={result.album.images[0].url}/>
                     </div>
-                    <div className="w-100 ps-2 fw-bold align-items-center">
+                    <div className="w-100 ps-2 fw-bold align-items-center text-white">
                         {result.name.toString()}
                     </div>
                 </div>

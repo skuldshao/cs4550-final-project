@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Form from 'react-bootstrap/Form';
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {searchItems} from "../services/spotify-service";
@@ -54,11 +53,11 @@ function SearchBar() {
     }, [query]);
 
     return (
-        <div>
+        <div className="text-white">
             <h1>Song Search</h1>
-            <div>
-                <p>The result is: {query}</p>
-            </div>
+            {query? <div>
+                Results for: {query}
+            </div> : <div></div>}
             <div className="form-group">
                 <label htmlFor="search-bar">
                     <span className="visually-hidden">Search</span>
@@ -81,24 +80,28 @@ function SearchBar() {
                             <i className="bi bi-search "/>
                         </button>
                     </div>
-
                 </div>
-                <div className="d-flex">
+                <br></br>
+                {
+                    query &&
+                        <div className="d-flex ms-2 mb-1">
                     <input type="radio"
                            value="tracks"
                            id="tracks"
                            checked={searchType === "tracks"}
                            onChange={showItem}
-                           name="search-type"/>
+                           name="search-type"
+                           className="me-1"/>
                     <label htmlFor="tracks">Tracks</label>
                     <input type="radio"
                            value="albums"
                            id="albums"
                            checked={searchType === "albums"}
                            onChange={showItem}
-                           name="search-type"/>
+                           name="search-type"
+                           className="ms-3 me-1"/>
                     <label htmlFor="albums">Albums</label>
-                </div>
+                </div>}
                 {query && (results.tracks?.length || results.albums?.length) > 0 && (
                     <ul className="list-group">
                         {searchType === "tracks" ? (
@@ -108,10 +111,8 @@ function SearchBar() {
                         )}
                     </ul>
                 )}
-
-
                 {query && (!results.tracks?.length && !results.albums?.length) && (
-                    <div>
+                    <div className="text-center">
                         No {searchType} found for '{search}'
                     </div>
                 )}

@@ -52,7 +52,7 @@ const WriteReview = (itemDetail) => {
 
         return (
             <form>
-                <div className="align-content-center border p-3">
+                <div className="align-content-center border p-3 text-white">
                     <label htmlFor="new-review">
                         Write a review:
                     </label>
@@ -68,7 +68,7 @@ const WriteReview = (itemDetail) => {
                         </div>
                         <div className="row">
                             <div className="col">
-                                <div className="wd-rating">
+                                <div className="wd-rating text-center ps-3">
                                     {
                                         [...Array(5)].map((star, index)=> {
                                             index += 1;
@@ -87,15 +87,15 @@ const WriteReview = (itemDetail) => {
                                         })}
                                 </div>
                             </div>
-                            <div className="col d-flex justify-content-center">
-                                <button className="rounded-pill wd-add-review wd-add-review"
-                                        onClick={handleAddReview}
-                                >Add</button>
-                            </div>
                         </div>
                     </div>
+                    <div className="col d-flex justify-content-center">
+                        <button className="rounded-pill wd-add-review wd-add-review"
+                                onClick={handleAddReview}
+                        >Add</button>
+                    </div>
                     {formValid ? null :
-                        <div className="wd-color-red">{errorMessage}</div>
+                        <div className="text-danger text-center">{errorMessage}</div>
                     }
                 </div>
             </form>
