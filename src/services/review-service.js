@@ -17,6 +17,23 @@ export const deleteReview = async (reviewId) => {
     return response.data;
 }
 
+export const findReviewBySongId = async (songId) => {
+    const response = await axios.get(`${REVIEW_API}/song/${songId}`);
+    const reviews = response.data;
+    return reviews;
+}
+
+export const findReviewByUserId = async (userId) => {
+    const response = await axios.get(`${REVIEW_API}/user/${userId}`);
+    const reviews = response.data;
+    return reviews;
+}
+
+export const findReviewById = async (reviewId) => {
+    const response = await axios.get(`${REVIEW_API}/${reviewId}`);
+    const review = response.data;
+    return review;
+}
 
 export const updateReview = async (review) => {
     const response = await axios
