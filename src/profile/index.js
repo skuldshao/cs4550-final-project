@@ -5,7 +5,7 @@ import Nav from "../nav";
 
 function Profile() {
     const loggedIn = true;
-    const admin = false
+    const admin = true
     return (
         <div>
             <Nav active="profile" user={admin ? "admin" : "user"}/>
