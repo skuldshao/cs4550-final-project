@@ -1,17 +1,43 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import * as userService from "../../../services/user-service"
+import {updateUserThunk} from "../../../services/user-thunk";
+import {
+    profileThunk as userProfileThunk,
+    updateUserThunk as updateCurrentUserThunk
+} from "../../../services/user-auth-thunk"
+import {useDispatch} from "react-redux";
 
-function FollowItem({fid, currentUser, loggedIn}) {
+function FollowItem({fid, loggedIn, isEditing}) {
+    const dispatch = useDispatch();
     const [user, setUser] = useState({});
-    const [isFollowing, setIsFollowing] = useState(currentUser.following.includes(fid))
     const [alert, setAlert] = useState(false)
     const getUserByUsername = async () => {
         const user = await userService.findUserById(fid);
         setUser(user);
+        setUserFollowers(user.followers)
     };
+
+    const [isFollowing, setIsFollowing] = useState(true)
+    const [userFollowers, setUserFollowers] = useState([])
+    const [currentUserFollowing, setCurrentUserFollowing] = useState([])
+
     useEffect(() => {
         getUserByUsername();
+    }, []);
+
+    const [profile, setProfile] = useState({});
+    const [loading, setLoading] = useState(true);
+    const getUserProfile = async () => {
+        const user = await dispatch(userProfileThunk())
+        setProfile(user.payload);
+        setLoading(false)
+        setCurrentUserFollowing(user.payload.following);
+        setIsFollowing(user.payload.following.includes(fid))
+    };
+    useEffect(() => {
+        dispatch(userProfileThunk())
+        getUserProfile();
     }, []);
     return (
         <div className="pt-2 pb-2 ms-5 mt-3">
@@ -24,7 +50,7 @@ function FollowItem({fid, currentUser, loggedIn}) {
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"
                         onClick={() => setAlert(false)}/>
             </div>}
-            {user && <div className="d-flex justify-content-between">
+            {(user && !loading) && <div className="d-flex justify-content-between">
                 <Link to={`/profile/${user._id}`}>
                     <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
                          src={`/images/${user.avatarIcon}`}/>
@@ -37,19 +63,32 @@ function FollowItem({fid, currentUser, loggedIn}) {
                 </div>
                 {loggedIn && (isFollowing ?
                     <button
-                        className="btn btn-outline-danger btn-danger text-black rounded-3 fw-bold rounded-3 ms-auto align-self-center me-5"
+                        className={`btn btn-danger text-black rounded-3 fw-bold rounded-3 ms-auto align-self-center me-5`}
+                        disabled={isEditing}
                         onClick={() => {
-                            user.followers.remove(currentUser._id)
-                            currentUser.following.remove(user._id);
+
+                            const newFollowers = userFollowers.filter(f => f !== profile._id)
+                            const newFollowing = currentUserFollowing.filter(f => f !== user._id)
+                            setUserFollowers(newFollowers)
+                            setCurrentUserFollowing(newFollowing)
+                            dispatch(updateUserThunk({...user, "followers": newFollowers}))
+                            dispatch(updateCurrentUserThunk({...profile, "following": newFollowing}))
                             setIsFollowing(!isFollowing)
                         }
                         }>
                         FOLLOWING
                     </button> :
                     <button className="btn btn-outline-danger rounded-3 fw-bold ms-auto align-self-center me-5"
+                            disabled={isEditing}
                             onClick={() => {
-                                user.followers.push(currentUser._id)
-                                currentUser.following.push(user._id);
+
+                                const newFollowers = [...userFollowers, profile._id]
+                                const newFollowing = [...currentUserFollowing, user._id]
+                                setUserFollowers(newFollowers)
+                                setUserFollowers(newFollowing)
+                                setCurrentUserFollowing(newFollowing)
+                                dispatch(updateUserThunk({...user, "followers": newFollowers}))
+                                dispatch(updateCurrentUserThunk({...profile, "following": newFollowing}))
                                 setIsFollowing(!isFollowing)
 
                             }

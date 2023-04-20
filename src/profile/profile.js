@@ -2,30 +2,31 @@ import React from "react";
 import {Routes} from "react-router";
 import {Route} from "react-router-dom";
 import ProfileTabs from "./tabs/profile-tabs";
-import OverViewSelfNoEdit from "./tabs/overview/overViewSelfNoEdit";
-import ReviewsSelfNoEdit from "./tabs/reviews/ReviewsSelfNoEdit";
-import FollowingSelfNoEdit from "./tabs/follow/following/followingSelfNoEdit";
-import FavoritesSelfNoEdit from "./tabs/playlists/favorites/favoritesSelfNoEdit";
-import ListenToMoreSelfNoEdit from "./tabs/playlists/listenToMore/listenToMoreSelfNoEdit";
-import FollowerSelfNoEdit from "./tabs/follow/followers/followersSelfNoEdit";
 import ViewProfile from "./view-profile";
 import NotLoggedInProfile from "./notLoggedInProfile";
+import Self from "./loggedInProfile/selfNoEdit";
 
 function ProfileRoute({loggedIn}) {
     return (
         <Routes>
             <Route index
-                   element={loggedIn ? <OverViewSelfNoEdit tabs={{active: "overview"}}/> : <NotLoggedInProfile/>}/>
+                   element={loggedIn ?
+                       <Self tabs={{active: "overview"}} isEditing={false} isSelf={true} loggedIn={true}/> :
+                       <NotLoggedInProfile/>}/>
             <Route path="reviews/*"
-                   element={<ReviewsSelfNoEdit tabs={{active: "reviews"}}/>}/>
+                   element={<Self tabs={{active: "reviews"}} isEditing={false} isSelf={true} loggedIn={true}/>}/>
             <Route path="following/*"
-                   element={<FollowingSelfNoEdit tabs={{active: "following"}}/>}/>
+                   element={<Self tabs={{active: "following"}} isEditing={false} isSelf={true}
+                                  loggedIn={true}/>}/>
             <Route path="followers/*"
-                   element={<FollowerSelfNoEdit tabs={{active: "followers"}}/>}/>
+                   element={<Self tabs={{active: "followers"}} isEditing={false} isSelf={true}
+                                  loggedIn={true}/>}/>
             <Route path="favoriteSongs/*"
-                   element={<FavoritesSelfNoEdit tabs={{active: "favoriteSongs"}}/>}/>
+                   element={<Self tabs={{active: "favoriteSongs"}} isEditing={false} isSelf={true}
+                                  loggedIn={true}/>}/>
             <Route path="newSongs/*"
-                   element={<ListenToMoreSelfNoEdit tabs={{active: "newSongs"}}/>}/>
+                   element={<Self tabs={{active: "newSongs"}} isEditing={false} isSelf={true}
+                                  loggedIn={true}/>}/>
             <Route path="edit/*" element={<ProfileTabs isEditing={true} isSelf={true}/>}/>
             <Route path=":uid"
                    element={<ViewProfile tabs={{active: "overview"}} loggedIn={loggedIn}/>}/>

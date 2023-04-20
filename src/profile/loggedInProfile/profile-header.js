@@ -46,7 +46,7 @@ function ProfileHeader({
 
     return (
         <div className="d-flex justify-content-between">
-            {(profile && !loading) && <div className="d-flex">
+            {!loading && <div className="d-flex">
                 <img className="rounded-circle pt-0 ms-5 align-self-center" width={100} height={100}
                      src={`/images/${profile.avatarIcon}`}/>
                 <div className="ps-5 wd-off-white-fg">

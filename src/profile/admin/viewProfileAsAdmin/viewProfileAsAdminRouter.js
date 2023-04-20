@@ -1,5 +1,5 @@
 import {useParams} from "react-router";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import OverViewAdmin from "../../tabs/overview/overViewAdmin";
 import ReviewsAdmin from "../../tabs/reviews/reviewsAdmin";
 import FollowingAdmin from "../../tabs/follow/following/followingAdmin";
@@ -22,8 +22,14 @@ const ViewProfileAsAdminRouter = ({tabs}) => {
     return (
         <div className="text-white">
             {loading && <div>LOADING DATA</div>}
-            {(tabs.active === "overview" && displayFoundUser) && <OverViewAdmin tabs={tabs} user={foundUser}/>}
-            {(tabs.active === "reviews" && displayFoundUser) && <ReviewsAdmin tabs={tabs} user={foundUser}/>}
+            {(tabs.active === "overview" && displayFoundUser && display) &&
+            <OverViewAdmin tabs={tabs} user={foundUser} isEditing={false}
+                           followers={(users.find(u => u._id === uid)).followers.length}
+                           following={(users.find(u => u._id === uid)).following.length}/>}
+            {(tabs.active === "reviews" && displayFoundUser && display) &&
+            <ReviewsAdmin tabs={tabs} user={foundUser} isEditing={false}
+                          followers={(users.find(u => u._id === uid)).followers.length}
+                          following={(users.find(u => u._id === uid)).following.length}/>}
             {(tabs.active === "following" && displayFoundUser && display) &&
             <FollowingAdmin tabs={tabs} user={foundUser} isEditing={false}
                             following={(users.find(u => u._id === uid)).following}
@@ -32,8 +38,14 @@ const ViewProfileAsAdminRouter = ({tabs}) => {
             <FollowersAdmin tabs={tabs} user={foundUser} isEditing={false}
                             followers={(users.find(u => u._id === uid)).followers}
                             following={(users.find(u => u._id === uid)).following.length}/>}
-            {(tabs.active === "favoriteSongs" && displayFoundUser) && <FavoritesAdmin tabs={tabs} user={foundUser}/>}
-            {(tabs.active === "newSongs" && displayFoundUser) && <ListenToMoreAdmin tabs={tabs} user={foundUser}/>}
+            {(tabs.active === "favoriteSongs" && displayFoundUser && display) &&
+            <FavoritesAdmin tabs={tabs} user={foundUser} isEditing={false}
+                            followers={(users.find(u => u._id === uid)).followers.length}
+                            following={(users.find(u => u._id === uid)).following.length}/>}
+            {(tabs.active === "newSongs" && displayFoundUser && display) &&
+            <ListenToMoreAdmin tabs={tabs} user={foundUser} isEditing={false}
+                               followers={(users.find(u => u._id === uid)).followers.length}
+                               following={(users.find(u => u._id === uid)).following.length}/>}
         </div>
     )
 }
