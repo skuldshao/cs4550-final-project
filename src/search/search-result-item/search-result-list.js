@@ -39,30 +39,4 @@ const SearchResultList = ({results}) => {
 }
 
 
-/*
-const SearchResultList = () => {
-    if (!query) {
-        const filteredSongs = songArray.filter((song) => {
-            const songName = song.name.toLowerCase();
-            return songName.includes(query);
-        })
-        if (filteredSongs.length === 0 || !query) {
-            return (
-                <div>No Results</div>
-            )
-        } else {
-            return (
-                <ul className="list-group">
-                    {
-                        filteredSongs.map(result =>
-                            <SearchResultItem key={result.id} result={result}/>)
-                    }
-                </ul>
-            )
-        }
-    }
-}
-
- */
-
 export default SearchResultList;

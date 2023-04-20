@@ -3,6 +3,7 @@ import TrackDetail from "./track-detail"
 import AlbumDetail from "./album-detail"
 import SongDetail from "./detail";
 import ReviewList from "../reviews";
+import Nav from "../nav";
 import WriteReview from "../reviews/write-review";
 import "../search/index.css"
 import { useParams } from "react-router-dom";
@@ -40,8 +41,10 @@ function Detail() {
 
     return(
         <>
+            <Nav user="user" active="search"/>
             {detailComponent}
             <WriteReview getItemDetail={itemDetails}/>
+            <ReviewList/>
 
         </>
     );
