@@ -37,7 +37,7 @@ const FavoritesNotSelf = ({
                 <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}
                         following={user.following.length} followers={user.followers.length}/>
                 {
-                    profile.favoriteSongs.length > 0 ? profile.favoriteSongs.map(f => <PlaylistItem
+                    user.favoriteSongs.length > 0 ? user.favoriteSongs.map(f => <PlaylistItem
                             item={f}/>) :
                         <span
                             className="d-flex justify-content-start text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has no songs in their favorites playlist</span>

@@ -36,7 +36,7 @@ function FollowingNotSelf(
             {!loading && <div className="wd-black-bg text-start">
                 <WhoseProfile uid={user._id} loggedIn={loggedIn}/>
                 <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}
-                        followers={profile.followers.length} following={user.following.length}/>
+                        followers={user.followers.length} following={user.following.length}/>
                 <div className="wd-black-bg align-items-center">
                     {user.following.length === 0 ? <span
                             className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-1">{user.userName} is not following anyone</span> :

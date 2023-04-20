@@ -16,7 +16,6 @@ export const logoutThunk = createAsyncThunk(
 
 export const profileThunk = createAsyncThunk(
     "adminAuth/profile", async () => {
-        console.log("in")
         return await authService.profile();
     });
 

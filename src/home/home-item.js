@@ -6,7 +6,6 @@ import {findUserThunk} from "../services/user-thunk";
 import {findAdminThunk} from "../services/admin-thunk";
 import NotLoggedInHome from "./NotLoggedInHome";
 import HomeItemsUser from "./HomeItemsUser";
-import * as userService from "../services/user-service";
 
 export const HomeItem = ({loggedIn, type}) => {
     const dispatch = useDispatch();
@@ -19,7 +18,7 @@ export const HomeItem = ({loggedIn, type}) => {
     return (
         <div>
             {type === "admin" && <HomeItemsAdmin users={users} admins={admins}/>}
-            {(type === "user" && loggedIn) ? <HomeItemsUser/> :
+            {(type === "user" && loggedIn) ? <HomeItemsUser users={users}/> :
                 <NotLoggedInHome users={users}/>
             }
         </div>

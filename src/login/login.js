@@ -1,11 +1,11 @@
 import logoIcon from '../images/logo.png'
 import music from '../images/music.png'
 import {Link} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import {useDispatch} from "react-redux";
-import {loginThunk as adminLoginThunk} from "../services/admin-auth-thunk";
-import {loginThunk as userLoginThunk} from "../services/user-auth-thunk";
+import {loginThunk as adminLoginThunk, logoutThunk as adminLogoutThunk} from "../services/admin-auth-thunk";
+import {loginThunk as userLoginThunk, logoutThunk as userLogoutThunk} from "../services/user-auth-thunk";
 
 function Login() {
     const navigate = useNavigate();
@@ -14,13 +14,18 @@ function Login() {
     const [alert, setAlert] = useState(false);
     const [adminKey, setAdminKey] = useState("");
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(adminLogoutThunk())
+        dispatch(userLogoutThunk())
+    }, [])
     const handleLogin = async () => {
         let payload;
         try {
             if (adminKey !== "") {
                 console.log("here");
                 payload = await dispatch(adminLoginThunk({email, password}));
-                if (adminKey === ADMINKEY && payload.type !== 'userAuth/login/rejected') {
+                console.log(payload)
+                if (adminKey === ADMINKEY && payload.type !== 'adminAuth/login/rejected') {
                     navigate("/home")
                 } else {
                     setAlert(true);
