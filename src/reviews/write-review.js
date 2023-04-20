@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {createReview} from "../reducers/review-reducer";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {createReviewThunk} from "../services/review-thunk";
+
+import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
 
 
 const WriteReview = (itemDetail) => {
@@ -12,6 +14,17 @@ const WriteReview = (itemDetail) => {
     const [formValid, setFormValid] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const {id} = useParams();
+
+    const [profile, setProfile] = useState({});
+    const getProfile = async () => {
+        const admins = await dispatch(userProfileThunk());
+        const adVal = admins.payload;
+        setProfile(adVal);
+    };
+
+    useEffect(() => {
+        getProfile()
+    }, []);
 
     const dispatch = useDispatch();
 
@@ -25,11 +38,11 @@ const WriteReview = (itemDetail) => {
         else {
             // const current = new Date();
             const newReview = {
-                itemID: id,
-                //userId: ObjectId,
+                itemId: id,
+                //userId: profile.id,
                 itemName: itemDetail.getItemDetail.itemName,
                 artist: itemDetail.getItemDetail.artist,
-                art: "",
+                //art: profile.avatarIcon,
                 //date: `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`,
                 review: writeReview,
                 rating: rating,
@@ -46,8 +59,9 @@ const WriteReview = (itemDetail) => {
     console.log("params: " + id);
     // console.log("date: " + `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`);
     console.log("item name: " + itemDetail.getItemDetail.itemName);
+    console.log("item name album: " + itemDetail.getItemDetail);
     console.log("artist: " + itemDetail.getItemDetail.artist);
-
+    console.log("profile: " + profile);
 
 
         return (
