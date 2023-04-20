@@ -1,19 +1,24 @@
-import React, {useState, useEffect} from "react";
-import {useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
-import {getTrack} from "../../services/spotify-service"
-import {Link} from "react-router-dom"
+import React from "react";
+import songs from '../song.json';
+import songArray from '../song.json';
+import SearchResultItem from "./search-result-item";
+import {useLocation, useHistory, Link} from "react-router-dom";
 
-const SearchResultItem = (
+const { search } = window.location;
+const {test} = "/search"
+const query = new URLSearchParams(search).get("search");
+
+
+const SearchResultAlbum = (
     {
         result = {
-            "album": {},
+            "images": [],
             "name": "Snow on the Beach",
         }
     }
 ) => {
 
-    const detailLink = "/detail/" + result.id.toString();
+    const detailLink = "/detail/album/" + result.id.toString();
 
     return (
 
@@ -25,9 +30,9 @@ const SearchResultItem = (
                              height={100}
                              className="float-start rounded-circle"
                              alt=""
-                             src={result.album.images[0].url}/>
+                             src={result.images[0].url}/>
                     </div>
-                    <div className="w-100 ps-2 fw-bold text-white align-items-center">
+                    <div className="w-100 ps-2 fw-bold align-items-center text-white">
                         {result.name.toString()}
                     </div>
                 </div>
@@ -36,4 +41,4 @@ const SearchResultItem = (
     );
 };
 
-export default SearchResultItem;
+export default SearchResultAlbum;

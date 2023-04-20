@@ -49,9 +49,25 @@ export const getTrack = async (trackID) => {
     }
 };
 
-export const searchTracks = async (query) => {
+export const getAlbum = async (albumID) => {
     const token = await getToken();
-    const search_url = `https://api.spotify.com/v1/search?query=${query}&type=track&offset=0&limit=20`;
+
+    const album_url = `https://api.spotify.com/v1/albums/${albumID}`;
+    try {
+        const response = await axios.get(album_url, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const searchItems = async (query) => {
+    const token = await getToken();
+    const search_url = `https://api.spotify.com/v1/search?query=${query}&type=track,album&offset=0&limit=20`;
     try {
         const response = await axios.get(search_url, {
             headers: {
@@ -59,8 +75,15 @@ export const searchTracks = async (query) => {
             }
         });
         const result = await response.data;
-        //console.log(result)
-        return result.tracks.items;
+        //console.log(result.tracks.items);
+        //console.log(result.albums.items);
+        const items = {
+            tracks: result.tracks.items,
+            albums: result.albums.items
+        }
+        //console.log(items);
+        return items;
+        //return result.tracks.items;
     } catch (e) {
         console.log(query);
         console.log(e);

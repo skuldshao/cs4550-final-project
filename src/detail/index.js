@@ -1,12 +1,16 @@
 import React, {useState} from "react";
-import TrackDetail from "./detail"
+import TrackDetail from "./track-detail"
+import AlbumDetail from "./album-detail"
 import SongDetail from "./detail";
 import ReviewList from "../reviews";
 import WriteReview from "../reviews/write-review";
 import "../search/index.css"
+import { useParams } from "react-router-dom";
 
 
 function Detail() {
+
+    const {id} = useParams();
 
     const [itemDetails, setItemDetails] = useState({itemName: "", artist: []});
 
@@ -14,6 +18,15 @@ function Detail() {
     const handleItemDetailChange = (td) => {
         setItemDetails(td);
         item = itemDetails;
+    }
+
+    let detailComponent;
+
+    if (window.location.pathname.includes("/detail/track")) {
+        detailComponent = <TrackDetail returnItemDetails={handleItemDetailChange}/>
+    }
+    else if (window.location.pathname.includes("/detail/album")) {
+        detailComponent = <AlbumDetail returnItemDetails={handleItemDetailChange}/>
     }
 
 /*
@@ -27,10 +40,8 @@ function Detail() {
 
     return(
         <>
-            <TrackDetail returnItemDetails={handleItemDetailChange}/>
+            {detailComponent}
             <WriteReview getItemDetail={itemDetails}/>
-
-
 
         </>
     );

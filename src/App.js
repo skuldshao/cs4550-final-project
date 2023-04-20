@@ -43,7 +43,9 @@ function App() {
                                    element={<Search/>}/>
                             <Route path="/search/:query"
                                    element={<Search/>}/>
-                            <Route path="/detail/:id"
+                            <Route path="/detail/album/:id"
+                                   element={<Detail/>}/>
+                            <Route path="/detail/track/:id"
                                    element={<Detail/>}/>
                         </Routes>
                     </div>
