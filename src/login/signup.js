@@ -4,10 +4,11 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {createUserThunk, findUserThunk} from "../services/user-thunk";
-import {createAdminThunk, findAdminThunk} from "../services/admin-thunk";
-import {registerThunk as userRegisterThunk} from "../services/user-auth-thunk";
+import {findUserThunk} from "../services/user-thunk";
+import {findAdminThunk} from "../services/admin-thunk";
+import {logoutThunk as userLogoutThunk, registerThunk as userRegisterThunk} from "../services/user-auth-thunk";
 import {registerThunk as adminRegisterThunk} from "../services/user-auth-thunk";
+import {logoutThunk as adminLogoutThunk} from "../services/admin-auth-thunk";
 
 function Signup({inCode = false}) {
     const navigate = useNavigate();
@@ -98,6 +99,11 @@ function Signup({inCode = false}) {
     useEffect(() => {
         dispatch(findUserThunk());
         dispatch(findAdminThunk());
+    }, [])
+
+    useEffect(() => {
+        dispatch(adminLogoutThunk())
+        dispatch(userLogoutThunk())
     }, [])
 
     return (
