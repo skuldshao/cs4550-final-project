@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ProfileRoute from "./profile";
 import AdminProfileRouter from "./admin/admin-profile/AdminProfileRouter";
 import Nav from "../nav";
@@ -7,25 +7,26 @@ import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 import {useDispatch} from "react-redux";
 
 function Profile() {
-    let loggedIn = true;
-    let admin = false;
     const dispatch = useDispatch();
-    let userPayload;
-    let adminPayload;
+    const [admin, setAdmin] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false)
+    const getProfile = async () => {
+        const admins = await dispatch(adminProfileThunk());
+        const adVal = admins.type === "adminAuth/profile/fulfilled"
+        setAdmin(adVal);
+        const users = await dispatch(userProfileThunk())
+        const loggedInVal = users.type === "userAuth/profile/fulfilled" || admin
+        setLoggedIn(loggedInVal)
+    };
 
     useEffect(() => {
-        userPayload = dispatch(userProfileThunk());
-        adminPayload = dispatch(adminProfileThunk());
-
-        admin = adminPayload.type !== 'adminAuth/profile/rejected' && userPayload.type !== undefined;
-        loggedIn = (userPayload.type !== 'userAuth/profile/rejected' && userPayload.type !== undefined) || admin;
+        getProfile()
     }, []);
 
     return (
         <div>
             <Nav active="profile" user={admin ? "admin" : "user"}/>
-            {admin && <AdminProfileRouter/>}
-            {!admin && <ProfileRoute loggedIn={loggedIn}/>}
+            {admin ? <AdminProfileRouter/> : <ProfileRoute loggedIn={loggedIn}/>}
         </div>
     );
 }

@@ -95,28 +95,32 @@ function EditProfileAsAdmin({
                     }
                 </div>
                 <div className="ps-5 wd-off-white-fg">
+                    <label htmlFor="userInput" className="form-label fw-5 wd-gold fw-bold">User name</label>
+                    <input
+                        className="form-control  border-danger p-1 ps-1 shadow-none lh-1 fw-bold fs-5 bg-black text-secondary mb-2"
+                        id="userInput"
+                        placeholder="user name" value={userName}
+                        onChange={(event) => {
+                            setUsername(event.target.value)
+                        }}/>
+                    <label htmlFor="handleInput" className="form-label fw-5 wd-gold fw-bold">Handle</label>
                     <input type="text"
-                           className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary mb-2"
-                           id="userInput"
-                           placeholder="user name" value={userName}
-                           onChange={(event) => {
-                               setUsername(event.target.value)
-                           }}/>
-                    <input type="text"
-                           className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
+                           className="form-control d-inline-block  border-danger p-1 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
                            id="handleInput"
                            placeholder="@handle" value={`${handle}`}
                            onChange={(event) => {
                                setHandle(event.target.value)
                            }}/>
+                    <label htmlFor="numberInput" className="form-label fw-5 wd-gold fw-bold">Number</label>
                     <input type="text"
-                           className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
+                           className="form-control border-danger p-1 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
                            id="numberInput"
                            placeholder="number" value={number} onChange={(event) => {
                         setNumber(event.target.value)
                     }}/>
+                    <label htmlFor="emailInput" className="form-label fw-5 wd-gold fw-bold">Email</label>
                     <input type="email"
-                           className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+                           className="form-control d-inline-block  border-danger p-1 ps-1 shadow-none lh-1 bg-black text-secondary"
                            id="emailInput"
                            placeholder="email" value={email} onChange={(event) => {
                         setEmail(event.target.value)

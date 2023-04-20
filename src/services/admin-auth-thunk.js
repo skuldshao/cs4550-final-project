@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as authService from "./admin-auth-service";
 
 
@@ -16,6 +16,7 @@ export const logoutThunk = createAsyncThunk(
 
 export const profileThunk = createAsyncThunk(
     "adminAuth/profile", async () => {
+        console.log("in")
         return await authService.profile();
     });
 

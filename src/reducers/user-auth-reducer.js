@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {
     loginThunk, logoutThunk, profileThunk, registerThunk, updateUserThunk
 } from "../services/user-auth-thunk";
@@ -6,14 +6,12 @@ import {
 
 const userAuthSlice = createSlice({
     name: "userAuth",
-    initialState: { currentUser: null },
+    initialState: {currentUser: null},
     reducers: {},
     extraReducers: {
-        [loginThunk.fulfilled]: (state, { payload }) => {
+        [loginThunk.fulfilled]: (state, {payload}) => {
             state.loadingUser = false
             state.currentUser = payload
-            console.log(payload);
-            console.log(state.currentUser);
         },
         [loginThunk.rejected]:
             (state, action) => {
@@ -29,7 +27,7 @@ const userAuthSlice = createSlice({
                 state.loadingUser = false
                 state.error = action.error
             },
-        [registerThunk.fulfilled]: (state, { payload }) => {
+        [registerThunk.fulfilled]: (state, {payload}) => {
             state.loadingUser = false
             state.currentUser = payload
         },
@@ -38,7 +36,7 @@ const userAuthSlice = createSlice({
                 state.loadingUser = false
                 state.error = action.error
             },
-        [updateUserThunk.fulfilled]: (state, { payload }) => {
+        [updateUserThunk.fulfilled]: (state, {payload}) => {
             state.loadingUser = false
             state.currentUser = payload
         },
@@ -47,11 +45,9 @@ const userAuthSlice = createSlice({
                 state.loadingUser = false
                 state.error = action.error
             },
-        [profileThunk.fulfilled]: (state, { payload }) => {
+        [profileThunk.fulfilled]: (state, {payload}) => {
             state.loadingUser = false
             state.currentUser = payload
-            console.log(payload);
-            console.log(state.currentUser);
         },
         [profileThunk.rejected]:
             (state, action) => {

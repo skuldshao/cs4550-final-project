@@ -1,9 +1,9 @@
 import logoIcon from '../images/logo.png'
 import music from '../images/music.png'
 import {Link} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {loginThunk as adminLoginThunk} from "../services/admin-auth-thunk";
 import {loginThunk as userLoginThunk} from "../services/user-auth-thunk";
 
@@ -13,15 +13,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [alert, setAlert] = useState(false);
     const [adminKey, setAdminKey] = useState("");
-    const {users} = useSelector(state => state.userData);
-    const {admins} = useSelector(state => state.adminData);
-    const {userAuth} = useSelector(state => state.userAuth);
-    const {adminAuth} = useSelector(state => state.adminAuth);
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(adminLoginThunk());
-    //     dispatch(userLoginThunk());
-    // }, []);
     const handleLogin = async () => {
         let payload;
         try {

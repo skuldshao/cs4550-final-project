@@ -26,7 +26,7 @@ export const profile = async () => {
 
 
 export const updateAdmin = async (admin) => {
-    const response = await api.put(`${ADMIN_URL}/${admin._id}`, admin);
+    const response = await api.put(`${ADMIN_URL}/update`, admin);
     return response.data;
 };
 
