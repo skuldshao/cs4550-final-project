@@ -1,32 +1,82 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {
+    profileThunk as adminProfileThunk,
+    updateAdminThunk
+} from "../../services/admin-auth-thunk";
+import {
+    profileThunk as userProfileThunk,
+    updateUserThunk
+} from "../../services/user-auth-thunk";
 
 function ProfileHeaderEdit({
-                               user = {
-                                   "userName": "Rowlet",
-                                   "handle": "rowlie",
-                                   "avatarIcon": "profile3.jpeg",
-                                   "number": "123-456-7890",
-                                   "email": "rowlet@pokemon.com"
-                               }, active, type
+                               active, type
                            }) {
+
+    const [profile, setProfile] = useState({});
+    const dispatch = useDispatch();
+    const getAdminProfile = async () => {
+        const user = await dispatch(adminProfileThunk());
+        setProfile(user.payload);
+        setImage(user.payload.avatarIcon);
+        setUserName(user.payload.userName);
+        setEmail(user.payload.email);
+        setHandle(user.payload.handle);
+        setPassword(user.payload.password)
+        setNumber(user.payload.number)
+    };
+    const getUserProfile = async () => {
+        const user = await dispatch(userProfileThunk())
+        setProfile(user.payload);
+        setImage(user.payload.avatarIcon);
+        setUserName(user.payload.userName);
+        setEmail(user.payload.email);
+        setHandle(user.payload.handle);
+        setPassword(user.payload.password)
+        setNumber(user.payload.number)
+    };
+    useEffect(() => {
+        if (type === "admin") {
+            getAdminProfile();
+        } else {
+            getUserProfile();
+        }
+    }, []);
+
+
     const [changePhoto, setChangePhoto] = useState(false);
-    const [image, setImage] = useState(user.avatarIcon);
-    const [userName, setUserName] = useState(user.userName);
-    const [email, setEmail] = useState(user.email);
-    const [number, setNumber] = useState(user.number);
-    const [handle, setHandle] = useState(user.handle);
-    const [password, setPassword] = useState(user.password);
+    const [image, setImage] = useState("profile1.jpeg");
+    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [number, setNumber] = useState();
+    const [handle, setHandle] = useState("");
+    const [password, setPassword] = useState("");
 
     const updateUser = () => {
-        user = {
-            ...user,
-            avatarIcon: image,
-            userName,
-            email,
-            number,
-            handle,
-            password
+        if (type === "admin") {
+            const newAdmin = {
+                ...profile,
+                avatarIcon: image,
+                userName,
+                email,
+                number,
+                handle,
+                password
+
+            }
+            dispatch(updateAdminThunk(newAdmin))
+        } else {
+            const newUser = {
+                ...profile,
+                avatarIcon: image,
+                userName,
+                email,
+                number,
+                handle,
+                password
+            }
+            dispatch(updateUserThunk(newUser))
         }
     }
     return (
@@ -105,28 +155,34 @@ function ProfileHeaderEdit({
                     }
                 </div>
                 <div className="ps-5 wd-off-white-fg">
-                    <input type="text"
-                           className="form-control border-secondary p-0 ps-1 shadow-none lh-1 fw-bold fs-1 bg-black text-secondary mb-2"
-                           id="userInput"
-                           placeholder="user name" value={userName}
-                           onChange={(event) => setUserName(event.target.value)}/>
-                    <input type="text"
-                           className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
-                           id="handleInput"
-                           placeholder="@handle" value={`${handle}`}
-                           onChange={(event) => setHandle(event.target.value)}/>
-                    <input type="text"
-                           className="form-control border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
-                           id="numberInput"
-                           placeholder="number" value={number} onChange={(event) => setNumber(event.target.value)}/>
+                    <label htmlFor="userInput" className="wd-gold fs-5 fw-bold form-label">Username</label>
+                    <input
+                        className="form-control  border-danger p-1 ps-1 shadow-none lh-1 fw-bold fs-5 bg-black text-secondary mb-2"
+                        id="userInput"
+                        placeholder="user name" value={userName}
+                        onChange={(event) => setUserName(event.target.value)}/>
+                    <label htmlFor="handleInput" className="wd-gold fs-5 fw-bold form-label">Handle</label>
+                    <input
+                        className="form-control border-danger p-1 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
+                        id="handleInput"
+                        placeholder="@handle" value={`${handle}`}
+                        onChange={(event) => setHandle(event.target.value)}/>
+                    <label htmlFor="numberInput" className="wd-gold fs-5 fw-bold form-label">Phone Number</label>
+                    <input
+                        className="form-control border-danger p-1 ps-1 shadow-none lh-1 bg-black text-secondary mb-1"
+                        id="numberInput"
+                        placeholder="phone number" value={number}
+                        onChange={(event) => setNumber(Number(event.target.value))}/>
+                    <label htmlFor="emailInput" className="wd-gold fs-5 fw-bold form-label">Email</label>
                     <input type="email"
-                           className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+                           className="form-control d-inline-block border-danger p-1 ps-1 shadow-none lh-1 bg-black text-secondary"
                            id="emailInput"
                            placeholder="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                    <label htmlFor="passwordInput" className="wd-gold fs-5 fw-bold form-label">Password</label>
                     <input type="password"
-                           className="form-control d-inline-block border-secondary p-0 ps-1 shadow-none lh-1 bg-black text-secondary"
+                           className="form-control d-inline-block border-danger p-1 ps-1 shadow-none lh-1 bg-black text-secondary"
                            id="passwordInput"
-                           placeholder="password" type="password" value={password}
+                           placeholder="password" value={password}
                            onChange={(event) => setPassword(event.target.value)}/>
                 </div>
             </div>

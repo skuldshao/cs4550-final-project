@@ -14,29 +14,29 @@ const AdminProfileRouter = () => {
             <Route path="edit"
                    element={<AdminProfileEdit/>}/>
             <Route path="edit/:uid"
-                   element={<EditProfileAsAdminRouter tabs={{ active: "overview" }}/>}/>
+                   element={<EditProfileAsAdminRouter tabs={{active: "overview"}}/>}/>
             <Route path="edit/reviews/:uid"
-                   element={<EditProfileAsAdminRouter tabs={{ active: "reviews" }}/>}/>
+                   element={<EditProfileAsAdminRouter tabs={{active: "reviews"}}/>}/>
             <Route path="edit/following/:uid"
-                   element={<EditProfileAsAdminRouter tabs={{ active: "following" }}/>}/>
+                   element={<EditProfileAsAdminRouter tabs={{active: "following"}}/>}/>
             <Route path="edit/followers/:uid"
-                   element={<EditProfileAsAdminRouter tabs={{ active: "followers" }}/>}/>
+                   element={<EditProfileAsAdminRouter tabs={{active: "followers"}}/>}/>
             <Route path="edit/favoriteSongs/:uid"
-                   element={<EditProfileAsAdminRouter tabs={{ active: "favoriteSongs" }}/>}/>
+                   element={<EditProfileAsAdminRouter tabs={{active: "favoriteSongs"}}/>}/>
             <Route path="edit/newSongs/:uid"
-                   element={<EditProfileAsAdminRouter tabs={{ active: "newSongs" }}/>}/>
+                   element={<EditProfileAsAdminRouter tabs={{active: "newSongs"}}/>}/>
             <Route path=":uid"
-                   element={<ViewProfileAsAdminRouter tabs={{ active: "overview" }}/>}/>
+                   element={<ViewProfileAsAdminRouter tabs={{active: "overview"}}/>}/>
             <Route path="reviews/:uid"
-                   element={<ViewProfileAsAdminRouter tabs={{ active: "reviews" }}/>}/>
+                   element={<ViewProfileAsAdminRouter tabs={{active: "reviews"}}/>}/>
             <Route path="following/:uid"
-                   element={<ViewProfileAsAdminRouter tabs={{ active: "following" }}/>}/>
+                   element={<ViewProfileAsAdminRouter tabs={{active: "following"}}/>}/>
             <Route path="followers/:uid"
-                   element={<ViewProfileAsAdminRouter tabs={{ active: "followers" }}/>}/>
+                   element={<ViewProfileAsAdminRouter tabs={{active: "followers"}}/>}/>
             <Route path="favoriteSongs/:uid"
-                   element={<ViewProfileAsAdminRouter tabs={{ active: "favoriteSongs" }}/>}/>
+                   element={<ViewProfileAsAdminRouter tabs={{active: "favoriteSongs"}}/>}/>
             <Route path="newSongs/:uid"
-                   element={<ViewProfileAsAdminRouter tabs={{ active: "newSongs" }}/>}/>
+                   element={<ViewProfileAsAdminRouter tabs={{active: "newSongs"}}/>}/>
         </Routes>
     )
 }

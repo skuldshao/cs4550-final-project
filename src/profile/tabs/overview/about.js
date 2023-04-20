@@ -17,6 +17,7 @@ function About({
             <div className="pb-2">Joined {user.joined}</div>
             {isEditing ?
                 <form>
+                    <label htmlFor="biographyInput" className="text-white fs-6 fw-bold">Biography</label>
                     <textarea
                         className="form-control border-secondary p-1 ps-2 mb-3 shadow-none lh-base bg-black text-secondary"
                         id="biographyInput"

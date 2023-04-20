@@ -1,11 +1,11 @@
 import logoIcon from '../images/logo.png'
 import music from '../images/music.png'
 import {Link} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router";
-import {useDispatch, useSelector} from "react-redux";
-import {findUserThunk} from "../services/user-thunk";
-import {findAdminThunk} from "../services/admin-thunk";
+import {useDispatch} from "react-redux";
+import {loginThunk as adminLoginThunk} from "../services/admin-auth-thunk";
+import {loginThunk as userLoginThunk} from "../services/user-auth-thunk";
 
 function Login() {
     const navigate = useNavigate();
@@ -13,36 +13,30 @@ function Login() {
     const [password, setPassword] = useState("");
     const [alert, setAlert] = useState(false);
     const [adminKey, setAdminKey] = useState("");
-    const {users} = useSelector(state => state.userData);
-    const {admins} = useSelector(state => state.adminData);
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(findUserThunk());
-        dispatch(findAdminThunk());
-    }, []);
-    const handleLogin = () => {
-        let indexUser = -1;
-        let indexAdmin = -1;
-        if (adminKey !== "") {
-            indexAdmin = admins.findIndex(u => u.email === email && u.password === password);
-            if (indexAdmin !== -1) {
-                if (adminKey === ADMINKEY) {
+    const handleLogin = async () => {
+        let payload;
+        try {
+            if (adminKey !== "") {
+                console.log("here");
+                payload = await dispatch(adminLoginThunk({email, password}));
+                if (adminKey === ADMINKEY && payload.type !== 'userAuth/login/rejected') {
                     navigate("/home")
                 } else {
                     setAlert(true);
                 }
             } else {
-                setAlert(true);
+                // console.log("there");
+                payload = await dispatch(userLoginThunk({email, password}));
+                if (payload.type === 'userAuth/login/rejected') {
+                    setAlert(true);
+                } else {
+                    navigate("/home");
+                }
             }
-        } else {
-            indexUser = users.findIndex(u => u.email === email && u.password === password);
-        }
-        if (indexUser !== -1) {
-            const user = users.find(u => u.email === email && u.password === password);
-            // navigate(-1)
-            navigate("/home")
-        } else {
-            setAlert(true)
+        } catch (e) {
+            console.log(e);
+            setAlert(true);
         }
 
     }

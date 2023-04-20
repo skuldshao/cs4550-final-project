@@ -4,8 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {createUserThunk, deleteUserThunk, updateUserThunk} from "../services/user-thunk";
 import {createAdminThunk, deleteAdminThunk, updateAdminThunk} from "../services/admin-thunk";
 
-const UserItem = ({user, roles}) => {
-    const currentUser = 5;
+const UserItem = ({user, roles, currentProfile}) => {
+    const currentUser = currentProfile._id;
     const dispatch = useDispatch();
     const {users} = useSelector(state => state.userData);
     const {admins} = useSelector(state => state.adminData)
