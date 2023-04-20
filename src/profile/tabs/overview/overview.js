@@ -10,29 +10,7 @@ import {profileThunk as userProfileThunk} from "../../../services/user-auth-thun
 
 
 function OverView({
-                      tabs, isEditing, isSelf, user = {
-        "userName": "SpaceX",
-        "_id": 5,
-        "handle": "2h",
-        "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-        "number": "89977",
-        "email": "blah",
-        "following": [],
-        "followers": [],
-        "comments": [],
-        "reviews": [],
-        "favoriteSongs": [],
-        "newSongs": []
-    }, currentUser = {
-        "userName": "SpaceX",
-        "_id": 5,
-        "handle": "2h",
-        "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
-        "number": "879876",
-        "email": "blah",
-        "following": [],
-        "followers": []
-    }, loggedIn
+                      tabs, isEditing, isSelf, user, currentUser, loggedIn
                   }
 ) {
     const [profile, setProfile] = useState({});
@@ -51,12 +29,12 @@ function OverView({
         <div>
             {!loading &&
             <div className="wd-black-bg text-start">
-                {!isSelf ? <WhoseProfile user={user} currentUser={currentUser} loggedIn={loggedIn}/> :
+                {!isSelf ? <WhoseProfile uid={user._id} currentUser={profile} loggedIn={loggedIn}/> :
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> :
                         <ProfileHeader active={tabs.active} profile={profile}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}
-                        followers={profile.followers.length}
-                        following={profile.following.length}/>
+                        followers={user.followers.length}
+                        following={user.following.length}/>
                 <div className="row ms-5 mt-3">
                     <div className="col-xl-6 col-sm-7 col-8 text-white">
                         <p className="fw-bold fs-5">RECENT ACTIVITY</p>

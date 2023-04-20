@@ -21,6 +21,7 @@ function FollowItem({fid, loggedIn, isEditing}) {
     const [isFollowing, setIsFollowing] = useState(true)
     const [userFollowers, setUserFollowers] = useState([])
     const [currentUserFollowing, setCurrentUserFollowing] = useState([])
+    const [isSelf, setIsSelf] = useState(false);
 
     useEffect(() => {
         getUserByUsername();
@@ -29,11 +30,12 @@ function FollowItem({fid, loggedIn, isEditing}) {
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
     const getUserProfile = async () => {
-        const user = await dispatch(userProfileThunk())
-        setProfile(user.payload);
+        const users = await dispatch(userProfileThunk())
+        setProfile(users.payload);
         setLoading(false)
-        setCurrentUserFollowing(user.payload.following);
-        setIsFollowing(user.payload.following.includes(fid))
+        setCurrentUserFollowing(users.payload.following);
+        setIsFollowing(users.payload.following.includes(fid))
+        setIsSelf(users.payload._id === fid)
     };
     useEffect(() => {
         dispatch(userProfileThunk())
@@ -50,34 +52,38 @@ function FollowItem({fid, loggedIn, isEditing}) {
                 <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"
                         onClick={() => setAlert(false)}/>
             </div>}
-            {(user && !loading) && <div className="d-flex justify-content-between">
-                <Link to={`/profile/${user._id}`}>
+            {(user && !loading) &&
+            <div className={`d-flex ${isSelf ? 'justify-content-start' : 'justify-content-between'}`}>
+                <Link to={isSelf ? '/profile' : `/profile/${user._id}`}>
                     <img className="rounded-circle pt-0 align-self-center" width={45} height={45}
                          src={`/images/${user.avatarIcon}`}/>
                 </Link>
                 <div className="ms-3">
-                    <Link to={`/profile/${user._id}`} className="text-white text-decoration-none fs-5 fw-bold ">
+                    <Link to={isSelf ? '/profile' : `/profile/${user._id}`}
+                          className="text-white text-decoration-none fs-5 fw-bold ">
                         {user.userName}<br/>
                         <span className="text-secondary fw-normal"> @{user.handle}</span>
                     </Link>
                 </div>
-                {loggedIn && (isFollowing ?
-                    <button
-                        className={`btn btn-danger text-black rounded-3 fw-bold rounded-3 ms-auto align-self-center me-5`}
-                        disabled={isEditing}
-                        onClick={() => {
+                {(loggedIn && !isSelf) && (isFollowing ?
+                    <>
+                        <button
+                            className={`btn btn-danger text-black rounded-3 fw-bold rounded-3 ms-auto align-self-center me-5`}
+                            disabled={isEditing}
+                            onClick={() => {
 
-                            const newFollowers = userFollowers.filter(f => f !== profile._id)
-                            const newFollowing = currentUserFollowing.filter(f => f !== user._id)
-                            setUserFollowers(newFollowers)
-                            setCurrentUserFollowing(newFollowing)
-                            dispatch(updateUserThunk({...user, "followers": newFollowers}))
-                            dispatch(updateCurrentUserThunk({...profile, "following": newFollowing}))
-                            setIsFollowing(!isFollowing)
-                        }
-                        }>
-                        FOLLOWING
-                    </button> :
+                                const newFollowers = userFollowers.filter(f => f !== profile._id)
+                                const newFollowing = currentUserFollowing.filter(f => f !== user._id)
+                                setUserFollowers(newFollowers)
+                                setCurrentUserFollowing(newFollowing)
+                                dispatch(updateUserThunk({...user, "followers": newFollowers}))
+                                dispatch(updateCurrentUserThunk({...profile, "following": newFollowing}))
+                                setIsFollowing(!isFollowing)
+                            }
+                            }>
+                            FOLLOWING
+                        </button>
+                    </> :
                     <button className="btn btn-outline-danger rounded-3 fw-bold ms-auto align-self-center me-5"
                             disabled={isEditing}
                             onClick={() => {

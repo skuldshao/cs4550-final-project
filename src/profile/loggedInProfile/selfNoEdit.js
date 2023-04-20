@@ -28,7 +28,7 @@ const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
         <div>
             {!loading &&
             <div className="wd-black-bg text-start">
-                {!isSelf ? <WhoseProfile user={profile} currentUser={profile} loggedIn={loggedIn}/> :
+                {!isSelf ? <WhoseProfile uid={profile._id} loggedIn={loggedIn}/> :
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> :
                         <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={profile} isSelf={isSelf}

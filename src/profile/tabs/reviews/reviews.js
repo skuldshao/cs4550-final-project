@@ -44,7 +44,7 @@ function Reviews({
     return (
         <div>
             {!loading && <div className="wd-black-bg text-start">
-                {!isSelf ? <WhoseProfile user={user} currentUser={currentUser} loggedIn={loggedIn}/> :
+                {!isSelf ? <WhoseProfile uid={user._id} loggedIn={loggedIn}/> :
                     (isEditing ? <ProfileHeaderEdit active={tabs.active}/> :
                         <ProfileHeader active={tabs.active} profile={profile}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={user} isSelf={isSelf}
