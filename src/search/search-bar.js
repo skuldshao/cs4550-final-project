@@ -83,7 +83,6 @@ function SearchBar() {
                 </div>
                 <br></br>
                 {
-
                         <div className="d-flex ms-2 mb-1">
                     <input type="radio"
                            value="tracks"
