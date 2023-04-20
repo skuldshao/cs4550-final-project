@@ -36,7 +36,7 @@ const ListenToMoreNotSelf = ({
                 <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}
                         followers={user.followers.length} following={user.following.length}/>
                 {
-                    profile.newSongs.length > 0 ? profile.newSongs.map(f => <PlaylistItem
+                    user.newSongs.length > 0 ? user.newSongs.map(f => <PlaylistItem
                             item={f}/>) :
                         <span
                             className="d-flex justify-content-start text-white ms-5 fw-normal mt-3 mb-3 fs-5">{user.userName} has no songs in their new songs playlist</span>
