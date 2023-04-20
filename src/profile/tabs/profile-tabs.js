@@ -1,11 +1,5 @@
 import React from "react";
 import {Routes, Route} from "react-router";
-import Overview from "./overview/overview";
-import Reviews from "./reviews/reviews";
-import Following from "./follow/following/following";
-import Followers from "./follow/followers/followers";
-import ListenToMore from "./playlists/listenToMore/listenToMore";
-import Favorites from "./playlists/favorites/favorites";
 import Self from "../loggedInProfile/selfNoEdit";
 
 function ProfileTabs({isEditing = false, isSelf = false, loggedIn = true}) {
