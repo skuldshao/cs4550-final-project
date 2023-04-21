@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {profileThunk as userProfileThunk} from "../../services/user-auth-thunk";
-import WhoseProfile from "../view-profile/whose-profile";
 import ProfileHeaderEdit from "./profile-header-edit";
 import ProfileHeader from "./profile-header";
 import NavTab from "../tabs/tab-nav";
@@ -10,8 +9,10 @@ import About from "../tabs/overview/about";
 import ReviewItem from "../tabs/reviews/reviewItem";
 import FollowItem from "../tabs/follow/followItem";
 import PlaylistItem from "../tabs/playlists/playlistItem";
+import {findUserThunk} from "../../services/user-thunk";
 
 const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
+    const {users, display} = useSelector((state) => state.userData)
     const [profile, setProfile] = useState({});
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
@@ -22,15 +23,15 @@ const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
     };
     useEffect(() => {
         dispatch(userProfileThunk())
+        dispatch(findUserThunk())
         getUserProfile();
     }, []);
     return (
         <div>
-            {!loading &&
+            {(!loading && display) &&
             <div className="wd-black-bg text-start">
-                {!isSelf ? <WhoseProfile uid={profile._id} loggedIn={loggedIn}/> :
-                    (isEditing ? <ProfileHeaderEdit active={tabs.active}/> :
-                        <ProfileHeader active={tabs.active}/>)}
+                {(isEditing ? <ProfileHeaderEdit active={tabs.active}/> :
+                    <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={profile} isSelf={isSelf}
                         followers={profile.followers.length}
                         following={profile.following.length}/>
@@ -53,20 +54,22 @@ const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
                     }
                 </div>}
                 {tabs.active === "following" && <div className="wd-black-bg align-items-center">
-                    {profile.following.length === 0 ? (isSelf ?
+                    {(users.find(u => u._id === profile._id)).following.length === 0 ? (isSelf ?
                             <span className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-1">You are not following anyone</span> :
                             <span
                                 className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-1">{profile.userName} is not following anyone</span>) :
-                        profile.following.map(followingItem => <FollowItem fid={followingItem}
-                                                                           loggedIn={loggedIn} isEditing={isEditing}/>)}
+                        (users.find(u => u._id === profile._id)).following.map(followingItem => <FollowItem
+                            fid={followingItem}
+                            loggedIn={loggedIn} isEditing={isEditing}/>)}
                 </div>}
                 {tabs.active === "followers" && <div className="wd-black-bg align-items-center">
-                    {profile.followers.length === 0 ? (isSelf ? <span
+                    {(users.find(u => u._id === profile._id)).followers.length === 0 ? (isSelf ? <span
                                 className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">You have no followers</span> :
                             <span
                                 className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">{profile.userName} has no followers</span>) :
-                        profile.followers.map(followerItem => <FollowItem fid={followerItem}
-                                                                          loggedIn={loggedIn} isEditing={isEditing}/>)}
+                        (users.find(u => u._id === profile._id)).followers.map(followerItem => <FollowItem
+                            fid={followerItem}
+                            loggedIn={loggedIn} isEditing={isEditing}/>)}
                 </div>}
                 {tabs.active === "favoriteSongs" && <div>
                     {

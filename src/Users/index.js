@@ -34,7 +34,7 @@ const Users = () => {
                 </div>
                 <div className="d-flex justify-content-center">You do not have admin privileges to view this page</div>
             </div>}
-            {!loggedIn && <div className="text-white fs-5 fw-bold mb-2 ms-3">
+            {(!loggedIn && !admin) && <div className="text-white fs-5 fw-bold mb-2 ms-3">
                 <div className='imageLayout d-flex justify-content-center'>
                     <img src={logoIcon} className="logo" width="100%"/>
                 </div>
