@@ -28,7 +28,7 @@ function OverViewNotSelf({tabs, user, loggedIn}
         <div>
             {!loading &&
             <div className="wd-black-bg text-start">
-                <WhoseProfile uid={user._id} currentUser={profile} loggedIn={loggedIn}/>
+                <WhoseProfile uid={user._id} loggedIn={loggedIn}/>
                 <NavTab tabs={tabs} isEditing={false} user={user} isSelf={false}
                         followers={user.followers.length}
                         following={user.following.length}/>

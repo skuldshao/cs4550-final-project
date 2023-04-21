@@ -22,16 +22,13 @@ function Login() {
         let payload;
         try {
             if (adminKey !== "") {
-                console.log("here");
                 payload = await dispatch(adminLoginThunk({email, password}));
-                console.log(payload)
                 if (adminKey === ADMINKEY && payload.type !== 'adminAuth/login/rejected') {
                     navigate("/home")
                 } else {
                     setAlert(true);
                 }
             } else {
-                // console.log("there");
                 payload = await dispatch(userLoginThunk({email, password}));
                 if (payload.type === 'userAuth/login/rejected') {
                     setAlert(true);
@@ -40,7 +37,6 @@ function Login() {
                 }
             }
         } catch (e) {
-            console.log(e);
             setAlert(true);
         }
 

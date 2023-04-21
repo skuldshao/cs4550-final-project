@@ -13,9 +13,9 @@ const WhoseProfile = ({uid, loggedIn}) => {
     const [user, setUser] = useState({});
     const [alert, setAlert] = useState(false)
     const getUserByUsername = async () => {
-        const user = await userService.findUserById(uid);
-        setUser(user);
-        setUserFollowers(user.followers)
+        const users = await userService.findUserById(uid);
+        setUser(users);
+        setUserFollowers(users.followers)
     };
 
     const [isFollowing, setIsFollowing] = useState(true)
@@ -81,7 +81,6 @@ const WhoseProfile = ({uid, loggedIn}) => {
                                         const newFollowers = [...userFollowers, profile._id]
                                         const newFollowing = [...currentUserFollowing, user._id]
                                         setUserFollowers(newFollowers)
-                                        setUserFollowers(newFollowing)
                                         setCurrentUserFollowing(newFollowing)
                                         dispatch(updateUserThunk({...user, "followers": newFollowers}))
                                         dispatch(updateCurrentUserThunk({...profile, "following": newFollowing}))
