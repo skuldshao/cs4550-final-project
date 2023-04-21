@@ -4,9 +4,8 @@ import About from "../../tabs/overview/about";
 const AdminProfileEdit = () => {
     return (
         <div>
-            <ProfileHeaderEdit type="admin"/>
-            <div className="mt-4 ms-5 me-5">
-                <About isEditing={true} type="admin"/>
+            <div className="mb-4">
+                <ProfileHeaderEdit type="admin"/>
             </div>
         </div>
     )
