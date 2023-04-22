@@ -26,14 +26,6 @@ function TrackDetail(props) {
         fetchTrack();
     }, []);
 
-    /*
-    Todo:
-     adjust data (duration ms -> xx:xx format)
-     check for empty cases
-     map (artists, genres)
-     link to album page
-     */
-
     //console.log(artists[0]);
     return (
         <div className="container wd-white">
