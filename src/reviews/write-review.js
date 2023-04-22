@@ -26,15 +26,17 @@ const WriteReview = (itemDetail) => {
     }
 
     const [profile, setProfile] = useState({});
+    const [loading, setLoading] = useState(true);
     const getProfile = async () => {
-        const admins = await dispatch(userProfileThunk());
-        const adVal = admins.payload;
-        setProfile(adVal);
+        const profileData = await dispatch(userProfileThunk());
+        const profile = profileData.payload;
+        setProfile(profile);
+        setLoading(false);
     };
 
     useEffect(() => {
         getProfile()
-    }, []);
+    }, [loading]);
 
     const dispatch = useDispatch();
 
@@ -49,7 +51,7 @@ const WriteReview = (itemDetail) => {
             // const current = new Date();
             const newReview = {
                 itemId: id,
-                //userId: profile.id,
+                userId: profile._id,
                 itemName: itemDetail.getItemDetail.itemName,
                 artist: itemDetail.getItemDetail.artist,
                 //art: profile.avatarIcon,

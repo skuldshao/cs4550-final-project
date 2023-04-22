@@ -93,9 +93,9 @@ export const HomeList = ({activityItem, currentID}) => {
                                      height="50" width="50"/>
                             </div>
                             <div className="ms-2 align-self-center">
-                                {isSelf ? 'You' :
+                                {isSelf ? 'You ' :
                                     <>a new <span
-                                        className="fw-bold">{activityItem.kind}</span>, {activityItem.user.userName}</>},
+                                        className="fw-bold">{activityItem.kind}</span> {activityItem.user.userName} </>}
                                 just <span
                                 className="fw-bold">joined </span>
                             </div>
