@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import {getGenres} from "./detail";
 import { useParams } from "react-router-dom";
 import { getAlbum } from "../services/spotify-service"
-import TrackDetail from "./track-detail";
 import {Link} from "react-router-dom"
 
 
@@ -19,14 +19,14 @@ function AlbumDetail(props) {
         setArtists(album.artists);
         const tracks = album.tracks.items;
         setTracks(tracks);
-        //props.returnItemDetails({itemName: album.name, artist: artists[0].name})
+        props.returnItemDetails({itemName: album.name, artist: artists[0].name})
     }
 
     useEffect(() => {
         fetchAlbum();
     }, []);
 
-    console.log(tracks);
+    console.log(album.genres);
 
     return (
         <div className="container text-white">
@@ -36,16 +36,19 @@ function AlbumDetail(props) {
             <div className="row border">
                 <div className="col-lg-8 col-xl-8 col-xxl-8 col-md-6 col-sm-6 col-xs-6 col-6">
                     <div className="row border">
-                        artist: {artists[0] && artists[0].name}
+                        <span><b>artist:</b> {artists[0] && artists[0].name}</span>
                     </div>
                     <div className="row border">
-                        release date: {album.release_date}
+                        <span><b>release date:</b> {album.release_date}</span>
                     </div>
+                    {
+                        album.genres && (album.genres.length >= 1) &&
+                        <div className="row border">
+                            <span><b>genre:</b> {getGenres(album.genres)}</span>
+                        </div>
+                    }
                     <div className="row border">
-                        genre:
-                    </div>
-                    <div className="row border">
-                        popularity: {album.popularity}
+                        <span><b>popularity:</b> {album.popularity}</span>
                     </div>
                     <div className="row">
                         <h2>Tracks</h2>
@@ -55,7 +58,7 @@ function AlbumDetail(props) {
                         <ol className="list-group list-group-flush ps-5">
                             {
                                 tracks.map((result) =>
-                                    <Link to={`/detail/tracks/${result.id}`} className="text-">
+                                    <Link to={`/detail/tracks/${result.id}`} className="text-white">
                                         <li>
                                             {result.name}
                                         </li>

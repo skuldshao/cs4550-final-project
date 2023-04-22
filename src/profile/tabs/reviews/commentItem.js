@@ -4,10 +4,10 @@ import reviews from "../../../data/reviews.json"
 import React from "react";
 
 const CommentItem = ({item, date}) => {
-    const nx = reviews.findIndex(r => r._id === item.reviewID)
+    const nx = reviews.findIndex(r => r._id === item.reviewId)
     let review;
     if (nx !== -1) {
-        review = reviews.find(r => r._id === item.reviewID);
+        review = reviews.find(r => r._id === item.reviewId);
     }
     return (
         <div className="ms-5 mt-3 mb-3">
@@ -16,19 +16,19 @@ const CommentItem = ({item, date}) => {
                 <div className="row wd-black-bg align-items-center">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex justify-content-start me-2">
-                            <Link to={`/detail/${review.itemID}`}
+                            <Link to={`/detail/${review.itemId}`}
                                   className="text-white text-decoration-none fs-5 fw-bold">
                                 <img width={50} height={50} src={review.art} className="align-self-center"/>
                             </Link>
                             <div className="ms-3">
                                 <div className="text-secondary w-100">
-                                    <Link to={`/detail/${review.itemID}`}
+                                    <Link to={`/detail/${review.itemId}`}
                                           className="text-white text-decoration-none fs-5 fw-bold">
                                         {review.itemName}
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link to={`/detail/${review.itemID}`}
+                                    <Link to={`/detail/${review.itemId}`}
                                           className="text-secondary text-decoration-none fs-5 fw-normal">
                                         {review.artist && review.artist}
                                     </Link>
@@ -40,7 +40,7 @@ const CommentItem = ({item, date}) => {
                 </div>
                 <div className="mt-2">
                     <div className="ms-3 align-self-center">
-                        <Link to={`/detail/${review.itemID}/${item.reviewID}`}
+                        <Link to={`/detail/${review.itemId}/${item.reviewID}`}
                               className="text-white text-decoration-none fw-bold">
                             {<div className="wd-black-bg align-items-center fw-normal wd-gold">
                                 <div className="">
