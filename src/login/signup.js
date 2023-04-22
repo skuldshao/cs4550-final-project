@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findUserThunk} from "../services/user-thunk";
 import {findAdminThunk} from "../services/admin-thunk";
 import {logoutThunk as userLogoutThunk, registerThunk as userRegisterThunk} from "../services/user-auth-thunk";
-import {registerThunk as adminRegisterThunk} from "../services/user-auth-thunk";
+import {registerThunk as adminRegisterThunk} from "../services/admin-auth-thunk";
 import {logoutThunk as adminLogoutThunk} from "../services/admin-auth-thunk";
 
 function Signup({inCode = false}) {
@@ -46,7 +46,8 @@ function Signup({inCode = false}) {
             }
             payload = dispatch(userRegisterThunk(user));
             if (payload.type !== 'userAuth/registerUser/rejected') {
-                navigate("/home")
+                dispatch(userLogoutThunk())
+                navigate("/login")
             }
             clearFields();
         } else {
@@ -62,11 +63,12 @@ function Signup({inCode = false}) {
             payload = dispatch(adminRegisterThunk(admin));
             clearFields();
             if (payload.type !== 'adminAuth/registerAdmin/rejected') {
-                navigate("/home")
+                dispatch(adminLogoutThunk())
+                navigate("/login")
             }
         }
         if (!inCode) {
-            navigate("/home")
+            navigate("/login")
         }
     }
 
