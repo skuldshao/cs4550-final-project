@@ -39,7 +39,7 @@ function FollowingNotSelf(
                         followers={user.followers.length} following={user.following.length}/>
                 <div className="wd-black-bg align-items-center">
                     {user.following.length === 0 ? <span
-                            className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-1">{user.userName} is not following anyone</span> :
+                            className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">{user.userName} is not following anyone</span> :
                         user.following.map(followingItem => <FollowItem fid={followingItem} currentUser={profile}
                                                                         loggedIn={loggedIn}/>)}
                 </div>

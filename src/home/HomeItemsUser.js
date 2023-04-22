@@ -21,7 +21,7 @@ const HomeItemsUser = ({users}) => {
     useEffect(() => {
         dispatch(userProfileThunk())
         getUserProfile();
-    }, []);
+    }, [newUsers]);
 
     let overviewList = [];
     for (let i = 0; i < newUsers.length; i++) {
