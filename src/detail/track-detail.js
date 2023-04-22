@@ -62,7 +62,7 @@ function TrackDetail(props) {
                     </div>
 
                     {   track.preview_url &&
-                        <div className="row border">
+                        <div className="row border p-2">
                             <audio controls src={track.preview_url}></audio>
                         </div>
                     }
