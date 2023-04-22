@@ -18,20 +18,24 @@ const ReviewList = ({
     const {id} = useParams();
     const {reviews, loading} = useSelector(state => state.review)
     const dispatch = useDispatch();
-    const [admin, setAdmin] = useState(false);
+    // const [profile, setProfile] = useState({});
     const [loggedIn, setLoggedIn] = useState(false)
     const getProfile = async () => {
-        const admins = await dispatch(adminProfileThunk());
-        const adVal = admins.type === "adminAuth/profile/fulfilled"
-        setAdmin(adVal);
-        const users = await dispatch(userProfileThunk())
-        const loggedInVal = users.type === "userAuth/profile/fulfilled" || admin
+        const user = await dispatch(userProfileThunk())
+        const loggedInVal = user.type === "userAuth/profile/fulfilled"
         setLoggedIn(loggedInVal)
+        // if (loggedInVal) {
+        //     const userVal = user.payload;
+        //     setProfile(userVal);
+        //     console.log(userVal);
+        //     console.log(profile);
+        // }
+        // console.log(profile);
     };
 
     useEffect(() => {
-        getProfile()
         dispatch(findReviewBySongIdThunk(id));
+        getProfile();
     }, []);
 
     // console.log(loggedIn)
@@ -46,7 +50,7 @@ const ReviewList = ({
             }
             {
                 reviews.map(review =>
-                    <ReviewItem key={review._id} review={review}/>)
+                    <ReviewItem key={review._id} review={review} loggedIn={loggedIn}/>)
             }
         </ul>
     );

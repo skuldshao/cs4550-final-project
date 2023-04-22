@@ -32,7 +32,7 @@ function Detail() {
         getProfile()
     }, []);
 
-    console.log(loggedIn)
+    //console.log(loggedIn)
 
     const [itemDetails, setItemDetails] = useState({itemName: "", artist: []});
 
@@ -64,7 +64,7 @@ function Detail() {
         <>
             <Nav user="user" active="search"/>
             {detailComponent}
-            {loggedIn? <WriteReview getItemDetail={itemDetails}/> : <></>}
+            {loggedIn && !admin? <WriteReview getItemDetail={itemDetails}/> : <></>}
             <ReviewList/>
 
         </>
