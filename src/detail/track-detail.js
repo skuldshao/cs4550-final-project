@@ -19,9 +19,11 @@ function TrackDetail(props) {
         setAlbum(album);
 
         console.log(track);
-        console.log(album);
+        console.log(album.images[0].url);
 
-        props.returnItemDetails({itemName: track.name, artist: artists[0].name});
+
+
+        props.returnItemDetails({itemName: track.name, artist: artists[0].name, art: album.images[0].url});
         //console.log("in detail: " + artists[0].name);
     };
 
