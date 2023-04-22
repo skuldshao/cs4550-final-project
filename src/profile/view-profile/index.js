@@ -53,7 +53,7 @@ const ViewProfile = ({tabs, loggedIn}) => {
                 </div>}
                 {tabs.active === "following" && <div className="wd-black-bg align-items-center">
                     {users.find(u => u._id === uid).following.length === 0 ? (<span
-                            className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-1">{profile.userName} is not following anyone</span>) :
+                            className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">{profile.userName} is not following anyone</span>) :
                         users.find(u => u._id === uid).following.map(followingItem => <FollowItem fid={followingItem}
                                                                                                   loggedIn={loggedIn}
                                                                                                   isEditing={false}/>)}
