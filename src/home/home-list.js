@@ -1,5 +1,5 @@
 import "../styles.css"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TimeDisplay from "../time-display";
 import ReviewItem from "../profile/tabs/reviews/reviewItem";
 import CommentItem from "../profile/tabs/reviews/commentItem";
@@ -7,7 +7,8 @@ import PlaylistItem from "../profile/tabs/playlists/playlistItem";
 import {Link} from "react-router-dom";
 
 export const HomeList = ({activityItem, currentID}) => {
-    const [isSelf, setIsSelf] = useState(currentID ? activityItem.user._id === currentID : false)
+    const isSelf = activityItem.user._id === currentID;
+
     return (
         <li className="list-group-item border-0 bg-black">
             <div className="wd-bg-grey p-2 rounded-2">
