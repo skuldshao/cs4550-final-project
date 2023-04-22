@@ -14,6 +14,16 @@ const WriteReview = (itemDetail) => {
     const [formValid, setFormValid] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const {id} = useParams();
+    let type = '';
+
+    const pathname = window.location.pathname;
+
+    if (pathname.includes('album')) {
+        type = 'album';
+    }
+    else {
+        type = 'track';
+    }
 
     const [profile, setProfile] = useState({});
     const getProfile = async () => {
@@ -46,6 +56,7 @@ const WriteReview = (itemDetail) => {
                 //date: `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`,
                 review: writeReview,
                 rating: rating,
+                type: type,
             }
             dispatch(createReviewThunk(newReview));
             setFormValid(true);
@@ -54,6 +65,7 @@ const WriteReview = (itemDetail) => {
         setErrorMessage(errorMessage);
     }
 
+    /*
     // const date = new Date();
     // console.log("rating: " + rating);
     // console.log("params: " + id);
@@ -62,6 +74,8 @@ const WriteReview = (itemDetail) => {
     // console.log("item name album: " + itemDetail.getItemDetail);
     // console.log("artist: " + itemDetail.getItemDetail.artist);
     // console.log("profile: " + profile);
+
+     */
 
 
         return (

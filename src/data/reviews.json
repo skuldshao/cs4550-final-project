@@ -1,7 +1,7 @@
 [
   {
     "_id": 1,
-    "itemID": "1wtOxkiel43cVs0Yux5Q4h",
+    "itemId": "1wtOxkiel43cVs0Yux5Q4h",
     "itemName": "Snow on the Beach",
     "artist": "Taylor Swift",
     "art": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
@@ -13,7 +13,7 @@
   },
   {
     "_id": 2,
-    "itemID": "1wtOxkiel43cVs0Yux5Q4h",
+    "itemId": "1wtOxkiel43cVs0Yux5Q4h",
     "itemName": "Snow on the Beach",
     "artist": "Taylor Swift",
     "art": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",

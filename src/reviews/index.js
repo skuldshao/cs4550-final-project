@@ -38,8 +38,6 @@ const ReviewList = ({
         getProfile();
     }, []);
 
-    // console.log(loggedIn)
-
     return(
         <ul className = "list-group">
             {
