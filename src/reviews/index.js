@@ -17,11 +17,11 @@ const ReviewList = ({
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(findReviewBySongIdThunk());
+        dispatch(findReviewBySongIdThunk(id));
     }, [])
 
-    console.log(id);
-    console.log(reviews);
+    //console.log(id);
+    //console.log(reviews);
 
     return(
         <ul className = "list-group">
