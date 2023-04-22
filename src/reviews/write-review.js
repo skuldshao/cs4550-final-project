@@ -55,13 +55,13 @@ const WriteReview = (itemDetail) => {
     }
 
     // const date = new Date();
-    console.log("rating: " + rating);
-    console.log("params: " + id);
-    // console.log("date: " + `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`);
-    console.log("item name: " + itemDetail.getItemDetail.itemName);
-    console.log("item name album: " + itemDetail.getItemDetail);
-    console.log("artist: " + itemDetail.getItemDetail.artist);
-    console.log("profile: " + profile);
+    // console.log("rating: " + rating);
+    // console.log("params: " + id);
+    // // console.log("date: " + `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`);
+    // console.log("item name: " + itemDetail.getItemDetail.itemName);
+    // console.log("item name album: " + itemDetail.getItemDetail);
+    // console.log("artist: " + itemDetail.getItemDetail.artist);
+    // console.log("profile: " + profile);
 
 
         return (

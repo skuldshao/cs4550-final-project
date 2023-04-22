@@ -1,6 +1,7 @@
 import React from "react";
 import Rating from "./rating/index.js"
 import {useDispatch} from "react-redux";
+import "./rating/index";
 
 const ReviewItem = (
     {
@@ -16,10 +17,11 @@ const ReviewItem = (
         }
     }) => {
 
+    // const [isSelf, setIsSelf] = useState(currentID ? review.userId === currentID : false)
+
     return (
 
-        <div className="border">
-            <Rating/>
+        <div className="border text-white" id={review._id}>
             <div className="flex-row">
                 <div className="">
                     <img width={50}
@@ -29,12 +31,11 @@ const ReviewItem = (
                          src={""}/>
                 </div>
                 <div className="wd-color-white">
-                    <p>{review.rating}</p>
-                    <i className="bi bi-star-fill"/>
-                    <i className="bi bi-star-fill"/>
-                    <i className="bi bi-star-fill"></i>
-                    <i className="bi bi-star-fill"></i>
-                    <i className="bi bi-star"></i>
+                     {/*stars*/}
+                    {
+                        [...Array(5).keys()].map(key => key < review.rating? <i className="bi bi-star-fill wd-on me-1"/> : <i className="bi bi-star wd-off me-1"></i>)
+                        //Array(5).map(key => console.log(key))//key < review.rating? <i className="bi bi-star-fill wd-on"/> : <i className="bi bi-star"></i>)
+                    }
                     <p>{review.handle}</p>
                 </div>
             </div>
