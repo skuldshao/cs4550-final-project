@@ -47,7 +47,8 @@ function Signup({inCode = false}) {
             if (!inCode) {
                 payload = dispatch(userRegisterThunk(user));
                 if (payload.type !== 'userAuth/registerUser/rejected') {
-                    navigate("/home")
+                    dispatch(userLogoutThunk())
+                    navigate("/login")
                 }
             } else {
                 dispatch(createUserThunk(user))
@@ -66,7 +67,8 @@ function Signup({inCode = false}) {
             if (!inCode) {
                 payload = dispatch(adminRegisterThunk(admin));
                 if (payload.type !== 'adminAuth/registerAdmin/rejected') {
-                    navigate("/home")
+                    dispatch(adminLogoutThunk())
+                    navigate("/login")
                 }
             } else {
                 dispatch(createUserThunk(admin))
