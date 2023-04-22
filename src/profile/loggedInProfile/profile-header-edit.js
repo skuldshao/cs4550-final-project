@@ -53,7 +53,16 @@ function ProfileHeaderEdit({
     const [handle, setHandle] = useState("");
     const [password, setPassword] = useState("");
 
-    const updateUser = () => {
+    const updateUser = async () => {
+        let thing;
+        if (type === "admin") {
+            const toSet = await dispatch(adminProfileThunk());
+            thing = toSet.payload
+
+        } else {
+            const toSet = await dispatch(userProfileThunk())
+            thing = toSet.payload
+        }
         if (type === "admin") {
             const newAdmin = {
                 ...profile,
@@ -68,7 +77,7 @@ function ProfileHeaderEdit({
             dispatch(updateAdminThunk(newAdmin))
         } else {
             const newUser = {
-                ...profile,
+                ...thing,
                 avatarIcon: image,
                 userName,
                 email,
