@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {updateUserThunk} from "../../../services/user-thunk";
+import {findUserByIdThunk, updateUserThunk} from "../../../services/user-thunk";
 import {useDispatch} from "react-redux";
+import {updateAdminThunk} from "../../../services/admin-auth-thunk";
 
 function EditProfileAsAdmin({
                                 user = {
@@ -10,7 +11,7 @@ function EditProfileAsAdmin({
                                     "avatarIcon": "https://ovicio.com.br/wp-content/uploads/2022/06/20220616-20220616_200814-555x555.jpg",
                                     "number": "123-456-7890",
                                     "email": "rowlet@pokemon.com"
-                                }, active
+                                }, active, type = false
                             }) {
     const dispatch = useDispatch();
     const [changePhoto, setChangePhoto] = useState(false);
@@ -19,6 +20,32 @@ function EditProfileAsAdmin({
     const [handle, setHandle] = useState(user.handle);
     const [email, setEmail] = useState(user.email);
     const [number, setNumber] = useState(user.number);
+
+    const update = async () => {
+        if (type) {
+            const toUpdate = {
+                ...user,
+                avatarIcon: image,
+                email,
+                handle,
+                number,
+                userName
+            }
+            dispatch(updateAdminThunk(toUpdate))
+        } else {
+            const toSet = await dispatch(findUserByIdThunk(user._id))
+            const thing = toSet.payload
+            const toUpdate = {
+                ...thing,
+                avatarIcon: image,
+                email,
+                handle,
+                number,
+                userName
+            }
+            dispatch(updateUserThunk(toUpdate))
+        }
+    }
     return (
         <div className="d-flex justify-content-between">
             <div className="d-flex">
@@ -130,17 +157,7 @@ function EditProfileAsAdmin({
             <div className="align-self-center me-5">
                 <Link to={active === "overview" ? `/profile/${user._id}` : `/profile/${active}/${user._id}`}>
                     <button className="btn btn-outline-secondary  rounded-3 fw-bold float-end"
-                            onClick={() => {
-                                const toUpdate = {
-                                    ...user,
-                                    avatarIcon: image,
-                                    email,
-                                    handle,
-                                    number,
-                                    userName
-                                }
-                                dispatch(updateUserThunk(toUpdate))
-                            }}>
+                            onClick={update}>
                         SAVE
                         <i className="bi bi-check-lg ps-1"/>
                     </button>

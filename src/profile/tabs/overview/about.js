@@ -42,10 +42,14 @@ function About({
     useEffect(() => {
         getUserProfile();
     }, []);
+
+    const joinedDate = user.joined;
+    const date = new Date(joinedDate); // convert epoch time to milliseconds and create a new Date object
+    const formattedDate = date.toLocaleDateString('en-US');
     return (
         <>{!loading && <div className="text-secondary pe-3 pb-3 wd-bg-grey rounded-3 ps-3">
             <p className=" text-white fw-bold fs-5">ABOUT</p>
-            <div className="pb-2">Joined {user.joined}</div>
+            <div className="pb-2">Joined {formattedDate}</div>
             {editing ?
                 <form>
                     <label htmlFor="biographyInput"
