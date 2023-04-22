@@ -14,11 +14,12 @@ const ReviewItem = (
     const [profile, setProfile] = useState({});
     const [reviewer, setReviewer] = useState({});
     const [loading, setLoading] = useState(true);
+    const [loadingReview, setReviewLoading] = useState(true);
     const {users} = useSelector((state) => state.userData)
     const dispatch = useDispatch();
     const getUserProfile = async () => {
-        const user = await dispatch(userProfileThunk())
-        setProfile(user.payload);
+        // const user = await dispatch(userProfileThunk())
+        // setProfile(user.payload);
         const allUsers = await dispatch(findUserThunk())
         const reviewer = allUsers.payload.find(user => user._id === review.userId);
         setReviewer(reviewer);
@@ -29,9 +30,10 @@ const ReviewItem = (
         if (loggedIn && loading) {
             dispatch(userProfileThunk())
             getUserProfile();
-        } else {
+        } else if (loading){
             // console.log(profile.handle);
-            // console.log(reviewer);
+            dispatch(findUserThunk())
+            getUserProfile();
         }
     }, [loading]);
 
