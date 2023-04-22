@@ -62,6 +62,8 @@ const WriteReview = (itemDetail) => {
             }
             dispatch(createReviewThunk(newReview));
             setFormValid(true);
+            setWriteReview("");
+            setRating(0);
             //clear form fields if needed
         }
         setErrorMessage(errorMessage);

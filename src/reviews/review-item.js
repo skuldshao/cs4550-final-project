@@ -20,8 +20,6 @@ const ReviewItem = (
         const user = await dispatch(userProfileThunk())
         setProfile(user.payload);
         const allUsers = await dispatch(findUserThunk())
-        console.log(allUsers.payload);
-        console.log(review);
         const reviewer = allUsers.payload.find(user => user._id === review.userId);
         setReviewer(reviewer);
         setLoading(false);
@@ -32,8 +30,8 @@ const ReviewItem = (
             dispatch(userProfileThunk())
             getUserProfile();
         } else {
-            console.log(profile.handle);
-            console.log(reviewer);
+            // console.log(profile.handle);
+            // console.log(reviewer);
         }
     }, [loading]);
 

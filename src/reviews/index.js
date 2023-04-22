@@ -23,6 +23,7 @@ const ReviewList = ({
     const getProfile = async () => {
         const user = await dispatch(userProfileThunk())
         const loggedInVal = user.type === "userAuth/profile/fulfilled"
+        dispatch(findReviewBySongIdThunk(id))
         setLoggedIn(loggedInVal)
         // if (loggedInVal) {
         //     const userVal = user.payload;

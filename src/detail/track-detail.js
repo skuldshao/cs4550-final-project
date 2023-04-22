@@ -18,6 +18,9 @@ function TrackDetail(props) {
         const album = track.album;
         setAlbum(album);
 
+        console.log(track);
+        console.log(album);
+
         props.returnItemDetails({itemName: track.name, artist: artists[0].name});
         //console.log("in detail: " + artists[0].name);
     };
