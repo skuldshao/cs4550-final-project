@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
 import {findReviewBySongIdThunk} from "../services/review-thunk";
+import AddToPlaylist from "./add-to-playlist";
 
 
 function Detail() {
@@ -64,7 +65,7 @@ function Detail() {
         <>
             <Nav user="user" active="search"/>
             {detailComponent}
-            {loggedIn && !admin? <WriteReview getItemDetail={itemDetails}/> : <></>}
+            {loggedIn && !admin? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
             <ReviewList/>
 
         </>
