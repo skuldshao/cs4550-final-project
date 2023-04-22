@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import {MsToMin} from "./detail";
 import { useParams } from "react-router-dom";
 import { getTrack } from "../services/spotify-service"
 
@@ -42,26 +43,25 @@ function TrackDetail(props) {
             <div className="row border">
                 <div className="col-lg-8 col-xl-8 col-xxl-8 col-md-6 col-sm-6 col-xs-6 col-6">
                     <div className="row border">
-                        artist: {artists[0] && artists[0].name}
-                    </div>
-
-                    <div className="row border">
-                        genre:
+                        <span><b>artist:</b> {artists[0] && artists[0].name}</span>
                     </div>
                     <div className="row border">
-                        duration: {track.duration_ms}
+                        <span><b>duration:</b> {MsToMin(track.duration_ms)} s </span>
+                    </div>
+                    {
+                        track.explicit &&
+                        <div className="row border">
+                            explicit: {track.explicit.toString()}
+                        </div>
+                    }
+                    <div className="row border">
+                        <span><b>album:</b> {album.name}</span>
                     </div>
                     <div className="row border">
-                        explicit: {track.explicit && track.explicit.toString()}
+                        <span><b>release date:</b> {album.release_date}</span>
                     </div>
                     <div className="row border">
-                        album: {album.name}
-                    </div>
-                    <div className="row border">
-                        release date: {album.release_date}
-                    </div>
-                    <div className="row border">
-                        popularity: {track.popularity}
+                        <span><b>popularity:</b> {track.popularity}</span>
                     </div>
 
                     {   track.preview_url &&

@@ -17,9 +17,10 @@ const ReviewList = ({
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(findReviewBySongIdThunk(id));
+        dispatch(findReviewBySongIdThunk());
     }, [])
 
+    console.log(id);
     console.log(reviews);
 
     return(
