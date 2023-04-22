@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
-import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
+import {profileThunk as userProfileThunk, updateUserThunk as updateCurrentUserThunk} from "../services/user-auth-thunk";
 import {updateUserThunk} from "../services/user-auth-thunk";
 
 
@@ -18,13 +18,13 @@ const AddToPlaylist = (itemDetail) => {
         const profile = profileData.payload;
         setProfile(profile);
 
-        if (profile.favoriteSongs.findIndex(song => song.itemId === id) !== -1)
+        if (profile.favoriteSongs.findIndex(song => song.musicID === id) !== -1)
         {
             console.log("here 1");
             setFavorite(true);
         }
 
-        if (profile.newSongs.findIndex(song => song.itemId === id) !== -1)
+        if (profile.newSongs.findIndex(song => song.musicID === id) !== -1)
         {
             console.log("here 2");
             setNew(true);
@@ -40,10 +40,33 @@ const AddToPlaylist = (itemDetail) => {
     const dispatch = useDispatch();
 
     const handleFavorite = (event) => {
+        if (isFavorite) { // remove favorite
+            profile.favoriteSongs.map(song => console.log(song));
+            const currentFavorites = profile.favoriteSongs.filter(song => song.musicID !== id );
+            dispatch(updateUserThunk({...profile, "favoriteSongs": currentFavorites}))
+            dispatch(updateCurrentUserThunk({...profile, "favoriteSongs": currentFavorites}))
+        } else { // add favorite
+            console.log(id);
+            const currentFavorites = [... profile.favoriteSongs, { date: Date.now(), musicID: id}];
+            dispatch(updateUserThunk({...profile, "favoriteSongs": currentFavorites}))
+            dispatch(updateCurrentUserThunk({...profile, "favoriteSongs": currentFavorites}))
+        }
+
         setFavorite(!isFavorite);
     }
 
     const handleNew = (event) => {
+        if (isNew) { // remove favorite
+            const currentNew = profile.newSongs.filter(song => song.musicID !== id );
+            dispatch(updateUserThunk({...profile, "newSongs": currentNew}))
+            dispatch(updateCurrentUserThunk({...profile, "newSongs": currentNew}))
+        } else { // add favorite
+            console.log(id);
+            const currentNew = [... profile.newSongs, { date: Date.now(), musicID: id}];
+            dispatch(updateUserThunk({...profile, "newSongs": currentNew}))
+            dispatch(updateCurrentUserThunk({...profile, "newSongs": currentNew}))
+        }
+
         setNew(!isNew);
     }
 
@@ -63,7 +86,7 @@ const AddToPlaylist = (itemDetail) => {
     return (
         <div className="border p-3 text-white">
         <div className="btn-group d-flex justify-content-center" role="group">
-            <div className="d-flex justify-content-center">
+            {loading? <span>Loading...</span> : <><div className="d-flex justify-content-center">
             {isFavorite ?
                 <>
                     <input type="checkbox" className="btn-check" id="btncheck1" autoComplete="off"/>
@@ -89,7 +112,7 @@ const AddToPlaylist = (itemDetail) => {
                     <label
                         className={`fs-6 fw-bold btn btn-outline-dark btn-dark text-white ms-2`}
                         htmlFor="btncheck1"
-                        onClick={() => handleNew()}>Add to New Songs <i class="bi bi-bookmark-plus"></i></label></>}</div>
+                        onClick={() => handleNew()}>Add to New Songs <i class="bi bi-bookmark-plus"></i></label></>}</div></>}
         </div>
         </div>
 
