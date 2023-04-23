@@ -60,7 +60,7 @@ function Detail() {
         console.log("passed item name: " + item.itemName);
         console.log("passed item artist: " + item.artist);
 
-     */
+
 
     return (
         <>
