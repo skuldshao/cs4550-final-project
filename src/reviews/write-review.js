@@ -50,6 +50,7 @@ const WriteReview = (itemDetail) => {
             const newReview = {
                 itemID: id,
                 userId: profile._id,
+                itemId: id,
                 itemName: itemDetail.getItemDetail.itemName,
                 artist: itemDetail.getItemDetail.artist,
                 art: itemDetail.getItemDetail.art,

@@ -51,9 +51,11 @@ function Detail() {
         detailComponent = <AlbumDetail returnItemDetails={handleItemDetailChange}/>
     }
 
-    /*
-        console.log("passed song name: " + itemDetails.itemName);
-        console.log("passed artist name: " + itemDetails.artist);
+
+    const track = window.location.pathname.includes("track");
+
+    console.log(item);
+
 
         console.log("passed item name: " + item.itemName);
         console.log("passed item artist: " + item.artist);
@@ -64,7 +66,9 @@ function Detail() {
         <>
             <Nav user={admin ? "admin" : "user"} active="search"/>
             {detailComponent}
-            {loggedIn && !admin ? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
+
+            {loggedIn && !admin && track? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
+
             <ReviewList/>
 
         </>

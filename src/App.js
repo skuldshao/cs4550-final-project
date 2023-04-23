@@ -9,7 +9,7 @@ import Profile from "./profile";
 import Detail from "./detail";
 import React from "react";
 import Users from "./Users";
-import ReviewPage from "./reviews/reviewPage/review-page";
+import Review from "./reviews/reviewPage/index";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./reducers/user-reducer"
@@ -49,9 +49,9 @@ function App() {
                             <Route path="/detail/track/:id"
                                    element={<Detail/>}/>
                             <Route path="/review/track/:id"
-                                   element={<ReviewPage/>}/>
+                                   element={<Review/>}/>
                             <Route path="/review/album/:id"
-                                   element={<ReviewPage/>}/>
+                                   element={<Review/>}/>
                         </Routes>
                     </div>
                 </BrowserRouter>
