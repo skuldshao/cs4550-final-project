@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, {useState, useEffect} from "react";
+import {useSelector} from "react-redux";
 import {MsToMin} from "./detail";
-import { useParams } from "react-router-dom";
-import { getTrack } from "../services/spotify-service"
+import {useParams} from "react-router-dom";
+import {getTrack} from "../services/spotify-service"
 
 function TrackDetail(props) {
-    const { id } = useParams();
+    const {id} = useParams();
     const [track, setTrack] = useState({});
     const [artists, setArtists] = useState([]);
     const [album, setAlbum] = useState({});
@@ -20,7 +20,6 @@ function TrackDetail(props) {
 
         console.log(track);
         console.log(album.images[0].url);
-
 
 
         props.returnItemDetails({itemName: track.name, artist: artists[0].name, art: album.images[0].url});
@@ -48,7 +47,7 @@ function TrackDetail(props) {
                     {
                         track.explicit &&
                         <div className="row border">
-                            explicit: {track.explicit.toString()}
+                            <span><b>explicit:</b> {track.explicit.toString()}</span>
                         </div>
                     }
                     <div className="row border">
@@ -61,10 +60,10 @@ function TrackDetail(props) {
                         <span><b>popularity:</b> {track.popularity}</span>
                     </div>
 
-                    {   track.preview_url &&
-                        <div className="row border p-2">
-                            <audio controls src={track.preview_url}></audio>
-                        </div>
+                    {track.preview_url &&
+                    <div className="row border p-2">
+                        <audio controls src={track.preview_url}></audio>
+                    </div>
                     }
 
                 </div>
@@ -81,11 +80,11 @@ function TrackDetail(props) {
             </div>
 
 
-
             {/*<pre>{JSON.stringify(track, null, 1)}</pre>*/}
 
 
         </div>
     )
 }
+
 export default TrackDetail;
