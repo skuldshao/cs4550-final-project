@@ -19,14 +19,14 @@ function AlbumDetail(props) {
         setArtists(album.artists);
         const tracks = album.tracks.items;
         setTracks(tracks);
-        props.returnItemDetails({itemName: album.name, artist: artists[0].name})
+        props.returnItemDetails({itemName: album.name, artist: artists[0].name, art: album.images[0].url})
     }
 
     useEffect(() => {
         fetchAlbum();
     }, []);
 
-    console.log(album.genres);
+    //console.log(album);
 
     return (
         <div className="container text-white">

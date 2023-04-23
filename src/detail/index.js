@@ -52,6 +52,7 @@ function Detail() {
         detailComponent = <AlbumDetail returnItemDetails={handleItemDetailChange}/>
     }
 
+    console.log(item);
 /*
     console.log("passed song name: " + itemDetails.itemName);
     console.log("passed artist name: " + itemDetails.artist);

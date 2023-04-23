@@ -16,6 +16,8 @@ const ReviewPage = ({
     const {id} = useParams();
     //const {review, loading} = useSelector(state => state.review);
     const [review, setReview] = useState({});
+    const [trackReview, setTrackReview] = useState({});
+    const [albumReview, setAlbumReview] = useState({});
     const dispatch = useDispatch();
 
     const [profile, setProfile] = useState({});
@@ -32,7 +34,15 @@ const ReviewPage = ({
     useEffect(() => {
         const fetchReview = async () => {
             const r = await dispatch(findReviewByIdThunk(id));
-            setReview(r.payload[0]);
+            setTrackReview(r.payload[0]);
+            setAlbumReview(r.playload);
+
+            if (albumReview) {
+                setReview(r.payload);
+            }
+            else {
+                setReview(r.payload[0]);
+            }
             //console.log(r);
         };
         fetchReview();
@@ -44,7 +54,7 @@ const ReviewPage = ({
     const searchLink = `/search`;
 
     //console.log(id);
-    console.log(review[0]);
+    //console.log(review[0]);
     console.log(profile);
 
     return(
@@ -59,17 +69,17 @@ const ReviewPage = ({
             </div>
             <div className="d-flex justify-content-between align-items-center ">
                 <div className="row border-right align-items-center mb-2 ps-3 col-auto">
-                    <div className="col-auto">
+                    <div className="d-flex col-auto">
                         <Link to={review.itemId ? detailLink : searchLink}>
                             <img src={review.art} alt="" width={50} height={50}
                             className="rounded-circle"/>
                         </Link>
 
                     </div>
-                    <div className="col-auto">
+                    <div className="d-flex col-auto">
                         written by {profile.userName}
                     </div>
-                    <div className="col-auto">
+                    <div className="d-flex col-auto">
                         {
                             [...Array(5).keys()].map(key => key < review.rating ?
                                 <i className="bi bi-star-fill wd-on me-1"/> :
@@ -88,8 +98,8 @@ const ReviewPage = ({
             <div className="d-flex rounded border p-3:x">
                 <textarea id="review-text" name="review-text"
                           value={review.review}
-                          readonly="readonly"
-                          rows={4}
+                          readOnly="readonly"
+                          rows={7}
                           className="form-control border-0 wd-review-textarea"
                 />
 
