@@ -11,32 +11,10 @@ export const HomeItemsAdmin = ({users, admins}) => {
         const newSongs = user.newSongs;
         const comments = user.comments;
         const userReviews = reviews.map(r => {
-            const nx = reviewsAr.findIndex(r2 => r2._id === r)
-            if (nx !== -1) {
-                const nx = reviewsAr.findIndex(r2 => r2._id === r)
-                if (nx !== -1) {
-                    const date = reviewsAr.find(r2 => r2._id === r).date
-                    return {
-                        "_id": r,
-                        date,
-                        "type": "review",
-                        "user": user
-                    }
-                } else {
-                    return {
-                        "_id": r,
-                        "date": Date.now(),
-                        "type": "review",
-                        "user": user
-                    }
-                }
-            } else {
-                return {
-                    "_id": r,
-                    "date": Date.now(),
-                    "type": "review",
-                    "user": user
-                }
+            return {
+                ...r,
+                "type": "review",
+                "user": user
             }
         });
         const userFavorites = favorites.map(r => {

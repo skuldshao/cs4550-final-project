@@ -105,9 +105,7 @@ const reviewSlice = createSlice({
         [createReviewThunk.fulfilled]:
             (state, {payload}) => {
                 state.loading = false
-                console.log(payload)
                 state.reviews.push(payload)
-                console.log(state.reviews)
             },
         [deleteReviewThunk.fulfilled]:
             (state, {payload}) => {

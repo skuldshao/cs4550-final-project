@@ -6,7 +6,7 @@ import ReviewList from "../reviews";
 import Nav from "../nav";
 import WriteReview from "../reviews/write-review";
 import "../search/index.css"
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
@@ -47,25 +47,24 @@ function Detail() {
 
     if (window.location.pathname.includes("/detail/track")) {
         detailComponent = <TrackDetail returnItemDetails={handleItemDetailChange}/>
-    }
-    else if (window.location.pathname.includes("/detail/album")) {
+    } else if (window.location.pathname.includes("/detail/album")) {
         detailComponent = <AlbumDetail returnItemDetails={handleItemDetailChange}/>
     }
 
-/*
-    console.log("passed song name: " + itemDetails.itemName);
-    console.log("passed artist name: " + itemDetails.artist);
+    /*
+        console.log("passed song name: " + itemDetails.itemName);
+        console.log("passed artist name: " + itemDetails.artist);
 
-    console.log("passed item name: " + item.itemName);
-    console.log("passed item artist: " + item.artist);
+        console.log("passed item name: " + item.itemName);
+        console.log("passed item artist: " + item.artist);
 
- */
+     */
 
-    return(
+    return (
         <>
-            <Nav user="user" active="search"/>
+            <Nav user={admin ? "admin" : "user"} active="search"/>
             {detailComponent}
-            {loggedIn && !admin? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
+            {loggedIn && !admin ? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
             <ReviewList/>
 
         </>
