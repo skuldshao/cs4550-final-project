@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
+import {getDate, ratingToStars} from "./util";
 import {useDispatch, useSelector} from "react-redux";
 import {findReviewByIdThunk} from "../../services/review-thunk.js"
 import {useParams} from "react-router";
+
 
 
 const ReviewPage = ({
@@ -48,15 +50,21 @@ const ReviewPage = ({
                 </div>
                 <div className="col-auto pe-3">
                     <div>
-                        {review.date}
+                        {getDate(new Date(review.date))}
                     </div>
                 </div>
             </div>
             <div className="row ps-3">
-                stars
+                <span>{ratingToStars(review.rating)}</span>
             </div>
             <div className="d-flex rounded border p-3:x">
-                {review.review}
+                <textarea id="review-text" name="review-text"
+                          value={review.review}
+                          readonly="readonly"
+                          rows={4}
+                          className="form-control border-0 wd-review-textarea"
+                />
+
             </div>
 
         </div>
