@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {
     createReviewThunk,
     deleteReviewThunk,
@@ -11,13 +11,13 @@ import {
 // import reviews from '../reviews/review.json'
 
 const currentUser = {
-    "handle" : "@user123",
+    "handle": "@user123",
     "image": ""
 }
 
 const template = {
     ...currentUser,
-    "likes" : 0,
+    "likes": 0,
 }
 
 
@@ -41,19 +41,19 @@ const reviewSlice = createSlice({
     },
 
 
-    extraReducers:{
+    extraReducers: {
         [findReviewThunk.pending]:
             (state) => {
                 state.loading = true
                 state.reviews = []
             },
         [findReviewThunk.fulfilled]:
-            (state,{ payload }) => {
+            (state, {payload}) => {
                 state.loading = false
                 state.reviews = payload
             },
         [findReviewThunk.rejected]:
-            (state,action) => {
+            (state, action) => {
                 state.loading = false
                 state.reviews = action.error
             },
@@ -63,7 +63,7 @@ const reviewSlice = createSlice({
                 state.reviews = []
             },
         [findReviewBySongIdThunk.fulfilled]:
-            (state, { payload }) => {
+            (state, {payload}) => {
                 state.loading = false
                 state.reviews = payload
             },
@@ -78,7 +78,7 @@ const reviewSlice = createSlice({
                 state.reviews = []
             },
         [findReviewByUserIdThunk.fulfilled]:
-            (state, { payload }) => {
+            (state, {payload}) => {
                 state.loading = false
                 state.reviews = payload
             },
@@ -93,9 +93,9 @@ const reviewSlice = createSlice({
                 state.reviews = []
             },
         [findReviewByIdThunk.fulfilled]:
-            (state, { payload }) => {
+            (state, {payload}) => {
                 state.loading = false
-                state.reviews = payload
+                state.reviews = [payload]
             },
         [findReviewByIdThunk.rejected]:
             (state, action) => {
@@ -103,17 +103,17 @@ const reviewSlice = createSlice({
                 state.error = action.error
             },
         [createReviewThunk.fulfilled]:
-            (state,{ payload }) => {
+            (state, {payload}) => {
                 state.loading = false
                 state.reviews.push(payload)
             },
         [deleteReviewThunk.fulfilled]:
-            (state,{ payload }) => {
+            (state, {payload}) => {
                 state.loading = false
                 state.reviews = state.reviews.filter(review => review._id !== payload)
             },
-        [updateReviewThunk.fulfilled] :
-            (state,{ payload }) => {
+        [updateReviewThunk.fulfilled]:
+            (state, {payload}) => {
                 state.loading = false
                 const reviewUpdate = state.reviews
                     .findIndex((review) => review._id === payload._id)

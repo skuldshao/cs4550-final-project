@@ -38,15 +38,16 @@ const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
                 {tabs.active === "overview" && <div className="row ms-5 mt-3">
                     <div className="col-xl-6 col-sm-7 col-8 text-white">
                         <p className="fw-bold fs-5">RECENT ACTIVITY</p>
-                        <RecentActivityList user={profile} isSelf={isSelf}/>
+                        <RecentActivityList user={users.find(u => u._id === profile._id)} isSelf={isSelf}/>
                     </div>
                     <div className="col-xl-6 col-sm-5 col-4 text-white">
                         <About isEditing={isEditing} user={profile} isSelf={isSelf}/>
                     </div>
                 </div>}
                 {tabs.active === "reviews" && <div>
-                    {profile.reviews.length > 0 ?
-                        profile.reviews.map(rid => <ReviewItem reviewItem={rid} date={true}/>) :
+                    {users.find(u => u._id === profile._id).reviews.length > 0 ?
+                        users.find(u => u._id === profile._id).reviews.map(rid => <ReviewItem reviewItem={rid}
+                                                                                              date={true}/>) :
                         (isSelf ?
                             <span className="d-flex justify-content-start text-white ms-5 fw-normal mt-3 mb-3 fs-5">You have not made any reviews!</span> :
                             <span

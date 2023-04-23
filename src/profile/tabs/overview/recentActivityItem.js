@@ -11,9 +11,9 @@ function RecentActivityItem({activityItem}
             {activityItem.type === "review" && <div>
                 <div className="fw-normal">
                     Left a <span className="fw-bold">review </span><span className="text-secondary"> • </span>
-                    <TimeDisplay itemDate={activityItem.date}/>
+                    <span className="text-secondary"><TimeDisplay itemDate={activityItem.date}/></span>
                 </div>
-                <ReviewItem reviewItem={activityItem._id} date={false}/>
+                <ReviewItem reviewItem={activityItem} date={false}/>
             </div>}
             {activityItem.type === "comments" &&
             <div>

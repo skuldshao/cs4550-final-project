@@ -18,7 +18,12 @@ function TrackDetail(props) {
         const album = track.album;
         setAlbum(album);
 
-        props.returnItemDetails({itemName: track.name, artist: artists[0].name});
+        console.log(track);
+        console.log(album.images[0].url);
+
+
+
+        props.returnItemDetails({itemName: track.name, artist: artists[0].name, art: album.images[0].url});
         //console.log("in detail: " + artists[0].name);
     };
 
@@ -57,7 +62,7 @@ function TrackDetail(props) {
                     </div>
 
                     {   track.preview_url &&
-                        <div className="row border">
+                        <div className="row border p-2">
                             <audio controls src={track.preview_url}></audio>
                         </div>
                     }
