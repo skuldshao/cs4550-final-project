@@ -2,23 +2,14 @@ import React from "react";
 
 export const getDate = (d) =>
 {
-    const out = `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+    let day = d.getDate();
+    if (day < 10) {
+        day = `0${day}`;
+    }
+    let month = d.getMonth() + 1;
+    if (month < 10) {
+        month = `0${month}`;
+    }
+    const out = `${month}/${day}/${d.getFullYear()}`;
     return out;
-}
-
-
-
-export function ratingToStars(rating) {
-
-    let stars = '';
-
-    for (let i = 0; i < rating; i++) {
-        stars += '★';
-    }
-
-    for (let i = rating; i < 5; i++) {
-        stars += '☆';
-    }
-
-    return stars;
 }
