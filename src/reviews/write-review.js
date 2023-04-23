@@ -20,8 +20,7 @@ const WriteReview = (itemDetail) => {
 
     if (pathname.includes('album')) {
         type = 'album';
-    }
-    else {
+    } else {
         type = 'track';
     }
 
@@ -46,11 +45,10 @@ const WriteReview = (itemDetail) => {
         if (rating === 0 || writeReview === '') {
             setFormValid(false);
             errorMessage = 'Please fill in both the rating and review text before proceeding.';
-        }
-        else {
+        } else {
             // const current = new Date();
             const newReview = {
-                itemId: id,
+                itemID: id,
                 userId: profile._id,
                 itemName: itemDetail.getItemDetail.itemName,
                 artist: itemDetail.getItemDetail.artist,
@@ -60,6 +58,7 @@ const WriteReview = (itemDetail) => {
                 rating: rating,
                 type: type,
             }
+            console.log(newReview)
             dispatch(createReviewThunk(newReview));
             setFormValid(true);
             setWriteReview("");
@@ -82,14 +81,14 @@ const WriteReview = (itemDetail) => {
      */
 
 
-        return (
-            <form>
-                <div className="align-content-center border p-3 text-white">
-                    <label htmlFor="new-review">
-                        Write a review:
-                    </label>
-                    <div className="row">
-                        <div className="w-100">
+    return (
+        <form>
+            <div className="align-content-center border p-3 text-white">
+                <label htmlFor="new-review" className="form-label">
+                    Write a review:
+                </label>
+                <div className="row">
+                    <div className="w-100">
                     <textarea id="new-review" name="new-review"
                               placeholder="Share your thoughts here."
                               rows={4}
@@ -97,40 +96,41 @@ const WriteReview = (itemDetail) => {
                               onChange={(event) => setWriteReview(event.target.value)}>
 
                     </textarea>
-                        </div>
-                        <div className="row">
-                            <div className="col">
-                                <div className="wd-rating text-center ps-3">
-                                    {
-                                        [...Array(5)].map((star, index)=> {
-                                            index += 1;
-                                            return(
-                                                <button
-                                                    type="button"
-                                                    key={index}
-                                                    className={index <= (hover || rating) ? "wd-on wd-star-rating" : "wd-off wd-star-rating"}
-                                                    onClick={() => setRating(index)}
-                                                    onMouseEnter={() => setHover(index)}
-                                                    onMouseLeave={() => setHover(rating)}
-                                                >
-                                                    <span className="wd-star">&#9733;</span>
-                                                </button>
-                                            )
-                                        })}
-                                </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <div className="wd-rating text-center ps-3">
+                                {
+                                    [...Array(5)].map((star, index) => {
+                                        index += 1;
+                                        return (
+                                            <button
+                                                type="button"
+                                                key={index}
+                                                className={index <= (hover || rating) ? "wd-on wd-star-rating" : "wd-off wd-star-rating"}
+                                                onClick={() => setRating(index)}
+                                                onMouseEnter={() => setHover(index)}
+                                                onMouseLeave={() => setHover(rating)}
+                                            >
+                                                <span className="wd-star">&#9733;</span>
+                                            </button>
+                                        )
+                                    })}
                             </div>
                         </div>
                     </div>
-                    <div className="col d-flex justify-content-center">
-                        <button className="rounded-pill wd-add-review wd-add-review"
-                                onClick={handleAddReview}
-                        >Add</button>
-                    </div>
-                    {formValid ? null :
-                        <div className="text-danger text-center">{errorMessage}</div>
-                    }
                 </div>
-            </form>
+                <div className="col d-flex justify-content-center">
+                    <button className="rounded-pill wd-add-review wd-add-review"
+                            onClick={handleAddReview}
+                    >Add
+                    </button>
+                </div>
+                {formValid ? null :
+                    <div className="text-danger text-center">{errorMessage}</div>
+                }
+            </div>
+        </form>
 
     )
 }
