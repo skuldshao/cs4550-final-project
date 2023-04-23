@@ -33,8 +33,8 @@ const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
                 {(isEditing ? <ProfileHeaderEdit active={tabs.active}/> :
                     <ProfileHeader active={tabs.active}/>)}
                 <NavTab tabs={tabs} isEditing={isEditing} user={profile} isSelf={isSelf}
-                        followers={profile.followers.length}
-                        following={profile.following.length}/>
+                        followers={users.find(u => u._id === profile._id).followers.length}
+                        following={users.find(u => u._id === profile._id).following.length}/>
                 {tabs.active === "overview" && <div className="row ms-5 mt-3">
                     <div className="col-xl-6 col-sm-7 col-8 text-white">
                         <p className="fw-bold fs-5">RECENT ACTIVITY</p>
@@ -55,11 +55,11 @@ const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
                     }
                 </div>}
                 {tabs.active === "following" && <div className="wd-black-bg align-items-center">
-                    {profile.following.length === 0 ? (isSelf ?
+                    {users.find(u => u._id === profile._id).following.length === 0 ? (isSelf ?
                             <span className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">You are not following anyone</span> :
                             <span
                                 className=" d-flex justify-content-start text-white ms-5 fw-normal fs-5 mt-3 mb-3">{profile.userName} is not following anyone</span>) :
-                        profile.following.map(followingItem => <FollowItem
+                        users.find(u => u._id === profile._id).following.map(followingItem => <FollowItem
                             fid={followingItem}
                             loggedIn={loggedIn} isEditing={isEditing}/>)}
                 </div>}

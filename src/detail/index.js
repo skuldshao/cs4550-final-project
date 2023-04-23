@@ -1,16 +1,14 @@
 import React, {useState, useEffect} from "react";
 import TrackDetail from "./track-detail"
 import AlbumDetail from "./album-detail"
-import SongDetail from "./detail";
 import ReviewList from "../reviews";
 import Nav from "../nav";
 import WriteReview from "../reviews/write-review";
 import "../search/index.css"
 import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
-import {findReviewBySongIdThunk} from "../services/review-thunk";
 import AddToPlaylist from "./add-to-playlist";
 
 
@@ -32,8 +30,6 @@ function Detail() {
     useEffect(() => {
         getProfile()
     }, []);
-
-    //console.log(loggedIn)
 
     const [itemDetails, setItemDetails] = useState({itemName: "", artist: []});
 
@@ -57,20 +53,17 @@ function Detail() {
     console.log(item);
 
 
-        console.log("passed item name: " + item.itemName);
-        console.log("passed item artist: " + item.artist);
-
-     */
+    console.log("passed item name: " + item.itemName);
+    console.log("passed item artist: " + item.artist);
 
     return (
         <>
             <Nav user={admin ? "admin" : "user"} active="search"/>
             {detailComponent}
 
-            {loggedIn && !admin && track? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
-
-            <ReviewList/>
-
+            {loggedIn && !admin && track ? <><AddToPlaylist itemId={id}/><WriteReview
+                getItemDetail={itemDetails}/></> : <></>}
+            <ReviewList loggedIn={loggedIn}/>
         </>
     );
 }

@@ -33,7 +33,7 @@ const ViewProfileAsAdminRouter = ({tabs}) => {
     useEffect(() => {
         thiss()
         // dispatch(findUserThunk())
-    }, []);
+    }, [uid]);
     return (
         <div className="text-white">
             {loading && <div>LOADING DATA</div>}

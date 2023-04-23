@@ -17,9 +17,12 @@ const ReviewItem = (
     const dispatch = useDispatch();
     const getUserProfile = async () => {
         if (loggedIn) {
+            console.log("here")
             const user = await dispatch(userProfileThunk())
+            console.log(user.payload)
             if (user.payload) {
                 setProfile(user.payload);
+                console.log(user.payload)
             } else {
                 const user = await dispatch(adminProfileThunk())
                 setProfile(user.payload);
@@ -27,6 +30,7 @@ const ReviewItem = (
         }
         const allUsers = await dispatch(findUserThunk())
         const reviewer = allUsers.payload.find(user => user._id === review.userId);
+        console.log(reviewer)
         setReviewer(reviewer);
         setLoading(false);
     };

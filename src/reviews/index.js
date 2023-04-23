@@ -12,16 +12,13 @@ import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
 
 
-const ReviewList = () => {
+const ReviewList = ({loggedIn}) => {
     const {id} = useParams();
     const {reviews} = useSelector(state => state.review)
     const dispatch = useDispatch();
-    const [loggedIn, setLoggedIn] = useState(false)
     const [loading, setLoading] = useState(true)
     const getProfile = async () => {
         const user = await dispatch(userProfileThunk())
-        const loggedInVal = user.type === "userAuth/profile/fulfilled"
-        setLoggedIn(loggedInVal)
         setLoading(false)
     };
 

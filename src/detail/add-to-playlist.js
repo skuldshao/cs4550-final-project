@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {profileThunk as userProfileThunk, updateUserThunk as updateCurrentUserThunk} from "../services/user-auth-thunk";
 import {updateUserThunk} from "../services/user-auth-thunk";
+import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 
 
 const AddToPlaylist = (itemDetail) => {
@@ -37,32 +38,50 @@ const AddToPlaylist = (itemDetail) => {
 
     const dispatch = useDispatch();
 
-    const handleFavorite = (event) => {
+    const handleFavorite = async (event) => {
+        let thing;
+        if (type === "admin") {
+            const toSet = await dispatch(adminProfileThunk());
+            thing = toSet.payload
+
+        } else {
+            const toSet = await dispatch(userProfileThunk())
+            thing = toSet.payload
+        }
         if (isFavorite) { // remove favorite
             profile.favoriteSongs.map(song => console.log(song));
             const currentFavorites = profile.favoriteSongs.filter(song => song.musicID !== id);
-            dispatch(updateUserThunk({...profile, "favoriteSongs": currentFavorites}))
-            dispatch(updateCurrentUserThunk({...profile, "favoriteSongs": currentFavorites}))
+            dispatch(updateUserThunk({...thing, "favoriteSongs": currentFavorites}))
+            dispatch(updateCurrentUserThunk({...thing, "favoriteSongs": currentFavorites}))
         } else { // add favorite
             console.log(id);
             const currentFavorites = [...profile.favoriteSongs, {date: Date.now(), musicID: id}];
-            dispatch(updateUserThunk({...profile, "favoriteSongs": currentFavorites}))
-            dispatch(updateCurrentUserThunk({...profile, "favoriteSongs": currentFavorites}))
+            dispatch(updateUserThunk({...thing, "favoriteSongs": currentFavorites}))
+            dispatch(updateCurrentUserThunk({...thing, "favoriteSongs": currentFavorites}))
         }
 
         setFavorite(!isFavorite);
     }
 
-    const handleNew = (event) => {
+    const handleNew = async (event) => {
+        let thing;
+        if (type === "admin") {
+            const toSet = await dispatch(adminProfileThunk());
+            thing = toSet.payload
+
+        } else {
+            const toSet = await dispatch(userProfileThunk())
+            thing = toSet.payload
+        }
         if (isNew) { // remove favorite
             const currentNew = profile.newSongs.filter(song => song.musicID !== id);
-            dispatch(updateUserThunk({...profile, "newSongs": currentNew}))
-            dispatch(updateCurrentUserThunk({...profile, "newSongs": currentNew}))
+            dispatch(updateUserThunk({...thing, "newSongs": currentNew}))
+            dispatch(updateCurrentUserThunk({...thing, "newSongs": currentNew}))
         } else { // add favorite
             console.log(id);
             const currentNew = [...profile.newSongs, {date: Date.now(), musicID: id}];
-            dispatch(updateUserThunk({...profile, "newSongs": currentNew}))
-            dispatch(updateCurrentUserThunk({...profile, "newSongs": currentNew}))
+            dispatch(updateUserThunk({...thing, "newSongs": currentNew}))
+            dispatch(updateCurrentUserThunk({...thing, "newSongs": currentNew}))
         }
 
         setNew(!isNew);
@@ -93,14 +112,14 @@ const AddToPlaylist = (itemDetail) => {
                                     className={`fs-6 fw-bold btn btn-danger btn-outline-danger text-white me-2`}
                                     htmlFor="btncheck1"
                                     onClick={() => handleFavorite()}>Favorited <i
-                                    className="bi bi-heart-fill"></i></label></> :
+                                    className="bi bi-heart-fill"/></label></> :
                             <><input type="checkbox" className="btn-check" id="btncheck1"
                                      autoComplete="off"/>
                                 <label
                                     className={`fs-6 fw-bold btn btn-outline-dark btn-dark text-white me-2`}
                                     htmlFor="btncheck1"
                                     onClick={() => handleFavorite()}>Favorite <i
-                                    className="bi bi-heart"></i></label></>}</div>
+                                    className="bi bi-heart"/></label></>}</div>
                     <div className="">{isNew ?
                         <>
                             <input type="checkbox" className="btn-check ps-5" id="btncheck1" autoComplete="off"/>
@@ -108,14 +127,14 @@ const AddToPlaylist = (itemDetail) => {
                                 className={`fs-6 fw-bold btn btn-danger btn-outline-danger text-white ms-2`}
                                 htmlFor="btncheck1"
                                 onClick={() => handleNew()}>Added to New Songs <i
-                                className="bi bi-bookmark-plus-fill"></i></label></> :
+                                className="bi bi-bookmark-plus-fill"/></label></> :
                         <><input type="checkbox" className="btn-check" id="btncheck1"
                                  autoComplete="off"/>
                             <label
                                 className={`fs-6 fw-bold btn btn-outline-dark btn-dark text-white ms-2`}
                                 htmlFor="btncheck1"
                                 onClick={() => handleNew()}>Add to New Songs <i
-                                className="bi bi-bookmark-plus"></i></label></>}</div>
+                                className="bi bi-bookmark-plus"/></label></>}</div>
                 </>}
             </div>
         </div>
