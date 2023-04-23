@@ -60,7 +60,7 @@ function Detail() {
         console.log("passed item name: " + item.itemName);
         console.log("passed item artist: " + item.artist);
 
-     */
+
 
     return (
         <>
@@ -70,7 +70,6 @@ function Detail() {
             {loggedIn && !admin && track? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
 
             <ReviewList/>
-
         </>
     );
 }
