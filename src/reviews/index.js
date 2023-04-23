@@ -12,37 +12,30 @@ import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
 
 
-const ReviewList = ({}) => {
-    //gets the itemId from url
+const ReviewList = () => {
     const {id} = useParams();
     const {reviews} = useSelector(state => state.review)
     const dispatch = useDispatch();
-    // const [profile, setProfile] = useState({});
     const [loggedIn, setLoggedIn] = useState(false)
-    const [review, setReview] = useState([]);
     const [loading, setLoading] = useState(true)
     const getProfile = async () => {
         const user = await dispatch(userProfileThunk())
         const loggedInVal = user.type === "userAuth/profile/fulfilled"
-        const stuff = await dispatch(findReviewBySongIdThunk(id))
-        setReview(stuff.payload)
-        console.log(stuff.payload)
         setLoggedIn(loggedInVal)
         setLoading(false)
-
-        // if (loggedInVal) {
-        //     const userVal = user.payload;
-        //     setProfile(userVal);
-        //     console.log(userVal);
-        //     console.log(profile);
-        // }
-        // console.log(profile);
     };
 
+    const getNotLoggedIn = () => {
+        setLoading(false)
+    }
+
     useEffect(() => {
-        // dispatch(findReviewBySongIdThunk(id));
         dispatch(findReviewThunk())
-        getProfile();
+        if (loggedIn) {
+            getProfile();
+        } else {
+            getNotLoggedIn()
+        }
     }, []);
 
     return (
@@ -54,8 +47,8 @@ const ReviewList = ({}) => {
                 </li>
             }
             {!loading &&
-            reviews.map(review =>
-                <ReviewItem key={review._id} review={review} loggedIn={loggedIn}/>)
+            reviews.filter(rev => rev.itemID === id).map(r =>
+                <ReviewItem key={r._id} review={r} loggedIn={loggedIn}/>)
             }
         </ul>
     );
