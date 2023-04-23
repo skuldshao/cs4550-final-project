@@ -57,10 +57,21 @@ const WriteReview = (itemDetail) => {
                 date: Date.now(),
                 review: writeReview,
                 rating: rating,
-                type: type,
+                itemType: type,
             }
+            const newReviewForUser = {
+                itemID: id,
+                itemName: itemDetail.getItemDetail.itemName,
+                artist: itemDetail.getItemDetail.artist,
+                art: itemDetail.getItemDetail.art,
+                date: Date.now(),
+                review: writeReview,
+                rating: rating,
+                itemType: type,
+            }
+            const toSend = {newReview, newReviewForUser}
             console.log(newReview)
-            dispatch(createReviewThunk(newReview));
+            dispatch(createReviewThunk(toSend));
             setFormValid(true);
             setWriteReview("");
             setRating(0);

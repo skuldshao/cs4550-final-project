@@ -16,30 +16,42 @@ export const HomeList = ({activityItem, currentID}) => {
                 <div>
                     <div className="d-flex justify-content-between">
                         <div className="fw-normal d-flex justify-content-start">
-                            <img src={`/images/${activityItem.user.avatarIcon}`}
-                                 className="rounded-circle align-self-center"
-                                 height="50" width="50"/>
-                            <div className="ms-2 align-self-center">
-                                {isSelf ? 'You' : activityItem.user.userName} left a <span
-                                className="fw-bold">review </span>
-                            </div>
+                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                                  className="text-decoration-none text-white align-self-center">
+                                <img src={`/images/${activityItem.user.avatarIcon}`}
+                                     className="rounded-circle align-self-center"
+                                     height="50" width="50"/>
+                            </Link>
+                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                                  className="text-decoration-none text-white align-self-center">
+                                <div className="ms-2 align-self-center">
+                                    {isSelf ? 'You' : activityItem.user.userName} left a <span
+                                    className="fw-bold">review </span>
+                                </div>
+                            </Link>
                         </div>
                         <div className="align-self-center text-white me-0"><TimeDisplay itemDate={activityItem.date}/>
                         </div>
                     </div>
-                    <ReviewItem reviewItem={activityItem._id} date={false}/>
+                    <ReviewItem reviewItem={activityItem} date={false}/>
                 </div>}
                 {activityItem.type === "comments" &&
                 <div>
                     <div className="d-flex justify-content-between">
                         <div className="fw-normal d-flex justify-content-start">
-                            <img src={`/images/${activityItem.user.avatarIcon}`}
-                                 className="rounded-circle align-self-center"
-                                 height="50" width="50"/>
-                            <div className="ms-2 align-self-center">
-                                {isSelf ? 'You' : activityItem.user.userName} left a <span
-                                className="fw-bold">comment</span> on a review
-                            </div>
+                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                                  className="text-decoration-none text-white align-self-center">
+                                <img src={`/images/${activityItem.user.avatarIcon}`}
+                                     className="rounded-circle align-self-center"
+                                     height="50" width="50"/>
+                            </Link>
+                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                                  className="text-decoration-none text-white align-self-center">
+                                <div className="ms-2 align-self-center">
+                                    {isSelf ? 'You' : activityItem.user.userName} left a <span
+                                    className="fw-bold">comment</span> on a review
+                                </div>
+                            </Link>
                         </div>
                         <div className="align-self-center text-white me-0"><TimeDisplay itemDate={activityItem.date}/>
                         </div>
