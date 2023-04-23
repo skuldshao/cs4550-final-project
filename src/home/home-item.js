@@ -18,9 +18,8 @@ export const HomeItem = ({loggedIn, type}) => {
     return (
         <div>
             {type === "admin" && <HomeItemsAdmin users={users} admins={admins}/>}
-            {(type === "user" && loggedIn) ? <HomeItemsUser users={users}/> :
-                <NotLoggedInHome users={users}/>
-            }
+            {type === "user" && loggedIn && <HomeItemsUser users={users}/>}
+            {type === "user" && !loggedIn && <NotLoggedInHome users={users}/>}
         </div>
     )
 }

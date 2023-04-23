@@ -95,7 +95,7 @@ const reviewSlice = createSlice({
         [findReviewByIdThunk.fulfilled]:
             (state, { payload }) => {
                 state.loading = false
-                state.reviews = payload
+                state.reviews = [payload]
             },
         [findReviewByIdThunk.rejected]:
             (state, action) => {

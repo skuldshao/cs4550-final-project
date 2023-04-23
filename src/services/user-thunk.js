@@ -32,3 +32,6 @@ export const updateUserThunk = createAsyncThunk(
         return await service.updateUser(user);
     }
 )
+
+export class findAdminByIdThunk {
+}

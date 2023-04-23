@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import TrackDetail from "./track-detail"
 import AlbumDetail from "./album-detail"
 import SongDetail from "./detail";
@@ -7,11 +7,33 @@ import Nav from "../nav";
 import WriteReview from "../reviews/write-review";
 import "../search/index.css"
 import { useParams } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
+import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
+import {findReviewBySongIdThunk} from "../services/review-thunk";
+import AddToPlaylist from "./add-to-playlist";
 
 
 function Detail() {
 
     const {id} = useParams();
+    const dispatch = useDispatch();
+    const [admin, setAdmin] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false)
+    const getProfile = async () => {
+        const admins = await dispatch(adminProfileThunk());
+        const adVal = admins.type === "adminAuth/profile/fulfilled"
+        setAdmin(adVal);
+        const users = await dispatch(userProfileThunk())
+        const loggedInVal = users.type === "userAuth/profile/fulfilled" || admin
+        setLoggedIn(loggedInVal)
+    };
+
+    useEffect(() => {
+        getProfile()
+    }, []);
+
+    //console.log(loggedIn)
 
     const [itemDetails, setItemDetails] = useState({itemName: "", artist: []});
 
@@ -43,7 +65,7 @@ function Detail() {
         <>
             <Nav user="user" active="search"/>
             {detailComponent}
-            <WriteReview getItemDetail={itemDetails}/>
+            {loggedIn && !admin? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
             <ReviewList/>
 
         </>

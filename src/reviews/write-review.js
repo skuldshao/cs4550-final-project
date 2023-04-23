@@ -26,15 +26,17 @@ const WriteReview = (itemDetail) => {
     }
 
     const [profile, setProfile] = useState({});
+    const [loading, setLoading] = useState(true);
     const getProfile = async () => {
-        const admins = await dispatch(userProfileThunk());
-        const adVal = admins.payload;
-        setProfile(adVal);
+        const profileData = await dispatch(userProfileThunk());
+        const profile = profileData.payload;
+        setProfile(profile);
+        setLoading(false);
     };
 
     useEffect(() => {
         getProfile()
-    }, []);
+    }, [loading]);
 
     const dispatch = useDispatch();
 
@@ -49,17 +51,19 @@ const WriteReview = (itemDetail) => {
             // const current = new Date();
             const newReview = {
                 itemId: id,
-                //userId: profile.id,
+                userId: profile._id,
                 itemName: itemDetail.getItemDetail.itemName,
                 artist: itemDetail.getItemDetail.artist,
-                //art: profile.avatarIcon,
-                //date: `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`,
+                art: itemDetail.getItemDetail.art,
+                date: Date.now(),
                 review: writeReview,
                 rating: rating,
                 type: type,
             }
             dispatch(createReviewThunk(newReview));
             setFormValid(true);
+            setWriteReview("");
+            setRating(0);
             //clear form fields if needed
         }
         setErrorMessage(errorMessage);
@@ -67,13 +71,13 @@ const WriteReview = (itemDetail) => {
 
     /*
     // const date = new Date();
-    console.log("rating: " + rating);
-    console.log("params: " + id);
-    // console.log("date: " + `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`);
-    console.log("item name: " + itemDetail.getItemDetail.itemName);
-    console.log("item name album: " + itemDetail.getItemDetail);
-    console.log("artist: " + itemDetail.getItemDetail.artist);
-    console.log("profile: " + profile);
+    // console.log("rating: " + rating);
+    // console.log("params: " + id);
+    // // console.log("date: " + `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`);
+    // console.log("item name: " + itemDetail.getItemDetail.itemName);
+    // console.log("item name album: " + itemDetail.getItemDetail);
+    // console.log("artist: " + itemDetail.getItemDetail.artist);
+    // console.log("profile: " + profile);
 
      */
 

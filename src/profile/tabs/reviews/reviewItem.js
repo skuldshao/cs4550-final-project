@@ -3,13 +3,34 @@ import {Link} from "react-router-dom";
 import reviews from "../../../data/reviews.json"
 import TimeDisplay from "../../../time-display";
 import Stars from "../../../stars";
+import {useParams} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {profileThunk as userProfileThunk} from "../../../services/user-auth-thunk";
+import {findReviewByIdThunk, findReviewBySongIdThunk, findReviewThunk} from "../../../services/review-thunk";
 
 function ReviewItem({reviewItem, date}) {
-    const nx = reviews.findIndex(r => r._id === reviewItem);
-    let review;
-    if (nx !== -1) {
-        review = reviews.find(r => r._id === reviewItem)
-    }
+
+    const dispatch = useDispatch();
+    const [review, setReview] = useState({});
+    const [loading, setLoading] = useState(true)
+    const getReview = async () => {
+        const reviewData = await dispatch(findReviewByIdThunk(reviewItem));
+        setReview(reviewData.payload);
+        await dispatch(findReviewThunk())
+        setLoading(false)
+        console.log(reviewData.payload);
+    };
+
+    useEffect(() => {
+        getReview();
+    }, []);
+
+    // const nx = reviews.findIndex(r => r._id === reviewItem);
+    // let review;
+    // if (nx !== -1) {
+    //     review = reviews.find(r => r._id === reviewItem)
+    // }
 
     return (
         <div className="ms-5 mt-3 mb-3">

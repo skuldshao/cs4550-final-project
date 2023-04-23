@@ -2,11 +2,13 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import * as userService from "../../services/user-service";
+import * as adminService from "../../services/admin-service";
 import {
     profileThunk as userProfileThunk,
     updateUserThunk as updateCurrentUserThunk
 } from "../../services/user-auth-thunk";
 import {updateUserThunk} from "../../services/user-thunk";
+import {profileThunk as adminProfileThunk} from "../../services/admin-auth-thunk";
 
 const WhoseProfile = ({uid, loggedIn}) => {
     const dispatch = useDispatch();

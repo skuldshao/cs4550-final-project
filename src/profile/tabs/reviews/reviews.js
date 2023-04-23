@@ -40,7 +40,7 @@ function Reviews({
     useEffect(() => {
         dispatch(userProfileThunk())
         getUserProfile();
-    }, []);
+    }, [loading]);
     return (
         <div>
             {!loading && <div className="wd-black-bg text-start">

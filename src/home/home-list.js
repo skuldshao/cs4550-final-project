@@ -1,5 +1,5 @@
 import "../styles.css"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TimeDisplay from "../time-display";
 import ReviewItem from "../profile/tabs/reviews/reviewItem";
 import CommentItem from "../profile/tabs/reviews/commentItem";
@@ -7,7 +7,8 @@ import PlaylistItem from "../profile/tabs/playlists/playlistItem";
 import {Link} from "react-router-dom";
 
 export const HomeList = ({activityItem, currentID}) => {
-    const [isSelf, setIsSelf] = useState(currentID ? activityItem.user._id === currentID : false)
+    const isSelf = activityItem.user._id === currentID;
+
     return (
         <li className="list-group-item border-0 bg-black">
             <div className="wd-bg-grey p-2 rounded-2">
@@ -93,9 +94,9 @@ export const HomeList = ({activityItem, currentID}) => {
                                      height="50" width="50"/>
                             </div>
                             <div className="ms-2 align-self-center">
-                                {isSelf ? 'You' :
+                                {isSelf ? 'You ' :
                                     <>a new <span
-                                        className="fw-bold">{activityItem.kind}</span>, {activityItem.user.userName}</>},
+                                        className="fw-bold">{activityItem.kind}</span> {activityItem.user.userName} </>}
                                 just <span
                                 className="fw-bold">joined </span>
                             </div>

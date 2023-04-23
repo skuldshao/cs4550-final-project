@@ -4,10 +4,10 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
-import {findUserThunk} from "../services/user-thunk";
+import {createUserThunk, findUserThunk} from "../services/user-thunk";
 import {findAdminThunk} from "../services/admin-thunk";
 import {logoutThunk as userLogoutThunk, registerThunk as userRegisterThunk} from "../services/user-auth-thunk";
-import {registerThunk as adminRegisterThunk} from "../services/user-auth-thunk";
+import {registerThunk as adminRegisterThunk} from "../services/admin-auth-thunk";
 import {logoutThunk as adminLogoutThunk} from "../services/admin-auth-thunk";
 
 function Signup({inCode = false}) {
@@ -42,11 +42,16 @@ function Signup({inCode = false}) {
                 userName,
                 bio,
                 number,
-                joined: 2023
+                joined: Date.now()
             }
-            payload = dispatch(userRegisterThunk(user));
-            if (payload.type !== 'userAuth/registerUser/rejected') {
-                navigate("/home")
+            if (!inCode) {
+                payload = dispatch(userRegisterThunk(user));
+                if (payload.type !== 'userAuth/registerUser/rejected') {
+                    dispatch(userLogoutThunk())
+                    navigate("/login")
+                }
+            } else {
+                dispatch(createUserThunk(user))
             }
             clearFields();
         } else {
@@ -57,16 +62,18 @@ function Signup({inCode = false}) {
                 handle,
                 userName,
                 number,
-                joined: 2023
+                joined: Date.now()
             }
-            payload = dispatch(adminRegisterThunk(admin));
+            if (!inCode) {
+                payload = dispatch(adminRegisterThunk(admin));
+                if (payload.type !== 'adminAuth/registerAdmin/rejected') {
+                    dispatch(adminLogoutThunk())
+                    navigate("/login")
+                }
+            } else {
+                dispatch(createUserThunk(admin))
+            }
             clearFields();
-            if (payload.type !== 'adminAuth/registerAdmin/rejected') {
-                navigate("/home")
-            }
-        }
-        if (!inCode) {
-            navigate("/home")
         }
     }
 
@@ -102,8 +109,10 @@ function Signup({inCode = false}) {
     }, [])
 
     useEffect(() => {
-        dispatch(adminLogoutThunk())
-        dispatch(userLogoutThunk())
+        if (!inCode) {
+            dispatch(adminLogoutThunk())
+            dispatch(userLogoutThunk())
+        }
     }, [])
 
     return (
