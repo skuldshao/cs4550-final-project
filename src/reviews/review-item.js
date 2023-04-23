@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import "./rating/index";
 import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
 import {profileThunk as adminProfileThunk} from "../services/admin-auth-thunk";
 import {Link} from "react-router-dom";
 import {findUserThunk} from "../services/user-thunk";
+import CommentItem from "./CommentItem";
+import WriteComment from "./WriteComment";
 
 const ReviewItem = (
     {
@@ -14,15 +16,13 @@ const ReviewItem = (
     const [profile, setProfile] = useState({});
     const [reviewer, setReviewer] = useState({});
     const [loading, setLoading] = useState(true);
+    const [comments, viewComments] = useState(false)
     const dispatch = useDispatch();
     const getUserProfile = async () => {
         if (loggedIn) {
-            console.log("here")
             const user = await dispatch(userProfileThunk())
-            console.log(user.payload)
             if (user.payload) {
                 setProfile(user.payload);
-                console.log(user.payload)
             } else {
                 const user = await dispatch(adminProfileThunk())
                 setProfile(user.payload);
@@ -30,7 +30,6 @@ const ReviewItem = (
         }
         const allUsers = await dispatch(findUserThunk())
         const reviewer = allUsers.payload.find(user => user._id === review.userId);
-        console.log(reviewer)
         setReviewer(reviewer);
         setLoading(false);
     };
@@ -65,6 +64,19 @@ const ReviewItem = (
                 </div>
                 <div className="flex-row ms-5 ps-4">
                     <p className="ms-2">{review.review}</p>
+                    {loggedIn && <>
+                        <div className="mb-3">
+                            <button className="btn btn-danger" onClick={() => viewComments(!comments)}>
+                                View {!comments ? 'More' : 'Less'} Comments
+                            </button>
+                        </div>
+                        {comments && <div className="mb-2">
+                            {review.comments.map(c => <CommentItem item={c}/>)}
+                        </div>}
+                        <div>
+                            <WriteComment review={review} user={reviewer}/>
+                        </div>
+                    </>}
                 </div>
             </div>
             }
