@@ -70,7 +70,6 @@ function Detail() {
             {detailComponent}
             {loggedIn && !admin && track? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
             <ReviewList/>
-
         </>
     );
 }
