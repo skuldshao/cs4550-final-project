@@ -50,33 +50,13 @@ function Detail() {
 
     const track = window.location.pathname.includes("track");
 
-    console.log(item);
-
-
-<<<<<<< HEAD
-    console.log("passed item name: " + item.itemName);
-    console.log("passed item artist: " + item.artist);
-=======
-        console.log("passed item name: " + item.itemName);
-        console.log("passed item artist: " + item.artist);
-
-
->>>>>>> d27859433696ffc546bd28b4dffad7d82baee378
-
     return (
         <>
             <Nav user={admin ? "admin" : "user"} active="search"/>
             {detailComponent}
-
-<<<<<<< HEAD
             {loggedIn && !admin && track ? <><AddToPlaylist itemId={id}/><WriteReview
                 getItemDetail={itemDetails}/></> : <></>}
             <ReviewList loggedIn={loggedIn}/>
-=======
-            {loggedIn && !admin && track? <><AddToPlaylist itemId={id}/><WriteReview getItemDetail={itemDetails}/></> : <></>}
-
-            <ReviewList/>
->>>>>>> d27859433696ffc546bd28b4dffad7d82baee378
         </>
     );
 }
