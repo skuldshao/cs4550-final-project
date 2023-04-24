@@ -12,8 +12,6 @@ const CommentItem = ({item, date}) => {
     const getReview = async () => {
         const reviews = await dispatch(findReviewThunk());
         setReview(reviews.payload.find(r => r._id === item.reviewID))
-        console.log(reviews.payload)
-        console.log(item)
         setLoading(false)
     }
 
@@ -27,7 +25,7 @@ const CommentItem = ({item, date}) => {
                 <div className="row wd-black-bg align-items-center">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex justify-content-start me-2">
-                            <Link to={`/detail/${review.itemType}${review.itemID}`}
+                            <Link to={`/detail/${review.itemType}/${review.itemID}`}
                                   className="text-white text-decoration-none fs-5 fw-bold">
                                 <img width={50} height={50} src={review.art} className="align-self-center"/>
                             </Link>

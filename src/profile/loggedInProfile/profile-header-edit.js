@@ -31,6 +31,7 @@ function ProfileHeaderEdit({
         setProfile(user.payload);
         setImage(user.payload.avatarIcon);
         setUserName(user.payload.userName);
+        console.log(user.payload.userName);
         setEmail(user.payload.email);
         setHandle(user.payload.handle);
         setPassword(user.payload.password)

@@ -1,5 +1,5 @@
 import "../styles.css"
-import React, {useEffect, useState} from "react";
+import React from "react";
 import TimeDisplay from "../time-display";
 import ReviewItem from "../profile/tabs/reviews/reviewItem";
 import CommentItem from "../profile/tabs/reviews/commentItem";
@@ -8,7 +8,6 @@ import {Link} from "react-router-dom";
 
 export const HomeList = ({activityItem, currentID}) => {
     const isSelf = activityItem.user._id === currentID;
-
     return (
         <li className="list-group-item border-0 bg-black">
             <div className="wd-bg-grey p-2 rounded-2">
@@ -16,17 +15,17 @@ export const HomeList = ({activityItem, currentID}) => {
                 <div>
                     <div className="d-flex justify-content-between">
                         <div className="fw-normal d-flex justify-content-start">
-                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                            <Link to={isSelf ? `/profile/reviews` : `/profile/reviews/${activityItem.user._id}`}
                                   className="text-decoration-none text-white align-self-center">
                                 <img src={`/images/${activityItem.user.avatarIcon}`}
                                      className="rounded-circle align-self-center"
                                      height="50" width="50"/>
                             </Link>
-                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                            <Link to={isSelf ? `/profile/reviews` : `/profile/reviews/${activityItem.user._id}`}
                                   className="text-decoration-none text-white align-self-center">
                                 <div className="ms-2 align-self-center">
                                     {isSelf ? 'You' : activityItem.user.userName} left a <span
-                                    className="fw-bold">review </span>
+                                    className="fw-bold">review </span> on a {activityItem.itemType}
                                 </div>
                             </Link>
                         </div>
@@ -39,17 +38,17 @@ export const HomeList = ({activityItem, currentID}) => {
                 <div>
                     <div className="d-flex justify-content-between">
                         <div className="fw-normal d-flex justify-content-start">
-                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                            <Link to={isSelf ? `/profile` : `/profile/${activityItem.user._id}`}
                                   className="text-decoration-none text-white align-self-center">
                                 <img src={`/images/${activityItem.user.avatarIcon}`}
                                      className="rounded-circle align-self-center"
                                      height="50" width="50"/>
                             </Link>
-                            <Link to={isSelf ? `/profile/newSongs` : `/profile/newSongs/${activityItem.user._id}`}
+                            <Link to={isSelf ? `/profile` : `/profile/${activityItem.user._id}`}
                                   className="text-decoration-none text-white align-self-center">
                                 <div className="ms-2 align-self-center">
                                     {isSelf ? 'You' : activityItem.user.userName} left a <span
-                                    className="fw-bold">comment</span> on a review
+                                    className="fw-bold">comment</span> on a review of a {activityItem.itemType}
                                 </div>
                             </Link>
                         </div>

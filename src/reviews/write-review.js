@@ -3,8 +3,7 @@ import {createReview} from "../reducers/review-reducer";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import {createReviewThunk} from "../services/review-thunk";
-
-import {profileThunk as userProfileThunk} from "../services/user-auth-thunk";
+import {profileThunk as userProfileThunk, updateUserThunk} from "../services/user-auth-thunk";
 
 
 const WriteReview = (itemDetail) => {
@@ -28,8 +27,8 @@ const WriteReview = (itemDetail) => {
     const [loading, setLoading] = useState(true);
     const getProfile = async () => {
         const profileData = await dispatch(userProfileThunk());
-        const profile = profileData.payload;
-        setProfile(profile);
+        const profiles = profileData.payload;
+        setProfile(profiles);
         setLoading(false);
     };
 
@@ -50,7 +49,6 @@ const WriteReview = (itemDetail) => {
             const newReview = {
                 itemID: id,
                 userId: profile._id,
-                itemId: id,
                 itemName: itemDetail.getItemDetail.itemName,
                 artist: itemDetail.getItemDetail.artist,
                 art: itemDetail.getItemDetail.art,
@@ -69,9 +67,9 @@ const WriteReview = (itemDetail) => {
                 rating: rating,
                 itemType: type,
             }
-            const toSend = {newReview, newReviewForUser}
-            console.log(newReview)
-            dispatch(createReviewThunk(toSend));
+            // const toSend = {newReview, newReviewForUser}
+            dispatch(createReviewThunk(newReview));
+            dispatch(updateUserThunk({...profile, "reviews": [...profile.reviews, newReviewForUser]}));
             setFormValid(true);
             setWriteReview("");
             setRating(0);

@@ -54,8 +54,9 @@ function Detail() {
         <>
             <Nav user={admin ? "admin" : "user"} active="search"/>
             {detailComponent}
-            {loggedIn && !admin && track ? <><AddToPlaylist itemId={id}/><WriteReview
-                getItemDetail={itemDetails}/></> : <></>}
+            {loggedIn && !admin && track && <AddToPlaylist itemId={id}/>}
+            {loggedIn ? <WriteReview
+                getItemDetail={itemDetails}/> : <></>}
             <ReviewList loggedIn={loggedIn}/>
         </>
     );

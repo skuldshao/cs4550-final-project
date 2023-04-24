@@ -10,7 +10,8 @@ function RecentActivityItem({activityItem}
         <div>
             {activityItem.type === "review" && <div>
                 <div className="fw-normal">
-                    Left a <span className="fw-bold">review </span><span className="text-secondary"> • </span>
+                    Left a <span className="fw-bold">review </span> on a {activityItem.itemType} <span
+                    className="text-secondary"> • </span>
                     <span className="text-secondary"><TimeDisplay itemDate={activityItem.date}/></span>
                 </div>
                 <ReviewItem reviewItem={activityItem} date={false}/>
@@ -18,7 +19,7 @@ function RecentActivityItem({activityItem}
             {activityItem.type === "comments" &&
             <div>
                 <div className="fw-normal">
-                    Left a <span className="fw-bold">comment</span> on a review<span
+                    Left a <span className="fw-bold">comment</span> on a review of a {activityItem.itemType} <span
                     className="text-secondary"> • </span>
                     <TimeDisplay
                         itemDate={activityItem.date}/>

@@ -24,6 +24,7 @@ function ProfileHeader({
     const getUserProfile = async () => {
         const user = await dispatch(userProfileThunk())
         setProfile(user.payload);
+        console.log((user.payload.userName))
         setLoading(false)
     };
     const handleLogout = async () => {

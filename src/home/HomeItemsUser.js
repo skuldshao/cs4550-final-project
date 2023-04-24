@@ -26,6 +26,8 @@ const HomeItemsUser = ({users}) => {
     for (let i = 0; i < newUsers.length; i++) {
         const user = newUsers[i];
         const reviews = user.reviews;
+        console.log("reviews")
+        console.log(reviews)
         const favorites = user.favoriteSongs;
         const newSongs = user.newSongs;
         const comments = user.comments;

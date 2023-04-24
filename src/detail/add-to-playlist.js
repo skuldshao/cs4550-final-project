@@ -20,12 +20,10 @@ const AddToPlaylist = (itemDetail) => {
         setProfile(profile);
 
         if (profile.favoriteSongs.findIndex(song => song.musicID === id) !== -1) {
-            console.log("here 1");
             setFavorite(true);
         }
 
         if (profile.newSongs.findIndex(song => song.musicID === id) !== -1) {
-            console.log("here 2");
             setNew(true);
         }
 

@@ -18,11 +18,12 @@ const Self = ({tabs, isSelf, isEditing, loggedIn}) => {
     const dispatch = useDispatch();
     const getUserProfile = async () => {
         const user = await dispatch(userProfileThunk())
+        console.log(user.payload)
         setProfile(user.payload);
         setLoading(false)
     };
     useEffect(() => {
-        dispatch(userProfileThunk())
+        // dispatch(userProfileThunk())
         dispatch(findUserThunk())
         getUserProfile();
     }, []);

@@ -35,7 +35,7 @@ function ReviewItem({reviewItem, date}) {
                 </div>
                 <div className="mt-2">
                     <div className="ms-3 align-self-center">
-                        <Link to={`/detail/${reviewItem.itemType}/${reviewItem.itemID}/${reviewItem}`}
+                        <Link to={`/detail/${reviewItem.itemType}/${reviewItem.itemID}`}
                               className="text-white text-decoration-none fw-bold">
                             <Stars rating={reviewItem.rating}/>
                             {

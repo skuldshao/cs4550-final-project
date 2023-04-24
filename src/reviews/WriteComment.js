@@ -54,6 +54,7 @@ const WriteComment = ({review, user}) => {
                 reviewID: review._id,
                 date: Date.now(),
                 comment: writeReview,
+                itemType: type
             }
             const newComments = [...user.comments, newCommentForUser]
             const newReviews = [...review.comments, newComment]
