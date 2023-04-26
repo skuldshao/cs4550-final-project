@@ -19,7 +19,8 @@ function SearchBar() {
     //const [prev, setPrev] = useState("");
     const [search, setSearch] = useState(query);
     const [results, setResults] = useState({});
-    const [searchType, setSearchType]  = useState("tracks");
+    const [searchType, setSearchType]  = useState(
+        localStorage.getItem("searchType") || "tracks");
     const [isLoading, setIsLoading] = useState(false);
     //const prev = loc.search.substring(1, loc.search.length);
     //console.log("search: " + search);
@@ -44,6 +45,7 @@ function SearchBar() {
     };
 
     useEffect(() => {
+        localStorage.setItem("searchType", searchType);
         if (query) {
             setSearch(query);
             //setSearchType(loc.state ? searchType : "albums");
