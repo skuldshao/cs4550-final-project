@@ -20,9 +20,15 @@ function Detail() {
     const [loggedIn, setLoggedIn] = useState(false)
     const getProfile = async () => {
         const admins = await dispatch(adminProfileThunk());
+        {
+            console.log(admins)
+        }
         const adVal = admins.type === "adminAuth/profile/fulfilled"
         setAdmin(adVal);
         const users = await dispatch(userProfileThunk())
+        {
+            console.log(users)
+        }
         const loggedInVal = users.type === "userAuth/profile/fulfilled" || admin
         setLoggedIn(loggedInVal)
     };

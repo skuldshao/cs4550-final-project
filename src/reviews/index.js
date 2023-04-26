@@ -36,7 +36,7 @@ const ReviewList = ({loggedIn}) => {
     }, []);
 
     return (
-        <ul className="list-group">
+        <ul className="list-group wd-bg-black">
             {
                 loading &&
                 <li className="list-group-item">

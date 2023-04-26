@@ -6,6 +6,7 @@ import {updateReviewThunk} from "../services/review-thunk";
 import {updateUserThunk} from "../services/user-auth-thunk";
 
 const WriteComment = ({review, user}) => {
+    console.log(user)
     const [writeReview, setWriteReview] = useState('');
     const [formValid, setFormValid] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -69,16 +70,17 @@ const WriteComment = ({review, user}) => {
 
 
     return (
-        <form>
-            <div className="text-white me-3">
+        <>
+            <span className="text-white me-3">
                 <label htmlFor="new-review" className="form-label">
-                    Write a comment for this review:
+                    Comment away:
                 </label>
                 <div className="row">
                     <div className="w-100">
                     <textarea id="new-review" name="new-review"
                               placeholder="Share your thoughts here"
                               rows={4}
+                              value={writeReview}
                               className="form-control border-0 wd-review-textarea"
                               onChange={(event) => setWriteReview(event.target.value)}>
 
@@ -94,7 +96,7 @@ const WriteComment = ({review, user}) => {
                 {formValid ? null :
                     <div className="text-danger text-center">{errorMessage}</div>
                 }
-            </div>
-        </form>)
+            </span>
+        </>)
 }
 export default WriteComment

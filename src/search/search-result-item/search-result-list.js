@@ -4,18 +4,18 @@ import songArray from '../song.json';
 import SearchResultItem from "./search-result-item";
 import {useLocation, useHistory, Link} from "react-router-dom";
 
-const { search } = window.location;
+const {search} = window.location;
 const {test} = "/search"
 const query = new URLSearchParams(search).get("search");
 
 
 const SearchResultList = ({results}) => {
 
-    return(
+    return (
         <ul className="list-group">
             {results.map((result) => {
                 return (
-                    <Link to={`/detail/${result.id}`}>
+                    <Link to={`/detail/${result.id}`} className="text-decoration-none">
                         <li className="list-group-item" key={result.id}>
                             <div className="d-flex align-items-center">
                                 <div className="">

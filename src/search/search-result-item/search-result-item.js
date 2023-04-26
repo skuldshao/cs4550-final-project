@@ -17,7 +17,7 @@ const SearchResultItem = (
 
     return (
 
-        <Link to={detailLink}>
+        <Link to={detailLink} className="text-decoration-none">
             <li className="list-group-item border-white rounded-5 bg-black ms-3 me-3 mb-2">
                 <div className="d-flex align-items-center">
                     <div className="">

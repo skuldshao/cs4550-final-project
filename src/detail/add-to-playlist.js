@@ -99,7 +99,7 @@ const AddToPlaylist = (itemDetail) => {
 
 
     return (
-        <div className="border p-3 text-white">
+        <div className="border border-top-0 p-3 text-white border-danger">
             <div className="btn-group d-flex justify-content-center" role="group">
                 {loading ? <span>Loading...</span> : <>
                     <div className="d-flex justify-content-center">

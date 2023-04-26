@@ -93,7 +93,7 @@ const WriteReview = (itemDetail) => {
 
     return (
         <form>
-            <div className="align-content-center border p-3 text-white">
+            <div className="align-content-center border border-top-0 border-danger p-3 text-white">
                 <label htmlFor="new-review" className="form-label">
                     Write a review:
                 </label>
@@ -102,6 +102,7 @@ const WriteReview = (itemDetail) => {
                     <textarea id="new-review" name="new-review"
                               placeholder="Share your thoughts here."
                               rows={4}
+                              value={writeReview}
                               className="form-control border-0 wd-review-textarea"
                               onChange={(event) => setWriteReview(event.target.value)}>
 
