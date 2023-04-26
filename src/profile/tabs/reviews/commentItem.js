@@ -49,7 +49,7 @@ const CommentItem = ({item, date}) => {
                 </div>
                 <div className="mt-2">
                     <div className="ms-3 align-self-center">
-                        <Link to={`/detail/${review.itemType}/${review.itemID}/${item.reviewID}`}
+                        <Link to={`/detail/${review.itemType}/${review.itemID}}`}
                               className="text-white text-decoration-none fw-bold">
                             {<div className="wd-black-bg align-items-center fw-normal wd-gold">
                                 <div className="">

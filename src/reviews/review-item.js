@@ -17,16 +17,17 @@ const ReviewItem = (
     const [reviewer, setReviewer] = useState({});
     const [loading, setLoading] = useState(true);
     const [comments, viewComments] = useState(false)
+    const [writeC, setWriteC] = useState(false)
     const dispatch = useDispatch();
     const getUserProfile = async () => {
-        if (loggedIn) {
-            const user = await dispatch(userProfileThunk())
-            if (user.payload) {
-                setProfile(user.payload);
-            } else {
-                const user = await dispatch(adminProfileThunk())
-                setProfile(user.payload);
-            }
+        const user = await dispatch(userProfileThunk())
+        const admin = await dispatch(adminProfileThunk())
+        if (user.payload) {
+            setProfile(user.payload);
+            setLoading(false)
+        } else if (admin.payload) {
+            setProfile(admin.payload);
+            setLoading(false)
         }
         const allUsers = await dispatch(findUserThunk())
         const reviewer = allUsers.payload.find(user => user._id === review.userId);
@@ -39,13 +40,16 @@ const ReviewItem = (
     }, []);
 
     return (
-        <>
-            {(!loading && reviewer) && <div className="border text-white" id={review._id}>
+        <li className="list-group-item border-0 border-bottom border-danger bg-black mb-2">
+            {(!loading && reviewer) && <div className="text-white pb-1" id={review._id}>
                 <div className="flex-row m-3 mb-1">
                     <div className="d-inline-block">
-                        <img src={`/images/${reviewer.avatarIcon}`}
-                             className="rounded-circle align-self-center"
-                             height="50" width="50"/>
+                        <Link
+                            to={loggedIn ? (reviewer._id === profile._id ? '/profile' : `/profile/${reviewer._id}`) : `/profile/${reviewer._id}`}>
+                            <img src={`/images/${reviewer.avatarIcon}`}
+                                 className="rounded-circle align-self-center"
+                                 height="50" width="50"/>
+                        </Link>
                     </div>
                     <div className="wd-color-white d-inline-block ms-3 mt-3">
                         <Link
@@ -65,22 +69,29 @@ const ReviewItem = (
                 <div className="flex-row ms-5 ps-4">
                     <p className="ms-2">{review.review}</p>
                     {loggedIn && <>
-                        <div className="mb-3">
+                        {review.comments.length > 0 && <div className="mb-3">
                             <button className="btn btn-danger" onClick={() => viewComments(!comments)}>
-                                View {!comments ? 'More' : 'Less'} Comments
+                                View {!comments ? review.comments.length : 'Less'} Comments
                             </button>
-                        </div>
+                        </div>}
                         {comments && <div className="mb-2">
-                            {review.comments.map(c => <CommentItem item={c}/>)}
+                            {review.comments.map(c => <CommentItem item={c} loggedIn={loggedIn} reviewer={reviewer}
+                                                                   profId={profile._id}/>)}
                         </div>}
                         <div>
-                            <WriteComment review={review} user={reviewer}/>
+                            {!writeC && <><i className="bi bi-caret-down-fill wd-gold"
+                                             onClick={() => setWriteC(true)}/> Want to write a comment?</>}
+                            {writeC && <span><i className="bi bi-caret-up-fill wd-gold"
+                                                onClick={() => setWriteC(false)}/>
+                                <WriteComment
+                                    review={review}
+                                    user={profile}/></span>}
                         </div>
                     </>}
                 </div>
             </div>
             }
-        </>
+        </li>
     )
 }
 export default ReviewItem;

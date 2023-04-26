@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Link, useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {searchItems} from "../services/spotify-service";
 
 import "./index.css";
@@ -12,14 +12,15 @@ import {useLocation} from "react-router";
 
 function SearchBar() {
     const loc = useLocation();
-    const { query } = useParams();
+    const {query} = useParams();
     const navigate = useNavigate();
     //const prev =  loc.search.substring(1, loc.search.length);
     //console.log("q: " + q);
     //const [prev, setPrev] = useState("");
     const [search, setSearch] = useState(query);
     const [results, setResults] = useState({});
-    const [searchType, setSearchType]  = useState("tracks");
+    const [searchType, setSearchType] = useState(
+        localStorage.getItem("searchType") || "tracks");
     const [isLoading, setIsLoading] = useState(false);
     //const prev = loc.search.substring(1, loc.search.length);
     //console.log("search: " + search);
@@ -27,7 +28,9 @@ function SearchBar() {
 
     const showItem = (e) => {
         setSearchType(e.target.value)
-        searchSpotify();
+        if (search !== "") {
+            searchSpotify();
+        }
     }
 
     const searchSpotify = async () => {
@@ -38,12 +41,13 @@ function SearchBar() {
         //console.log("query: " + query);
         //console.log("search: " + search);
 
-        console.log(searchType);
         setResults(results);
         navigate(`/search/${search}`);
     };
 
     useEffect(() => {
+        localStorage.setItem("searchType", searchType);
+        console.log(query)
         if (query) {
             setSearch(query);
             //setSearchType(loc.state ? searchType : "albums");
@@ -52,10 +56,14 @@ function SearchBar() {
         }
     }, [query]);
 
+    useEffect(() => {
+        localStorage.setItem("searchType", searchType);
+    }, [searchType]);
+
     return (
         <div className="text-white">
             <h1>Song Search</h1>
-            {query? <div>
+            {query ? <div>
                 Results for: {query}
             </div> : <div></div>}
             <div className="form-group">
@@ -71,11 +79,22 @@ function SearchBar() {
                             placeholder="search"
                             className="form-control rounded-pill"
                             value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => {
+                                setSearch(e.target.value)
+                            }}
+                            onKeyPress={e => {
+                                if (e.key === 'Enter' && search !== "") {
+                                    searchSpotify()
+                                }
+                            }}
                         />
                     </div>
                     <div>
-                        <button onClick={searchSpotify}
+                        <button onClick={() => {
+                            if (search !== "") {
+                                searchSpotify()
+                            }
+                        }}
                                 className="btn btn-danger rounded-circle">
                             <i className="bi bi-search "/>
                         </button>
@@ -83,35 +102,35 @@ function SearchBar() {
                 </div>
                 <br></br>
                 {
-                        <div className="d-flex ms-2 mb-1">
-                    <input type="radio"
-                           value="tracks"
-                           id="tracks"
-                           checked={searchType === "tracks"}
-                           onChange={showItem}
-                           name="search-type"
-                           className="me-1"/>
-                    <label htmlFor="tracks">Tracks</label>
-                    <input type="radio"
-                           value="albums"
-                           id="albums"
-                           checked={searchType === "albums"}
-                           onChange={showItem}
-                           name="search-type"
-                           className="ms-3 me-1"/>
-                    <label htmlFor="albums">Albums</label>
-                </div>}
+                    <div className="d-flex ms-2 mb-2">
+                        <input type="radio"
+                               value="tracks"
+                               id="tracks"
+                               checked={searchType === "tracks"}
+                               onChange={showItem}
+                               name="search-type"
+                               className="me-1"/>
+                        <label htmlFor="tracks">Tracks</label>
+                        <input type="radio"
+                               value="albums"
+                               id="albums"
+                               checked={searchType === "albums"}
+                               onChange={showItem}
+                               name="search-type"
+                               className="ms-3 me-1"/>
+                        <label htmlFor="albums">Albums</label>
+                    </div>}
                 {query && (results.tracks?.length || results.albums?.length) > 0 && (
                     <ul className="list-group">
                         {searchType === "tracks" ? (
-                            results.tracks?.map((result) => <SearchResultTrack key={result.id} result={result} />)
+                            results.tracks?.map((result) => <SearchResultTrack key={result.id} result={result}/>)
                         ) : (
-                            results.albums?.map((result) => <SearchResultAlbum key={result.id} result={result} />)
+                            results.albums?.map((result) => <SearchResultAlbum key={result.id} result={result}/>)
                         )}
                     </ul>
                 )}
                 {query && (!results.tracks?.length && !results.albums?.length) && (
-                    <div className="text-center">
+                    <div className="text-start">
                         No {searchType} found for '{search}'
                     </div>
                 )}
@@ -121,4 +140,5 @@ function SearchBar() {
         </div>
     );
 }
+
 export default SearchBar;
