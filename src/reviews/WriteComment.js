@@ -36,14 +36,16 @@ const WriteComment = ({review, user}) => {
 
     const dispatch = useDispatch();
 
-    const handleAddComment = (event) => {
+    const handleAddComment = async (event) => {
         event.preventDefault();
         let errorMessage = '';
         if (writeReview === '') {
             setFormValid(false);
             errorMessage = 'Please fill in a comment before proceeding.';
         } else {
-            // const current = new Date();
+            let thing;
+            const toSet = await dispatch(userProfileThunk())
+            thing = toSet.payload
             const newComment = {
                 userId: profile._id,
                 date: Date.now(),
@@ -60,7 +62,7 @@ const WriteComment = ({review, user}) => {
             const newComments = [...user.comments, newCommentForUser]
             const newReviews = [...review.comments, newComment]
             dispatch(updateReviewThunk({...review, "comments": newReviews}));
-            dispatch(updateUserThunk({...user, "comments": newComments}))
+            dispatch(updateUserThunk({...thing, "comments": newComments}))
             setFormValid(true);
             setWriteReview("");
             //clear form fields if needed

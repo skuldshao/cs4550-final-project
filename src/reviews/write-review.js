@@ -38,14 +38,16 @@ const WriteReview = (itemDetail) => {
 
     const dispatch = useDispatch();
 
-    const handleAddReview = (event) => {
+    const handleAddReview = async (event) => {
         event.preventDefault();
         let errorMessage = '';
         if (rating === 0 || writeReview === '') {
             setFormValid(false);
             errorMessage = 'Please fill in both the rating and review text before proceeding.';
         } else {
-            // const current = new Date();
+            let thing;
+            const toSet = await dispatch(userProfileThunk())
+            thing = toSet.payload
             const newReview = {
                 itemID: id,
                 userId: profile._id,
@@ -69,7 +71,7 @@ const WriteReview = (itemDetail) => {
             }
             // const toSend = {newReview, newReviewForUser}
             dispatch(createReviewThunk(newReview));
-            dispatch(updateUserThunk({...profile, "reviews": [...profile.reviews, newReviewForUser]}));
+            dispatch(updateUserThunk({...thing, "reviews": [...profile.reviews, newReviewForUser]}));
             setFormValid(true);
             setWriteReview("");
             setRating(0);
