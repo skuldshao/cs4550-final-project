@@ -25,19 +25,19 @@ const CommentItem = ({item, date}) => {
                 <div className="row wd-black-bg align-items-center">
                     <div className="d-flex justify-content-between">
                         <div className="d-flex justify-content-start me-2">
-                            <Link to={`/detail/${review.itemType}/${review.itemID}`}
+                            <Link to={`/detail/${item.itemType}/${review.itemID}`}
                                   className="text-white text-decoration-none fs-5 fw-bold">
                                 <img width={50} height={50} src={review.art} className="align-self-center"/>
                             </Link>
                             <div className="ms-3">
                                 <div className="text-secondary w-100">
-                                    <Link to={`/detail/${review.itemType}/${review.itemID}`}
+                                    <Link to={`/detail/${item.itemType}/${review.itemID}`}
                                           className="text-white text-decoration-none fs-5 fw-bold">
                                         {review.itemName}
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link to={`/detail/${review.itemType}/${review.itemID}`}
+                                    <Link to={`/detail/${item.itemType}/${review.itemID}`}
                                           className="text-secondary text-decoration-none fs-5 fw-normal">
                                         {review.artist && review.artist}
                                     </Link>
@@ -49,7 +49,7 @@ const CommentItem = ({item, date}) => {
                 </div>
                 <div className="mt-2">
                     <div className="ms-3 align-self-center">
-                        <Link to={`/detail/${review.itemType}/${review.itemID}`}
+                        <Link to={`/detail/${item.itemType}/${review.itemID}`}
                               className="text-white text-decoration-none fw-bold">
                             {<div className="wd-black-bg align-items-center fw-normal wd-gold">
                                 <div className="">
