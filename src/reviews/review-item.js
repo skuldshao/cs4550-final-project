@@ -41,6 +41,7 @@ const ReviewItem = (
 
     return (
         <li className="list-group-item border-0 border-bottom border-danger bg-black mb-2">
+            {console.log(review._id)}
             {(!loading && reviewer) && <div className="text-white pb-1" id={review._id}>
                 <div className="flex-row m-3 mb-1">
                     <div className="d-inline-block">

@@ -45,7 +45,7 @@ const ReviewList = ({loggedIn}) => {
             }
             {!loading &&
             reviews.filter(rev => rev.itemID === id).map(r =>
-                <ReviewItem key={r._id} review={r} loggedIn={loggedIn}/>)
+                <ReviewItem key={r._id} review={r} loggedIn={loggedIn} id={r._id}/>)
             }
         </ul>
     );
